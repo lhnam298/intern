@@ -1,0 +1,123 @@
+<?php
+	$form	= $this->form;
+	$arrType	= $this->arrType;
+	$arrSubject	= $this->arrSubject;
+	
+	$form->prepare();
+	$form->setAttribute('action', $this->url('admin', array('action' => 'addquestion')));
+	$form->get('subject')->setAttribute('class', 'form-control');
+	$form->get('question_type')->setAttribute('class', 'form-control');
+	$form->get('content')->setAttribute('class', 'form-control');
+	$form->get('choice_1')->setAttribute('class', 'form-control');
+	$form->get('choice_2')->setAttribute('class', 'form-control');
+	$form->get('choice_3')->setAttribute('class', 'form-control');
+	$form->get('choice_4')->setAttribute('class', 'form-control');
+
+	$form->get('submit')->setAttribute('class', 'btn btn-success');
+	
+	$labelSubject	= $this->formLabel($form->get('subject'));
+	$form->get('subject')->setOptions(array('value_options' => $arrSubject));
+	$subject	= $this->formSelect($form->get('subject'));
+	
+	$labelType	= $this->formLabel($form->get('question_type'));
+	$form->get('question_type')->setOptions(array('value_options' => $arrType));
+	$form->get('question_type')->setAttribute('id', 'typeId');
+	$type	= $this->formSelect($form->get('question_type'));
+	
+	$labelQuestion	= $this->formLabel($form->get('content'));
+	$question	= $this->formTextarea($form->get('content'));
+	$errorQuestion	= $this->formElementErrors($form->get('content'));
+	
+	$labelChoice1	= $this->formLabel($form->get('choice_1'));
+	$choice1	= $this->formTextarea($form->get('choice_1'));
+	
+	$labelChoice2	= $this->formLabel($form->get('choice_2'));
+	$choice2	= $this->formTextarea($form->get('choice_2'));
+	
+	$labelChoice3	= $this->formLabel($form->get('choice_3'));
+	$choice3	= $this->formTextarea($form->get('choice_3'));
+	
+	$labelChoice4	= $this->formLabel($form->get('choice_4'));
+	$choice4	= $this->formTextarea($form->get('choice_4'));
+	
+	$labelAnswer1	= $this->formLabel($form->get('answer1'));
+	$answer1	= $this->formRadio($form->get('answer1'));
+	
+	$labelAnswer2	= $this->formLabel($form->get('answer2'));
+	$answer2	= $this->formMultiCheckbox($form->get('answer2'));
+	
+	$labelAnswer3	= $this->formLabel($form->get('answer3'));
+	$answer3	= $this->formRadio($form->get('answer3'));
+	
+	$submit 	= $this->formInput($form->get('submit'));
+	
+	echo $this->form()->openTag($this->form);
+?>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	  $.viewForm = {
+	    '1' : $('#type1'),
+	    '2' : $('#type2-3a, #type2-3b, #type2-3c, #type2-3d, #type2'),
+	    '3' : $('#type2-3a, #type2-3b, #type2-3c, #type2-3d, #type3')
+	  };
+
+	  $('#typeId').change(function() {
+	    // hide all
+	    $.each($.viewForm, function() { this.hide(); });
+	    // show current
+	    $.viewForm[$(this).val()].show();
+	  }).change();
+	});
+</script>
+
+<article class="module width_full">
+	<header><h3>Tạo câu hỏi</h3></header>
+	<div class="add_data_form">
+    	<h3><?php echo $labelSubject; ?></h3>
+    	<?php echo $subject; ?>
+  	</div>
+  	<div class="add_data_form">
+    	<h3><?php echo $labelType; ?></h3>
+    	<?php echo $type; ?>
+  	</div>
+	<div class="add_data_form">
+    	<h3><?php echo $labelQuestion; ?></h3>
+    	<div class="text-error"><?php echo $errorQuestion; ?></div>
+    	<?php echo $question; ?>
+  	</div>
+  	<div class="add_data_form" id="type2-3a">
+    	<h3><?php echo $labelChoice1; ?></h3>
+    	<?php echo $choice1; ?>
+  	</div>
+  	<div class="add_data_form" id="type2-3b">
+    	<h3><?php echo $labelChoice2; ?></h3>
+    	<?php echo $choice2; ?>
+  	</div>
+	<div class="add_data_form" id="type2-3c">
+    	<h3><?php echo $labelChoice3; ?></h3>
+    	<?php echo $choice3; ?>
+  	</div>
+	<div class="add_data_form" id="type2-3d">
+    	<h3><?php echo $labelChoice4; ?></h3>
+    	<?php echo $choice4; ?>
+  	</div>
+  	<div class="add_data_form" id="type1">
+    	<h3><?php echo $labelAnswer1; ?></h3>
+    	<?php echo $answer1; ?>
+  	</div>
+  	<div class="add_data_form" id="type2">
+    	<h3><?php echo $labelAnswer2; ?></h3>
+    	<?php echo $answer2; ?>
+  	</div>
+	<div class="add_data_form" id="type3">
+    	<h3><?php echo $labelAnswer3; ?></h3>
+    	<?php echo $answer3; ?>
+  	</div>
+  	<br>
+	<div class="text-success" align="center"><?php echo $this->success;?></div>
+	<p align="center"><?php echo $submit?></p>
+</article>
+<?php
+	echo $this->form()->openTag($this->form); 
+?>

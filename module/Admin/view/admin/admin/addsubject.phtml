@@ -1,0 +1,66 @@
+<?php
+	$form	= $this->form;
+	$form->prepare();
+	$form->setAttribute('action', $this->url('admin', array('action' => 'addsubject')));
+	$form->get('name')->setAttribute('class', 'form-control');
+	$form->get('name')->setAttribute('placeholder', 'Nhập tên môn học');
+	$form->get('description')->setAttribute('class', 'form-control');
+	$form->get('time')->setAttribute('class', 'form-control');
+	$form->get('num')->setAttribute('class', 'form-control');
+	$form->get('submit')->setAttribute('class', 'btn btn-success');
+	
+	$labelName	= $this->formLabel($form->get('name'));
+	$name	= $this->formText($form->get('name'));
+	$errorName	= $this->formElementErrors($form->get('name'));
+	
+	$labelDescription	= $this->formLabel($form->get('description'));
+	$description	= $this->formTextarea($form->get('description'));
+	$errorDescription	= $this->formElementErrors($form->get('description'));
+	
+	for ($i	= 10; $i<=90; $i++)
+		$arrTime[$i]	= $i;
+	$form->get('time')->setOptions(array('value_options' => $arrTime));
+	$labelTime	= $this->formLabel($form->get('time'));
+	$time	= $this->formSelect($form->get('time'));
+	
+	for ($i	= 10; $i<=100; $i++)
+		$arrNum[$i]	= $i;
+	$form->get('num')->setOptions(array('value_options' => $arrNum));
+	$labelNum	= $this->formLabel($form->get('num'));
+	$num	= $this->formSelect($form->get('num'));
+	
+	$submit 	= $this->formInput($form->get('submit'));
+	echo $this->form()->openTag($this->form);
+	
+?>
+
+<article class="module width_full">
+	<header><h3>Thêm môn học</h3></header>
+	<div class="add_data_form">
+    	<h3><?php echo $labelName;?></h3>
+    	<div class="text-error"><?php echo $errorName;?></div>
+    	<?php echo $name;?>
+  	</div>
+  	<div class="add_data_form">
+    	<h3><?php echo $labelDescription;?></h3>
+    	<div class="text-error"><?php echo $errorDescription;?></div>
+    	<?php echo $description;?>
+  	</div>
+    <div class="add_data_form">
+    	<h3><?php echo $labelTime;?></h3>
+    	<?php echo $time;?>
+ 	</div>
+ 	 <div class="add_data_form">
+    	<h3><?php echo $labelNum;?></h3>
+    	<?php echo $num;?>
+ 	</div>
+ 	<br>
+ 	<div class="text-success" align="center"><?php echo $this->success;?></div>
+ 	<div class="text-error" align="center"><?php if ($this->err != "") echo $this->err?></div>
+ 	<br>
+ 	<p align="center"><?php echo $submit?></p>
+</article>
+
+<?php
+	echo $this->form()->openTag($this->form); 
+?>

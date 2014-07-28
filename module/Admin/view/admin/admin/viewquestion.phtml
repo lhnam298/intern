@@ -1,0 +1,74 @@
+<article class="module width_full">
+	<header>
+		<h3>
+			<?php
+				switch ($this->id) {
+					case 1:
+						echo "Câu hỏi đúng sai";
+						break;
+					case 2:
+						echo "Câu hỏi lựa chọn đúng";
+						break;
+					case 3:
+						echo "Câu hỏi lựa chọn đúng nhất";
+						break;
+				} 
+			?>
+		</h3>
+	</header>
+	<div class="table_layout">
+<?php
+	if ($this->paginator != null) {
+		if (!isset($_GET['page']))
+			$count	= 0;
+		else 
+			$count	= ($_GET['page'] - 1)*$this->perpage;
+	}
+?>
+	<br><br>
+	<table class="table table-striped">
+		<tr align="center">
+			<td style="width: 5%"><strong>STT</strong></td>
+			<td style="width: 12.5%"><strong>Môn học</strong></td>
+			<td style="width: 50%"><strong>Nội dung</strong></td>
+			<td style="width: 5%"><strong>Đáp án</strong></td>
+			<td style="width: 10%"><strong>Tạo</strong></td>
+			<td style="width: 10%"><strong>Cập nhật</strong></td>
+			<td style="width: 7.5%"></td>
+		</tr>
+	<?php foreach ($this->paginator as $item) : $count++;?>
+		<tr>
+         	<td><?php echo $count?></td>
+         	<td><?php echo $this->escapeHtml($this->subject[$item->subject_id]);?></td>
+            <td><?php echo $this->escapeHtml($item->question);?></td>
+            <td align="center">
+            	<?php	if ($item->question_type_id	== 1)
+							if ($item->answer == 1) echo "Đúng";
+							else echo "Sai";
+						else echo $item->answer;
+				?>
+			</td>
+            <td align="center"><?php echo $this->escapeHtml($item->created_at);?></td>
+            <td align="center"><?php echo $this->escapeHtml($item->updated_at);?></td>
+            <td align="center">
+				<a href="<?php echo $this->basePath()?>/admin/editquestion/<?php echo $item->question_id?>">
+					<img src="<?php echo $this->basePath()?>/admin/images/icn_edit.png"></a>
+				<a href="<?php echo $this->basePath()?>/admin/deletequestion/<?php echo $item->question_id?>">
+					<img src="<?php echo $this->basePath()?>/admin/images/icn_delete.png" Onclick="return ConfirmDelete()"></a>
+            </td>
+         </tr>
+	<?php endforeach; ?>
+	</table>
+	</div>
+</article>
+<?php
+	$url	= "viewquestion/".$this->id;
+	echo $this->paginationControl(
+		$this->paginator,
+		'sliding',
+		array('partial/paginator.phtml', 'Question'),
+	    array(
+			'route' => 'admin',
+	    	'url'	=> $url,
+		)
+ 	); 

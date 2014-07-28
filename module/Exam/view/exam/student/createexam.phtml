@@ -1,0 +1,100 @@
+<script type="text/javascript">
+	var countdownId = 0;
+	var minute	= '<?php echo (int)($this->remainTime/60) ?>';
+	var second	= '<?php echo $this->remainTime%60 ?>';
+
+	function start() {
+		//Start clock
+		countdownId = setInterval("countdown()", 1000);
+	}
+	 
+	function countdown(){
+		if(minute > 0){
+			if (second > 0) {
+				second	= second - 1;
+				document.getElementById('second').innerHTML = second;
+			}
+			if (second == 0) {
+				if (minute != 0) {
+					minute	= minute -1;
+					if (minute != 0)
+						second	= 59;
+					else
+						second	= 60;
+				}
+				document.getElementById('second').innerHTML = second;
+				document.getElementById('minute').innerHTML = minute;
+			}
+		}
+		if (minute == 0){
+			if (second > 0) {
+				second	= second - 1;
+				document.getElementById('second').innerHTML = second;
+			}
+			if (second == 0) {
+				clearInterval(countdownId);
+				document.exam.submit();
+			}
+		}
+	}
+</script>
+
+<?php
+	$arrQuestion	= $this->arrQuestion;
+	$arrChoice	= $this->arrChoice;
+	$numOfQuestion	= $this->numOfQuestion;
+	$type1	= (int)($numOfQuestion/2);
+	$type2	= (int)(($numOfQuestion - $type1)/2);
+	$type3	= $numOfQuestion - $type1 - $type2;
+?>
+<body onload="start()">
+	<div id="minute"><?php echo (int)($this->remainTime/60) ?></div>:<div id="second"><?php echo $this->remainTime%60 ?></div>
+<div class="exam_frame">
+	<form action="<?php echo $this->basePath();?>/student/finishexam/<?php echo $this->subjectID?>" method="post" name="exam">
+	<?php
+		for ($i=1; $i<=$numOfQuestion; $i++) {
+			$label	= "Câu ".$i.":";
+			$name	= "question".$i;
+			if ($i<=$type1) {
+	?>
+				<label class="text-info"><?php echo $label?></label>
+				<strong><?php echo $arrQuestion[$i-1]?></strong><br>
+				<input type="radio" name="<?php echo $name?>" value="1">Đúng<br>
+				<input type="radio" name="<?php echo $name?>" value="0">Sai<br>
+				<br>
+	<?php
+			}
+			else {
+				$arr	= array('1'	=> $arrChoice[$i-$type1-1]->choice_1,
+								'2'	=> $arrChoice[$i-$type1-1]->choice_2,
+								'3'	=> $arrChoice[$i-$type1-1]->choice_3,
+								'4'	=> $arrChoice[$i-$type1-1]->choice_4);
+				if ($i<=$type1+$type2) {
+	?>
+				<label class="text-info"><?php echo $label?></label>
+				<strong><?php echo $arrQuestion[$i-1]?></strong><br>
+				<input type="checkbox" name="<?php echo $name?>[]" value="1"><?php echo $arr['1']?><br>
+				<input type="checkbox" name="<?php echo $name?>[]" value="2"><?php echo $arr['2']?><br>
+				<input type="checkbox" name="<?php echo $name?>[]" value="3"><?php echo $arr['3']?><br>
+				<input type="checkbox" name="<?php echo $name?>[]" value="4"><?php echo $arr['4']?><br>
+				<br>
+	<?php 
+				}
+				else {
+	?>
+					<label class="text-info"><?php echo $label?></label>
+					<strong><?php echo $arrQuestion[$i-1]?></strong><br>
+					<input type="radio" name="<?php echo $name?>" value="1"><?php echo $arr['1']?><br>
+					<input type="radio" name="<?php echo $name?>" value="2"><?php echo $arr['2']?><br>
+					<input type="radio" name="<?php echo $name?>" value="3"><?php echo $arr['3']?><br>
+					<input type="radio" name="<?php echo $name?>" value="4"><?php echo $arr['4']?><br>
+					<br>
+	<?php
+				}
+			}
+		}
+	?>
+		<p><input class="btn btn-success" onclick="return ConfirmSend()" type="submit" name="btn_submit" id="btn_submit" value="Nộp bài"></p>
+	</form>
+</div>
+</body>

@@ -1,0 +1,55 @@
+<article class="module width_full">
+	<header><h3>Danh sách môn học</h3></header>
+	<div class="table_layout">
+<?php
+	if ($this->paginator != null) {
+		if (!isset($_GET['page']))
+			$count	= 0;
+		else 
+			$count	= ($_GET['page'] - 1)*$this->perpage;
+?>
+	<br>
+	<table class="table table-hover">
+		<tr bgcolor="#D9EDF7">
+			<td style="width: 5%"><strong>STT</strong></td>
+			<td style="width: 15%"><strong>Tên môn học</strong></td>
+			<td style="width: 30%"><strong>Mô tả</strong></td>
+			<td style="width: 12%"><strong>Thời gian thi (phút)</strong></td>
+			<td style="width: 10%"><strong>Số câu hỏi</strong></td>
+			<td style="width: 10%"><strong>Thêm</strong></td>
+			<td style="width: 10%"><strong>Cập nhật</strong></td>
+			<td style="width: 8%"></td>
+		</tr>
+	<?php foreach ($this->paginator as $item) : $count++;?>
+		<tr>
+         	<td><?php echo $count?></td>
+            <td><a href="<?php echo $this->basePath()?>/admin/questionbysubject/<?php echo $item->subject_id?>"><?php echo $this->escapeHtml($item->subject_name);?></a></td>
+            <td><?php echo $this->escapeHtml($item->description);?></td>
+            <td><?php echo $this->escapeHtml($item->test_time);?></td>
+            <td><?php echo $this->escapeHtml($item->question_num);?></td>
+            <td><?php echo $this->escapeHtml($item->created_at);?></td>
+            <td><?php echo $this->escapeHtml($item->updated_at);?></td>
+            <td align="center">
+				<a href="<?php echo $this->basePath()?>/admin/editsubject/<?php echo $item->subject_id?>">
+					<img src="<?php echo $this->basePath()?>/admin/images/icn_edit.png"></a>
+				<a href="<?php echo $this->basePath()?>/admin/deletesubject/<?php echo $item->subject_id?>">
+					<img src="<?php echo $this->basePath()?>/admin/images/icn_delete.png" Onclick="return ConfirmDelete()"></a>
+            </td>
+         </tr>
+	<?php endforeach; ?>
+	</table>
+	<?php }?>
+	</div>
+</article>
+<?php
+	$url	= "viewsubject";
+	echo $this->paginationControl(
+		$this->paginator,
+		'sliding',
+		array('partial/paginator.phtml', 'Subject'),
+	    array(
+			'route' => 'admin',
+	    	'url'	=> $url,
+		)
+ 	); 
+ 

@@ -1,0 +1,62 @@
+.student_info {
+	padding-left: 30px;
+	font-weight: bold;
+	font-size: 15px;
+}
+.exam {
+	width: 630px;
+	height: auto;
+	padding-top: 50px;
+}
+.exam_frame {
+	margin-top: 20px;
+	padding: 10px 10px 10px 10px;
+	border: 1px solid #e3e3e3;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+.add_data_form {
+	margin-left: 20px;
+	margin-right: 20px;
+	padding-top: 10px;
+}
+.add_data_form p {
+	margin-left: 20px;
+}
+.view_question_btn {
+	margin-top: 0;
+}
+.table_layout {
+	margin: 10px 20px;
+}
+.admin_login_form {
+	width: 230px;
+	height: 200px;
+	margin: 200px 40%;
+}
+.input_answer label {
+	display: block;
+	font-weight: normal;
+}
+.display_answer {
+	text-decoration: underline;
+	font-weight: bold;
+	color: red;
+	margin-right: 5px;	
+}
+.require_announ {
+	margin-top: 30px;
+	font-size: 15px;
+}
+.type_question {
+	padding-left: 30px;
+	margin-top: 5px;
+	font-size: 13px;
+}
+.announcement {
+	text-align: center;
+	font-size: 15px;
+	margin-top: 20px;
+}

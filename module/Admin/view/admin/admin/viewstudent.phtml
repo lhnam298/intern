@@ -1,0 +1,50 @@
+<article class="module width_full">
+	<header><h3>Danh sách học sinh</h3></header>
+	<div class="table_layout">
+<?php
+	if ($this->paginator != null) {
+		if (!isset($_GET['page']))
+			$count	= 0;
+		else 
+			$count	= ($_GET['page'] - 1)*$this->perpage;
+?>
+	<br>
+	<table class="table table-striped">
+		<tr>
+			<td style="width: 5%"><strong>STT</strong></td>
+			<td style="width: 20%"><strong>Tên đăng nhập</strong></td>
+			<td style="width: 20%"><strong>Họ tên</strong></td>
+			<td style="width: 15"><strong>Ngày sinh</strong></td>
+			<td style="width: 15%"><strong>Điểm trung bình</strong></td>
+			<td style="width: 20%"><strong>Tạo</strong></td>
+			<td style="width: 5%"></td>
+		</tr>
+	<?php foreach ($this->paginator as $item) : $count++;?>
+		<tr>
+         	<td><?php echo $count?></td>
+            <td><?php echo $this->escapeHtml($item->username);?></td>
+            <td><?php echo $this->escapeHtml($item->name);?></td>
+            <td><?php echo $this->escapeHtml($item->birthday);?></td>
+            <td align="center"><?php echo $this->escapeHtml($item->average_mark);?></td>
+            <td><?php echo $this->escapeHtml($item->created_at);?></td>
+            <td align="center">
+				<a href="<?php echo $this->basePath()?>/admin/deletestudent/<?php echo $item->student_id?>">
+					<img src="<?php echo $this->basePath()?>/admin/images/icn_delete.png" Onclick="return ConfirmDelete()"></a>
+            </td>
+         </tr>
+	<?php endforeach; ?>
+	</table>
+	<?php }?>
+	</div>
+</article>
+<?php
+	$url	= "viewstudent";
+	echo $this->paginationControl(
+		$this->paginator,
+		'sliding',
+		array('partial/paginator.phtml', 'Student'),
+	    array(
+			'route' => 'admin',
+	    	'url'	=> $url,
+		)
+ 	); 

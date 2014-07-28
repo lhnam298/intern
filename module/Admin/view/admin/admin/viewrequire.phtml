@@ -1,0 +1,42 @@
+<?php if (count($this->paginator) == 0) {?>
+	<div class="require_announ"><p align="center" class="text-info">Hiện tại không có yêu cầu thi lại nào</p></div>
+<?php } else { ?>
+<article class="module width_full">
+	<header><h3>Yêu cầu thi lại</h3></header>
+	<div class="table_layout">
+<?php
+	if ($this->paginator != null) {
+		if (!isset($_GET['page']))
+			$count	= 0;
+		else 
+			$count	= ($_GET['page'] - 1)*$this->perpage;
+	}
+?>
+	<br>
+	<table class="table table-striped">
+		<tr>
+			<td style="width: 5%"><strong>STT</strong></td>
+			<td style="width: 20%"><strong>Tên sinh viên</strong></td>
+			<td style="width: 20%"><strong>Môn thi</strong></td>
+			<td style="width: 10"><strong>Điểm</strong></td>
+			<td style="width: 20%"><strong>Thời gian</strong></td>
+			<td style="width: 12.5%"></td>
+			<td style="width: 12.5%"></td>
+		</tr>
+	<?php foreach ($this->paginator as $item) : $count++;?>
+		<tr>
+         	<td><?php echo $count?></td>
+            <td><?php echo $this->escapeHtml($this->arrStudentName[$item->student_id]);?></td>
+            <td><?php echo $this->escapeHtml($this->arrSubjectName[$item->subject_id]);?></td>
+            <td><?php echo $this->escapeHtml($item->mark);?></td>
+            <td><?php echo $this->escapeHtml($item->updated_at);?></td>
+            <td><a href="<?php echo $this->basePath()?>/admin/allowtestagain/<?php echo $item->test_info_id?>"><button class="btn btn-primary" type="button">Cho phép</button></a></td>
+			<td><a href="<?php echo $this->basePath()?>/admin/denytestagain/<?php echo $item->test_info_id?>"><button class="btn btn-danger" type="button">Từ chối</button></a></td>	
+         </tr>
+	<?php endforeach; ?>
+	</table>
+	</div>
+</article>
+<?php		
+	}
+?>

@@ -1,0 +1,55 @@
+<?php 
+	$form = $this->form;
+	$form->prepare();
+	$form->setAttribute('action', $this->url('index', array('action' => 'login')));
+	$form->get('submit')->setAttribute('class', 'register');
+	$form->get('username')->setAttribute('class', 'form-control');
+	$form->get('username')->setAttribute('placeholder', 'Tên đăng nhập');
+	$form->get('password')->setAttribute('class', 'form-control');
+	$form->get('password')->setAttribute('placeholder', 'Mật khẩu');
+	
+	$labelUsername	= $this->formLabel($form->get('username'));
+	$username	= $this->formInput($form->get('username'));
+	$errorUsername	= $this->formElementErrors($form->get('username'));
+	
+	$labelPassword	= $this->formLabel($form->get('password'));
+	$password	= $this->formInput($form->get('password'));
+	$errorPassword	= $this->formElementErrors($form->get('password'));
+	
+	$submit 	= $this->formInput($form->get('submit'));
+	echo $this->form()->openTag($this->form);
+?>
+
+<div class="title"><span class="title_icon"><img src="<?php echo $this->basePath();?>/images/bullet1.png" alt="" title="" /></span>Đăng nhập</div>
+		<div class="contact_form">
+			<div class="form_subtitle">Tài khoản của bạn</div>
+				<table width="400px">
+					<tr>
+						<td><strong><?php echo $labelUsername ?></strong></td>
+						<td><?php echo $username ?></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><div class="text-error"><?php echo $errorUsername; ?></div></td>
+					</tr>
+					<tr>
+						<td><strong><?php echo $labelPassword ?></strong></td>
+						<td><?php echo $password ?></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><div class="text-error"><?php echo $errorPassword ?></div></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<strong><p class="text-error"><?php if ($this->err != "") echo $this->err; ?></p></strong>
+							<?php echo $submit ?>
+						</td>
+					</tr>
+				</table>
+		</div>  
+<div class="clear"></div>
+<?php
+	echo $this->form()->closeTag($form);
+?>

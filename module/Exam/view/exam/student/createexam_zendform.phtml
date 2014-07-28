@@ -1,0 +1,97 @@
+<script type="text/javascript">
+	var countdownId = 0;
+	var minute	= '<?php echo (int)($this->time/60) ?>';
+	var second	= '<?php echo $this->time%60 ?>';
+
+	function start() {
+		//Start clock
+		countdownId = setInterval("countdown()", 1000);
+	}
+	 
+	function countdown(){
+		if(minute > 0){
+			if (second > 0) {
+				second	= second - 1;
+				document.getElementById('second').innerHTML = second;
+			}
+			if (second == 0) {
+				if (minute != 0) {
+					minute	= minute -1;
+					if (minute != 0)
+						second	= 59;
+					else
+						second	= 60;
+				}
+				document.getElementById('second').innerHTML = second;
+				document.getElementById('minute').innerHTML = minute;
+			}
+		}
+		if (minute == 0){
+			if (second > 0) {
+				second	= second - 1;
+				document.getElementById('second').innerHTML = second;
+			}
+			if (second == 0) {
+				document.examcontent.submit();
+				clearInterval(countdownId);
+			}
+		}
+	}
+</script>
+
+<?php
+	$form	= $this->form;
+	$arrQuestion	= $this->arrQuestion;
+	$arrChoice	= $this->arrChoice;
+	$type1	= $this->type1;
+	$type2	= $this->type2;
+	$type3	= $this->type3;
+	$form->prepare();
+	$form->setAttribute('action', $this->url('student', array('action' => 'createexam', 'id' => $this->id)));
+	
+	$form->get('submit')->setAttribute('value', 'Nộp bài');
+	$form->get('submit')->setAttribute('class', 'btn btn-success');
+
+	$form->get('submit')->setAttribute('class', 'btn btn-success');
+	$form->get('submit')->setAttribute('onclick', 'return ConfirmSend()');
+	$submit 	= $this->formInput($form->get('submit'));
+	
+	echo $this->form()->openTag($this->form); 
+?>
+<body onload="start()">
+	<div id="minute"><?php echo (int)($this->time/60) ?></div>:<div id="second"><?php echo $this->time%60 ?></div>
+<div class="exam_frame">
+	<?php
+		for ($i=1; $i<=$type1+$type2+$type3; $i++) {
+			$name	= "question".$i;
+			$label	= $this->formLabel($form->get($name));
+			if ($i<=$type1)
+				$choice	= $this->formRadio($form->get($name));
+			else {
+				$arr	= array('1'	=> $arrChoice[$i-$type1-1]->choice_1,
+								'2'	=> $arrChoice[$i-$type1-1]->choice_2,
+								'3'	=> $arrChoice[$i-$type1-1]->choice_3,
+								'4'	=> $arrChoice[$i-$type1-1]->choice_4);
+				$form->get($name)->setOptions(array('value_options' => $arr));
+				if ($i<=$type1+$type2) {
+					$choice	= $this->formMultiCheckbox($form->get($name));
+				}
+				else {
+					$choice	= $this->formRadio($form->get($name));
+				}
+			}
+			
+	?>
+		<label class="text-info"><?php echo $label; ?></label>
+		<strong><?php echo $arrQuestion[$i-1]; ?></strong>
+		<div class="input_answer"><?php echo $choice; ?></div>
+		<br>
+	<?php
+		}
+	?>
+		<p align="center"><?php echo $submit?></p>
+</div>
+<?php 
+	echo $this->form()->openTag($this->form);
+?>
+</body>

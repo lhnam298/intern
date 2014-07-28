@@ -1,0 +1,79 @@
+<?php
+	$form = $this->form;
+	$form->prepare();
+	$form->setAttribute('action', $this->url('admin', array('action' => 'newteacher')));
+	$form->get('username')->setAttribute('class', 'form-control');
+	$form->get('username')->setAttribute('placeholder', 'Tên đăng nhập');
+	$form->get('password')->setAttribute('class', 'form-control');
+	$form->get('password')->setAttribute('placeholder', 'Mật khẩu');
+	$form->get('re_password')->setAttribute('class', 'form-control');
+	$form->get('re_password')->setAttribute('placeholder', 'Nhập lại mật khẩu');
+	$form->get('yourname')->setAttribute('class', 'form-control');
+	$form->get('yourname')->setAttribute('placeholder', 'Họ tên');
+	$form->get('birthday')->setAttribute('class', 'form-control');
+	$form->get('birthday')->setAttribute('placeholder', 'Ngày, tháng, năm sinh');
+	$form->get('submit')->setAttribute('class', 'btn btn-success');
+	
+	$labelUsername	= $this->formLabel($form->get('username'));
+	$username	= $this->formInput($form->get('username'));
+	$errorUsername	= $this->formElementErrors($form->get('username'));
+	
+	$labelPassword	= $this->formLabel($form->get('password'));
+	$password	= $this->formInput($form->get('password'));
+	$errorPassword	= $this->formElementErrors($form->get('password'));
+	
+	$labelPassword_	= $this->formLabel($form->get('re_password'));
+	$password_	= $this->formInput($form->get('re_password'));
+	$errorPassword_	= $this->formElementErrors($form->get('re_password'));
+	
+	$labelYourname	= $this->formLabel($form->get('yourname'));
+	$yourname	= $this->formInput($form->get('yourname'));
+	$errorYourname	= $this->formElementErrors($form->get('yourname'));
+	
+	$labelBirthday	= $this->formLabel($form->get('birthday'));
+	$birthday	= $this->formInput($form->get('birthday'));
+	$errorBirthday	= $this->formElementErrors($form->get('birthday'));
+	
+	$submit 	= $this->formInput($form->get('submit'));
+	
+	echo $this->form()->openTag($this->form);
+?>
+
+<article class="module width_full">
+	<header><h3>Tạo tài khoản giáo viên</h3></header>
+	<div class="add_data_form">
+    	<h3><?php echo $labelUsername; ?></h3>
+    	<div class="text-error"><?php echo $errorUsername; ?></div>
+    	<?php echo $username; ?>	
+  	</div>
+  	<div class="add_data_form">
+    	<h3><?php echo $labelPassword; ?></h3>
+    	<div class="text-error"><?php echo $errorPassword; ?></div>
+    	<?php echo $password; ?>
+  	</div>
+  	  <div class="add_data_form">
+    	<h3><?php echo $labelPassword_; ?></h3>
+    	<div class="text-error"><?php echo $errorPassword_; ?></div>
+    	<?php echo $password_; ?>
+  	</div>
+  	<div class="add_data_form">
+    	<h3><?php echo $labelYourname; ?></h3>
+    	<div class="text-error"><?php echo $errorYourname; ?></div>
+    	<?php echo $yourname; ?>
+  	</div>
+  	<div class="add_data_form">
+    	<h3><?php echo $labelBirthday; ?></h3>
+    	<div class="text-error"><?php echo $errorBirthday; ?></div>
+    	<?php echo $birthday; ?>
+  	</div>
+	<br>
+ 	<div class="text-success" align="center"><?php echo $this->success;?></div>
+ 	<div class="text-error" align="center"><?php if ($this->err != "") echo $this->err?></div>
+ 	<br>
+ 	<p align="center"><?php echo $submit?></p>
+</article>
+
+<?php
+	echo $this->form()->closeTag($form);
+?>
+		
