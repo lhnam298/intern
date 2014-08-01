@@ -6,11 +6,11 @@
 	$form->prepare();
 	$form->setAttribute('action', $this->url('admin', array('action' => 'editquestion', 'id' => $question->question_id)));
 	$form->get('content')->setValue($question->question);
-	$form->get('content')->setAttribute('class', 'form-control');
-	$form->get('choice_1')->setAttribute('class', 'form-control');
-	$form->get('choice_2')->setAttribute('class', 'form-control');
-	$form->get('choice_3')->setAttribute('class', 'form-control');
-	$form->get('choice_4')->setAttribute('class', 'form-control');
+	$form->get('content')->setAttribute('class', 'ckeditor');
+	$form->get('choice_1')->setAttribute('class', 'ckeditor');
+	$form->get('choice_2')->setAttribute('class', 'ckeditor');
+	$form->get('choice_3')->setAttribute('class', 'ckeditor');
+	$form->get('choice_4')->setAttribute('class', 'ckeditor');
 
 	$form->get('submit')->setAttribute('class', 'btn btn-success');
 	
@@ -72,7 +72,6 @@
 	$submit 	= $this->formInput($form->get('submit'));
 	echo $this->form()->openTag($this->form);
 ?>
-
 <article class="module width_full">
 	<header><h3>Sửa câu hỏi</h3></header>
 	<div class="add_data_form">

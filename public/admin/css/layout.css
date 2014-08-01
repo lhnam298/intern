@@ -242,6 +242,7 @@ text-transform: uppercase;
 text-shadow: 0 1px 0 #fff;
 font-size: 13px;
 margin: 8px 20px;
+font-weight: bold;
 }
 
 /* Modules */

@@ -1,9 +1,7 @@
 <script type="text/javascript">
+	window.history.forward();
 	var minute	= '<?php echo (int)($this->remainTime/60) ?>';
 	var second	= '<?php echo $this->remainTime%60 ?>';
-//	window.onbeforeunload = function(){
-//		  return 'Are you sure you want to leave?';
-	};
 </script>
 
 <?php
@@ -14,7 +12,7 @@
 	$type2	= (int)(($numOfQuestion - $type1)/2);
 	$type3	= $numOfQuestion - $type1 - $type2;
 ?>
-<body onpageshow="if (event.persisted) noBack();" onload="start(minute, second)">
+<body onload="start(minute, second)">
 	<h1><div id="minute"><?php echo (int)($this->remainTime/60) ?></div>:<div id="second"><?php echo $this->remainTime%60 ?></div></h1>
 <div class="exam_frame">
 	<form action="<?php echo $this->basePath();?>/student/finishexam/<?php echo $this->subjectID?>" method="post" name="exam">

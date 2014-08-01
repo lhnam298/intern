@@ -7,12 +7,11 @@
 	$form->setAttribute('action', $this->url('admin', array('action' => 'addquestion')));
 	$form->get('subject')->setAttribute('class', 'form-control');
 	$form->get('question_type')->setAttribute('class', 'form-control');
-	$form->get('content')->setAttribute('class', 'form-control');
-	$form->get('choice_1')->setAttribute('class', 'form-control');
-	$form->get('choice_2')->setAttribute('class', 'form-control');
-	$form->get('choice_3')->setAttribute('class', 'form-control');
-	$form->get('choice_4')->setAttribute('class', 'form-control');
-
+	$form->get('content')->setAttribute('class', 'ckeditor');
+	$form->get('choice_1')->setAttribute('class', 'ckeditor');
+	$form->get('choice_2')->setAttribute('class', 'ckeditor');
+	$form->get('choice_3')->setAttribute('class', 'ckeditor');
+	$form->get('choice_4')->setAttribute('class', 'ckeditor');
 	$form->get('submit')->setAttribute('class', 'btn btn-success');
 	
 	$labelSubject	= $this->formLabel($form->get('subject'));
@@ -54,23 +53,6 @@
 	echo $this->form()->openTag($this->form);
 ?>
 
-<script type="text/javascript">
-$(document).ready(function() {
-	  $.viewForm = {
-	    '1' : $('#type1'),
-	    '2' : $('#type2-3a, #type2-3b, #type2-3c, #type2-3d, #type2'),
-	    '3' : $('#type2-3a, #type2-3b, #type2-3c, #type2-3d, #type3')
-	  };
-
-	  $('#typeId').change(function() {
-	    // hide all
-	    $.each($.viewForm, function() { this.hide(); });
-	    // show current
-	    $.viewForm[$(this).val()].show();
-	  }).change();
-	});
-</script>
-
 <article class="module width_full">
 	<header><h3>Tạo câu hỏi</h3></header>
 	<div class="add_data_form">
@@ -104,20 +86,36 @@ $(document).ready(function() {
   	</div>
   	<div class="add_data_form" id="type1">
     	<h3><?php echo $labelAnswer1; ?></h3>
-    	<?php echo $answer1; ?>
+    	<p id="ans"><?php echo $answer1; ?></p>
   	</div>
   	<div class="add_data_form" id="type2">
     	<h3><?php echo $labelAnswer2; ?></h3>
-    	<?php echo $answer2; ?>
+    	<p id="ans"><?php echo $answer2; ?></p>
   	</div>
 	<div class="add_data_form" id="type3">
     	<h3><?php echo $labelAnswer3; ?></h3>
-    	<?php echo $answer3; ?>
+    	<p id="ans"><?php echo $answer3; ?></p>
   	</div>
-  	<br>
-	<div class="text-success" align="center"><?php echo $this->success;?></div>
+	<br>
 	<p align="center"><?php echo $submit?></p>
 </article>
 <?php
 	echo $this->form()->openTag($this->form); 
 ?>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$.viewForm = {
+		'1' : $('#type1'),
+	    '2' : $('#type2-3a, #type2-3b, #type2-3c, #type2-3d, #type2'),
+	    '3' : $('#type2-3a, #type2-3b, #type2-3c, #type2-3d, #type3')
+	};
+
+	$('#typeId').change(function() {
+	    // hide all
+	    $.each($.viewForm, function() { this.hide(); });
+	    // show current
+	    $.viewForm[$(this).val()].show();
+	  }).change();
+	});
+</script>

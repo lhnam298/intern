@@ -120,7 +120,8 @@
 				if ($form->isValid()) {
 					$this->data = $form->getData();
 					$this->saveData($this->data);
-					$this->success	= "Thêm câu hỏi thành công!";
+					$url	= 'questionbysubject/'.$this->data['subject'];
+					$this->redirect()->toUrl($url);
 				}
 			}
 			
@@ -128,7 +129,6 @@
 									'form' => $form, 
 									'arrType' => $arrType, 
 									'arrSubject' => $arrSubject,
-									'success' => $this->success,
 			));
 		}
 		
@@ -227,7 +227,7 @@
 
 					$this->saveData($this->data);
 					$this->question	= $this->questionTable->getById($questionId);
-					$this->success	= "Sửa câu hỏi thành công!";
+					$this->success	= "Đã lưu thay đổi!";
 				}
 			}
 			
@@ -386,7 +386,8 @@
 						$this->subject->del_flg	= 0;
 						$this->subjectTable	= $this->getServiceLocator()->get('Exam\Model\SubjectTable');
 						$this->subjectTable->saveSubject($this->subject);
-						$this->success	= "Thêm môn học thành công!";
+						$this->redirect()->toUrl('viewsubject');
+						
 					}
 				}
 			}
@@ -394,7 +395,6 @@
 			return new ViewModel(array(
 									'form' => $form, 
 									'err' => $this->err,	
-									'success' => $this->success,
 			));
 		}
 		
@@ -445,7 +445,7 @@
 						$this->subject->question_num	= $this->data['num'];
 						$this->subject->del_flg	= 0;
 						$this->subjectTable->saveSubject($this->subject);
-						$this->success	= "Sửa môn học thành công!";
+						$this->redirect()->toUrl('../viewsubject');
 					}
 				}
 			}
@@ -456,7 +456,6 @@
 									'data' => $this->data,
 									'id' => $subjectId,
 									'err' => $this->err,	
-									'success' => $this->success,
 			));
 		}
 		

@@ -25,6 +25,15 @@
 .add_data_form p {
 	margin-left: 20px;
 }
+#ans {
+	margin-left: 50px;
+}
+.add_data_form input[type="radio"] {
+	margin-left: 17.5%;
+}
+.add_data_form input[type="checkbox"] {
+	margin-left: 17.5%;
+}
 .view_question_btn {
 	margin-top: 0;
 }

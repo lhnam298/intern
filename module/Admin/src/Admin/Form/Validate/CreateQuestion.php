@@ -21,10 +21,6 @@
 		
 				$inputFilter->add($factory->createInput(array(
 						'name'     => 'content',
-						'filters'  => array(
-							array('name' => 'StripTags'),
-	                        array('name' => 'StringTrim'),
-	                   	),
 	                   	'validators' => array(
 	                   		array(
 	                   				'name' => 'NotEmpty',

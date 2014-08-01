@@ -28,11 +28,6 @@ function toggleMe(a){
 	return true;
 }
 
-window.history.forward();
-function noBack() {
-	window.history.forward();
-}
-
 var countdownId = 0;
 
 function start(minute, sencond) {
