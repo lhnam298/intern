@@ -28,8 +28,8 @@
 				for ($i=1; $i<=$this->type1+$this->type2+$this->type3; $i++) {
 					$name	= "question".$i;
 					$inputFilter->add($factory->createInput(array(
-							'name'     => $name,
-							'required' => false,
+							'name'		=> $name,
+							'required'	=> false,
 					)));
 				}
 				$this->inputFilter = $inputFilter;

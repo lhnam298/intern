@@ -7,7 +7,7 @@ function ConfirmRequireTestAgain(){
 }
 
 function CompleteRequireTestAgain(){
-	return alert("Đã gửi yêu cầu!")
+	return alert("Đã gửi yêu cầu!");
 }
 
 function ConfirmSend(){
@@ -20,10 +20,10 @@ function toggleMe(a){
 	var e=document.getElementById(a);
 	if(!e)return true;
 	if(e.style.display=="none"){
-		e.style.display="block"
+		e.style.display="block";
 	}
 	else{
-		e.style.display="none"
+		e.style.display="none";
 	}
 	return true;
 }

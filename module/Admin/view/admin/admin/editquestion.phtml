@@ -1,41 +1,10 @@
 <?php 
 	$form	= $this->form;
-	$question	= $this->question;
-	$choice	= $this->answer;
-	
+	$type	= $this->questionType;
+	$questionId	= $this->questionId;
 	$form->prepare();
-	$form->setAttribute('action', $this->url('admin', array('action' => 'editquestion', 'id' => $question->question_id)));
-	$form->get('content')->setValue($question->question);
-	$form->get('content')->setAttribute('class', 'ckeditor');
-	$form->get('choice_1')->setAttribute('class', 'ckeditor');
-	$form->get('choice_2')->setAttribute('class', 'ckeditor');
-	$form->get('choice_3')->setAttribute('class', 'ckeditor');
-	$form->get('choice_4')->setAttribute('class', 'ckeditor');
+	$form->setAttribute('action', $this->url('admin', array('action' => 'editquestion', 'id' => $questionId)));
 
-	$form->get('submit')->setAttribute('class', 'btn btn-success');
-	
-	$type	= $question->question_type_id;
-	switch ($type) {
-		case 1:
-			$form->get('answer1')->setAttribute('value', $question->answer);
-			break;
-		case 2:
-			$ans	= explode("&", $question->answer);
-			$form->get('answer2')->setAttribute('value', $ans);
-			$form->get('choice_1')->setValue($choice->choice_1);
-			$form->get('choice_2')->setValue($choice->choice_2);
-			$form->get('choice_3')->setValue($choice->choice_3);
-			$form->get('choice_4')->setValue($choice->choice_4);
-			break;
-		case 3:
-			$form->get('answer3')->setAttribute('value', $question->answer);
-			$form->get('choice_1')->setValue($choice->choice_1);
-			$form->get('choice_2')->setValue($choice->choice_2);
-			$form->get('choice_3')->setValue($choice->choice_3);
-			$form->get('choice_4')->setValue($choice->choice_4);
-			break;
-	}
-	
 	$labelQuestion	= $this->formLabel($form->get('content'));
 	$question	= $this->formTextarea($form->get('content'));
 	$errorQuestion	= $this->formElementErrors($form->get('content'));
@@ -43,28 +12,32 @@
 	if ($type != 1) {
 		$labelChoice1	= $this->formLabel($form->get('choice_1'));
 		$choice1	= $this->formTextarea($form->get('choice_1'));
+		$errorChoice1	= $this->formElementErrors($form->get('choice_1'));
 		
 		$labelChoice2	= $this->formLabel($form->get('choice_2'));
 		$choice2	= $this->formTextarea($form->get('choice_2'));
+		$errorChoice2	= $this->formElementErrors($form->get('choice_2'));
 		
 		$labelChoice3	= $this->formLabel($form->get('choice_3'));
 		$choice3	= $this->formTextarea($form->get('choice_3'));
+		$errorChoice3	= $this->formElementErrors($form->get('choice_3'));
 		
 		$labelChoice4	= $this->formLabel($form->get('choice_4'));
 		$choice4	= $this->formTextarea($form->get('choice_4'));
+		$errorChoice4	= $this->formElementErrors($form->get('choice_4'));
 	}
 	
 	switch ($type){
 		case 1:
-			$labelAnswer	= $this->formLabel($form->get('answer1'));
+// 			$labelAnswer	= $this->formLabel($form->get('answer1'));
 			$answer	= $this->formRadio($form->get('answer1'));
 			break;
 		case 2:
-			$labelAnswer	= $this->formLabel($form->get('answer2'));
+// 			$labelAnswer	= $this->formLabel($form->get('answer2'));
 			$answer	= $this->formMultiCheckbox($form->get('answer2'));
 			break;
 		case 3:
-			$labelAnswer	= $this->formLabel($form->get('answer3'));
+// 			$labelAnswer	= $this->formLabel($form->get('answer3'));
 			$answer	= $this->formRadio($form->get('answer3'));
 			break;
 	}
@@ -72,45 +45,41 @@
 	$submit 	= $this->formInput($form->get('submit'));
 	echo $this->form()->openTag($this->form);
 ?>
-<article class="module width_full">
-	<header><h3>Sửa câu hỏi</h3></header>
-	<div class="add_data_form">
-    	<h3><?php echo $labelQuestion; ?></h3>
-    	<div class="text-error"><?php echo $errorQuestion; ?></div>
-    	<?php echo $question; ?>
-  	</div>
-<?php
-	if ($type != 1) {
-?>
-  	<div class="add_data_form">
-    	<h3><?php echo $labelChoice1; ?></h3>
-    	<?php echo $choice1; ?>
-  	</div>
-  	<div class="add_data_form">
-    	<h3><?php echo $labelChoice2; ?></h3>
-    	<?php echo $choice2; ?>
-  	</div>
-  	<div class="add_data_form">
-    	<h3><?php echo $labelChoice3; ?></h3>
-    	<?php echo $choice3; ?>
-  	</div>
-  	<div class="add_data_form">
-    	<h3><?php echo $labelChoice4; ?></h3>
-    	<?php echo $choice4; ?>
-  	</div>
-<?php
-	}
-?>
-	<div class="add_data_form">
-    	<h3><?php echo $labelAnswer; ?></h3>
-    	<?php echo $answer; ?>
-  	</div>
- 
+	<h2 class="sub-header" style="font-weight: bold;">Sửa câu hỏi</h2>
+	<div class="form-group">
+		<h4><?php echo $labelQuestion; ?></h4>
+		<div class="text-danger"><?php echo $errorQuestion; ?></div>
+		<?php echo $question; ?>
+	</div>
+<?php if ($type != 1) { ?>
+	<div class="form-group">
+		<h4><?php echo $labelChoice1; ?></h4>
+		<div class="text-danger"><?php echo $errorChoice1; ?></div>
+		<?php echo $choice1; ?>
+	</div>
+	<div class="form-group">
+		<h4><?php echo $labelChoice2; ?></h4>
+		<div class="text-danger"><?php echo $errorChoice2; ?></div>
+		<?php echo $choice2; ?>
+	</div>
+	<div class="form-group">
+		<h4><?php echo $labelChoice3; ?></h4>
+		<div class="text-danger"><?php echo $errorChoice3; ?></div>
+		<?php echo $choice3; ?>
+	</div>
+	<div class="form-group">
+		<h4><?php echo $labelChoice4; ?></h4>
+		<div class="text-danger"><?php echo $errorChoice4; ?></div>
+		<?php echo $choice4; ?>
+	</div>
+<?php } ?>
+	<div class="form-group">
+		<h4 style="font-weight: bold;">Đáp án</h4>
+		<?php echo $answer; ?>
+	</div>
+	<?php echo $this->formHidden($form->get('csrf'));?>
 	<br>
- 	<div class="text-success" align="center"><?php echo $this->success;?></div>
- 	<br>
- 	<p align="center"><?php echo $submit?></p>
-</article>
+	<p align="center"><?php echo $submit?></p>
 <?php
 	echo $this->form()->openTag($this->form); 
 ?>

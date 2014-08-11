@@ -13,7 +13,10 @@
 	$type3	= $numOfQuestion - $type1 - $type2;
 ?>
 <body onload="start(minute, second)">
-	<h1><div id="minute"><?php echo (int)($this->remainTime/60) ?></div>:<div id="second"><?php echo $this->remainTime%60 ?></div></h1>
+	<h1>
+		<span id="minute"><?php echo (int)($this->remainTime/60) ?></span>:
+		<span id="second"><?php echo $this->remainTime%60 ?></span>
+	</h1>
 <div class="exam_frame">
 	<form action="<?php echo $this->basePath();?>/student/finishexam/<?php echo $this->subjectID?>" method="post" name="exam">
 	<?php
@@ -24,8 +27,8 @@
 	?>
 				<label class="text-info"><?php echo $label?></label>
 				<strong><?php echo $arrQuestion[$i-1]?></strong><br>
-				<input type="radio" name="<?php echo $name?>" value="1">Đúng<br>
-				<input type="radio" name="<?php echo $name?>" value="0">Sai<br>
+				<label class="choice"><input type="radio" name="<?php echo $name?>" value="1"> Đúng</label><br>
+				<label class="choice"><input type="radio" name="<?php echo $name?>" value="0"> Sai</label><br>
 				<br>
 	<?php
 			}
@@ -38,10 +41,10 @@
 	?>
 				<label class="text-info"><?php echo $label?></label>
 				<strong><?php echo $arrQuestion[$i-1]?></strong><br>
-				<input type="checkbox" name="<?php echo $name?>[]" value="1"><?php echo $arr['1']?><br>
-				<input type="checkbox" name="<?php echo $name?>[]" value="2"><?php echo $arr['2']?><br>
-				<input type="checkbox" name="<?php echo $name?>[]" value="3"><?php echo $arr['3']?><br>
-				<input type="checkbox" name="<?php echo $name?>[]" value="4"><?php echo $arr['4']?><br>
+				<label class="choice"><input type="checkbox" name="<?php echo $name?>[]" value="1"><?php echo $arr['1']?></label><br>
+				<label class="choice"><input type="checkbox" name="<?php echo $name?>[]" value="2"><?php echo $arr['2']?></label><br>
+				<label class="choice"><input type="checkbox" name="<?php echo $name?>[]" value="3"><?php echo $arr['3']?></label><br>
+				<label class="choice"><input type="checkbox" name="<?php echo $name?>[]" value="4"><?php echo $arr['4']?></label><br>
 				<br>
 	<?php 
 				}
@@ -49,10 +52,10 @@
 	?>
 					<label class="text-info"><?php echo $label?></label>
 					<strong><?php echo $arrQuestion[$i-1]?></strong><br>
-					<input type="radio" name="<?php echo $name?>" value="1"><?php echo $arr['1']?><br>
-					<input type="radio" name="<?php echo $name?>" value="2"><?php echo $arr['2']?><br>
-					<input type="radio" name="<?php echo $name?>" value="3"><?php echo $arr['3']?><br>
-					<input type="radio" name="<?php echo $name?>" value="4"><?php echo $arr['4']?><br>
+					<label class="choice"><input type="radio" name="<?php echo $name?>" value="1"><?php echo $arr['1']?></label><br>
+					<label class="choice"><input type="radio" name="<?php echo $name?>" value="2"><?php echo $arr['2']?></label><br>
+					<label class="choice"><input type="radio" name="<?php echo $name?>" value="3"><?php echo $arr['3']?></label><br>
+					<label class="choice"><input type="radio" name="<?php echo $name?>" value="4"><?php echo $arr['4']?></label><br>
 					<br>
 	<?php
 				}

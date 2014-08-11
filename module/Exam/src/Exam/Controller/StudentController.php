@@ -37,6 +37,7 @@
 			}
 			
 			$form	= new ExamForm();
+			$form->initial();
 			if ($this->getRequest()->isPost()) {
 				$form->setData($this->getRequest()->getPost());
 				if ($form->isValid()) {
@@ -116,9 +117,9 @@
 		}
 
 		function  generateQuestion($min, $max, $quantity) {
- 	   		$numbers = range($min, $max);
-    		shuffle($numbers);
-    		return array_slice($numbers, 0, $quantity);
+			$numbers = range($min, $max);
+			shuffle($numbers);
+			return array_slice($numbers, 0, $quantity);
 		}
 		
 		public function moveToArray($question) {
@@ -153,7 +154,7 @@
 			for ($i=0; $i<$type3; $i++) {
 				$arrExamQuestion[]	= $arrAllQuestion[$arrIndex[$i]]->question;
 				$arrExamAnswer[]	= $arrAllQuestion[$arrIndex[$i]]->answer;
-				$choices	= $this->answerTable->getByQId($arrAllQuestion[$arrIndex[$i]]->question_id);					
+				$choices	= $this->answerTable->getByQId($arrAllQuestion[$arrIndex[$i]]->question_id);
 				$arrChoice[]	= $choices;
 			}
 			
@@ -230,6 +231,7 @@
 				$this->redirect()->toUrl('../index/login');
 			}
 			
+			$subjectId	= $this->params('id');
 			$num	= $this->sessionStudent->numOfQuestion;
 			for ($i=1; $i<=$num; $i++) {
 				$name	= "question".$i;
@@ -245,7 +247,8 @@
 			$this->calculateAvarageMark($this->sessionStudent->info->student_id);
 			$this->sessionStudent->offsetUnset('finishTime');
 			$this->sessionStudent->offsetUnset('remainTime');
-			$this->redirect()->toUrl('../showresult');
+			$url	= '../showresult/'.$subjectId;
+			$this->redirect()->toUrl($url);
 		}
 		
 		/**
@@ -256,11 +259,28 @@
 			if (!$this->_getAcl()->isAllowed($this->sessionStudent->right, null, "student_showresult")) {
 				$this->redirect()->toUrl('../index/login');
 			}
+			
+			$subjectId	= $this->params('id');
+			$this->subjectTable	= $this->getServiceLocator()->get('Exam\Model\SubjectTable');
+			$info	= $this->subjectTable->getById($subjectId);
+			return new ViewModel(array(
+									'student'	=> $this->sessionStudent->info,
+									'mark' 		=> $this->sessionStudent->mark,
+									'subject'	=> $info->subject_name,
+			));
+		}
+				
+		public function viewAnswerAction() {
+			$this->init();
+			if (!$this->_getAcl()->isAllowed($this->sessionStudent->right, null, "student_viewanswer")) {
+				$this->redirect()->toUrl('../index/login');
+			}
 			$num	= $this->sessionStudent->numOfQuestion;
 			$type1	= (int)($num/2);
 			$type2	= (int)(($num - $type1)/2);
 			$type3	= $num - $type1 - $type2;
 			$form	= new ExamContentForm($type1, $type2, $type3);
+			$form->initial();
 			
 			return new ViewModel(array(
 									'form'			=> $form,
@@ -289,7 +309,7 @@
 					if ($data[$i] == $arrA[$i-1])
 						$mark	= $mark + 1; 
 				}
-				elseif ($i <= $type1+$type2) {					
+				elseif ($i <= $type1+$type2) {
 					$answer	= "";
 					if (!isset($data[$i])) continue;
 					foreach ($data[$i] as $item)

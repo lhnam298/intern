@@ -2,12 +2,6 @@
 	$form	= $this->form;
 	$form->prepare();
 	$form->setAttribute('action', $this->url('admin', array('action' => 'addsubject')));
-	$form->get('name')->setAttribute('class', 'form-control');
-	$form->get('name')->setAttribute('placeholder', 'Nhập tên môn học');
-	$form->get('description')->setAttribute('class', 'form-control');
-	$form->get('time')->setAttribute('class', 'form-control');
-	$form->get('num')->setAttribute('class', 'form-control');
-	$form->get('submit')->setAttribute('class', 'btn btn-success');
 	
 	$labelName	= $this->formLabel($form->get('name'));
 	$name	= $this->formText($form->get('name'));
@@ -17,48 +11,40 @@
 	$description	= $this->formTextarea($form->get('description'));
 	$errorDescription	= $this->formElementErrors($form->get('description'));
 	
-	for ($i	= 10; $i<=90; $i++)
-		$arrTime[$i]	= $i;
-	$form->get('time')->setOptions(array('value_options' => $arrTime));
 	$labelTime	= $this->formLabel($form->get('time'));
 	$time	= $this->formSelect($form->get('time'));
 	
-	for ($i	= 10; $i<=100; $i++)
-		$arrNum[$i]	= $i;
-	$form->get('num')->setOptions(array('value_options' => $arrNum));
 	$labelNum	= $this->formLabel($form->get('num'));
 	$num	= $this->formSelect($form->get('num'));
 	
 	$submit 	= $this->formInput($form->get('submit'));
 	echo $this->form()->openTag($this->form);
-	
 ?>
-
-<article class="module width_full">
-	<header><h3>Thêm môn học</h3></header>
-	<div class="add_data_form">
-    	<h3><?php echo $labelName;?></h3>
-    	<div class="text-error"><?php echo $errorName;?></div>
-    	<?php echo $name;?>
-  	</div>
-  	<div class="add_data_form">
-    	<h3><?php echo $labelDescription;?></h3>
-    	<div class="text-error"><?php echo $errorDescription;?></div>
-    	<?php echo $description;?>
-  	</div>
-    <div class="add_data_form">
-    	<h3><?php echo $labelTime;?></h3>
-    	<?php echo $time;?>
- 	</div>
- 	 <div class="add_data_form">
-    	<h3><?php echo $labelNum;?></h3>
-    	<?php echo $num;?>
- 	</div>
- 	<br>
- 	<div class="text-error" align="center"><?php if ($this->err != "") echo $this->err?></div>
- 	<br>
- 	<p align="center"><?php echo $submit?></p>
-</article>
+	<h2 class="sub-header" style="font-weight: bold;">Thêm môn học</h2>
+	<div class="form-group">
+		<h4><?php echo $labelName;?></h4>
+		<div class="text-danger">
+			<?php echo $errorName;?>
+			<?php if ($this->err != "") echo "<ul><li>".$this->err."</li></ul>";?>
+		</div>
+		<?php echo $name;?>
+	</div>
+	<div class="form-group">
+		<h4><?php echo $labelDescription;?></h4>
+		<div class="text-danger"><?php echo $errorDescription;?></div>
+		<?php echo $description;?>
+	</div>
+	<div class="form-group">
+		<h4><?php echo $labelTime;?></h4>
+		<?php echo $time;?>
+	</div>
+	<div class="form-group">
+		<h4><?php echo $labelNum;?></h4>
+		<?php echo $num;?>
+	</div>
+	<br>
+	<?php echo $this->formHidden($form->get('csrf'));?>
+	<p align="center"><?php echo $submit?></p>
 
 <?php
 	echo $this->form()->openTag($this->form); 

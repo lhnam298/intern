@@ -12,7 +12,7 @@
  */
 
 return array(
-    'db' => array(
+	'db' => array(
 		'driver' => 'Pdo',
 		'dsn' => 'mysql:dbname=exam;host=localhost',
 		'driver_options' => array(
@@ -25,10 +25,10 @@ return array(
 		),
 	),
 	'view_manager' => array(
-		'display_not_found_reason' => true,
-		'display_exceptions'       => true,
-		'doctype'                  => 'HTML5',
-		'not_found_template'       => 'error/404',
-		'exception_template'       => 'error/index',
+		'display_not_found_reason' 	=> true,
+		'display_exceptions'		=> true,
+		'doctype'					=> 'HTML5',
+		'not_found_template'		=> 'error/404',
+		'exception_template'		=> 'error/index',
 	),
 );

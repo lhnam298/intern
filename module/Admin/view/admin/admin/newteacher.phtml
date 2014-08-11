@@ -1,17 +1,14 @@
+<script src="<?php echo $this->basePath();?>/jqueryCalendar/jquery-1.6.2.min.js" type="text/javascript"></script>
+<script src="<?php echo $this->basePath();?>/jqueryCalendar/jquery-ui-1.8.15.custom.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#datepicker').datepicker({ dateFormat: 'dd-mm-yy' }).val();
+	});
+</script>
 <?php
 	$form = $this->form;
 	$form->prepare();
 	$form->setAttribute('action', $this->url('admin', array('action' => 'newteacher')));
-	$form->get('username')->setAttribute('class', 'form-control');
-	$form->get('username')->setAttribute('placeholder', 'Tên đăng nhập');
-	$form->get('password')->setAttribute('class', 'form-control');
-	$form->get('password')->setAttribute('placeholder', 'Mật khẩu');
-	$form->get('re_password')->setAttribute('class', 'form-control');
-	$form->get('re_password')->setAttribute('placeholder', 'Nhập lại mật khẩu');
-	$form->get('yourname')->setAttribute('class', 'form-control');
-	$form->get('yourname')->setAttribute('placeholder', 'Họ tên');
-	$form->get('birthday')->setAttribute('class', 'form-control');
-	$form->get('birthday')->setAttribute('placeholder', 'Ngày, tháng, năm sinh');
 	$form->get('submit')->setAttribute('class', 'btn btn-success');
 	
 	$labelUsername	= $this->formLabel($form->get('username'));
@@ -32,48 +29,42 @@
 	
 	$labelBirthday	= $this->formLabel($form->get('birthday'));
 	$birthday	= $this->formInput($form->get('birthday'));
-	$errorBirthday	= $this->formElementErrors($form->get('birthday'));
 	
 	$submit 	= $this->formInput($form->get('submit'));
 	
 	echo $this->form()->openTag($this->form);
 ?>
-
-<article class="module width_full">
-	<header><h3>Tạo tài khoản giáo viên</h3></header>
-	<div class="add_data_form">
-    	<h3><?php echo $labelUsername; ?></h3>
-    	<div class="text-error"><?php echo $errorUsername; ?></div>
-    	<?php echo $username; ?>	
-  	</div>
-  	<div class="add_data_form">
-    	<h3><?php echo $labelPassword; ?></h3>
-    	<div class="text-error"><?php echo $errorPassword; ?></div>
-    	<?php echo $password; ?>
-  	</div>
-  	  <div class="add_data_form">
-    	<h3><?php echo $labelPassword_; ?></h3>
-    	<div class="text-error"><?php echo $errorPassword_; ?></div>
-    	<?php echo $password_; ?>
-  	</div>
-  	<div class="add_data_form">
-    	<h3><?php echo $labelYourname; ?></h3>
-    	<div class="text-error"><?php echo $errorYourname; ?></div>
-    	<?php echo $yourname; ?>
-  	</div>
-  	<div class="add_data_form">
-    	<h3><?php echo $labelBirthday; ?></h3>
-    	<div class="text-error"><?php echo $errorBirthday; ?></div>
-    	<?php echo $birthday; ?>
-  	</div>
+	<h2 class="sub-header" style="font-weight: bold;">Tạo tài khoản giáo viên</h2>
+	<div class="form-group">
+		<h4><?php echo $labelUsername; ?></h4>
+		<div class="text-danger">
+			<?php echo $errorUsername;?>
+			<?php if ($this->err != "") echo "<ul><li>".$this->err."</li></ul>";?>
+		</div>
+		<?php echo $username; ?>	
+	</div>
+	<div class="form-group">
+		<h4><?php echo $labelPassword; ?></h4>
+		<div class="text-danger"><?php echo $errorPassword; ?></div>
+		<?php echo $password; ?>
+	</div>
+	<div class="form-group">
+		<h4><?php echo $labelPassword_; ?></h4>
+		<div class="text-danger"><?php echo $errorPassword_; ?></div>
+		<?php echo $password_; ?>
+	</div>
+	<div class="form-group">
+		<h4><?php echo $labelYourname; ?></h4>
+		<div class="text-danger"><?php echo $errorYourname; ?></div>
+		<?php echo $yourname; ?>
+	</div>
+	<div class="form-group">
+		<h4><?php echo $labelBirthday; ?></h4>
+		<?php echo $birthday; ?>
+	</div>
+	<?php echo $this->formHidden($form->get('csrf'));?>
 	<br>
- 	<div class="text-success" align="center"><?php echo $this->success;?></div>
- 	<div class="text-error" align="center"><?php if ($this->err != "") echo $this->err?></div>
- 	<br>
- 	<p align="center"><?php echo $submit?></p>
-</article>
-
+	<p align="center"><?php echo $submit?></p>
 <?php
 	echo $this->form()->closeTag($form);
 ?>
-		

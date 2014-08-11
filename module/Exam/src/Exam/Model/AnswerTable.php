@@ -3,10 +3,10 @@
 	
 	use Zend\Db\TableGateway\TableGateway,
 		Zend\Db\Sql\Select,
-	 	Zend\Paginator\Adapter\DbSelect,
-	 	Zend\Paginator\Paginator,
-	 	Zend\Db\ResultSet\ResultSet,
-	 	Exam\Config\CurrentTime;
+		Zend\Paginator\Adapter\DbSelect,
+		Zend\Paginator\Paginator,
+		Zend\Db\ResultSet\ResultSet,
+		Exam\Config\CurrentTime;
 	
 	class AnswerTable extends ObjectTable {
 		
@@ -15,14 +15,14 @@
 				$select = new Select($tableName);
 				$select->where(array('del_flg'	=> '0'));
 				$resultSetPrototype = new ResultSet();
-				$resultSetPrototype->setArrayObjectPrototype(new Answer());
-	            $paginatorAdapter = new DbSelect(
+				$resultSetPrototype->setArrayObjectPrototype ( new Answer());
+				$paginatorAdapter = new DbSelect(
 					$select,
-	                $this->tableGateway->getAdapter(),
-	                $resultSetPrototype
-	            );
-	            $paginator = new Paginator($paginatorAdapter);
-	            return $paginator;
+					$this->tableGateway->getAdapter(),
+					$resultSetPrototype
+				);
+				$paginator = new Paginator($paginatorAdapter);
+				return $paginator;
 			}
 			$resultSet = $this->tableGateway->select(array('del_flg' => '0'));
 			return $resultSet;
@@ -45,6 +45,7 @@
 		
 		public function saveAnswer(Answer $answer) {
 			$data	= array(
+				'answer_id'			=> $answer->answer_id,
 				'question_id'		=> $answer->question_id,
 				'choice_1'			=> $answer->choice_1,
 				'choice_2'			=> $answer->choice_2,
@@ -53,16 +54,14 @@
 				'del_flg'			=> $answer->del_flg);
 			
 				$id	= (int)$answer->answer_id;
+				$time	= new CurrentTime();
 				if ($id == 0) {
-					$data['created_at']	= date('Y-m-d H:i:s');
+					$data['created_at']	= $time->getCurrentTime();
 					$this->tableGateway->insert($data);
 				}
 				else {
-					if ($this->getById($id)) {
-						$time	= new CurrentTime();
-						$data['updated_at']	= $time->getCurrentTime();
-						$this->tableGateway->update($data, array('answer_id' => $id));
-					}
+					$data['updated_at']	= $time->getCurrentTime();
+					$this->tableGateway->update($data, array('answer_id' => $id));
 				}
 		}
 	}

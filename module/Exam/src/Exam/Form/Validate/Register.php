@@ -30,7 +30,7 @@
 	                   				'name' => 'NotEmpty',
 	                   				'required' => true,
 	                   				'options'	=> array(
-			                         	'message'	=> 'Bạn phải điền vào mục này!',
+			                         	'message'	=> 'Bạn phải điền tên đăng nhập!',
 			                         	'break_chain_on_failure' => true,
 	                         		),
 	                   		),
@@ -74,7 +74,7 @@
 	                   				'name' => 'NotEmpty',
 	                   				'required' => true,
 	                   				'options'	=> array(
-			                         	'message'	=> 'Bạn phải điền vào mục này!',
+			                         	'message'	=> 'Bạn phải nhập mật khẩu!',
 			                         	'break_chain_on_failure' => true,
 	                         		),
 	                   		),
@@ -118,7 +118,7 @@
 	                   				'name' => 'NotEmpty',
 	                   				'required' => true,
 	                   				'options'	=> array(
-			                         	'message'	=> 'Bạn phải điền vào mục này!',
+			                         	'message'	=> 'Bạn phải nhập lại mật khẩu!',
 			                         	'break_chain_on_failure' => true,
 	                         		),
 	                   		),
@@ -143,7 +143,7 @@
 	                   				'name' => 'NotEmpty',
 	                   				'required' => true,
 	                   				'options'	=> array(
-			                         	'message'	=> 'Bạn phải điền vào mục này!',
+			                         	'message'	=> 'Bạn phải điền họ tên!',
 			                         	'break_chain_on_failure' => true
 	                         		),
 	                   		),

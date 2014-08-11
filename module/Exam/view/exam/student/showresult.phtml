@@ -1,53 +1,20 @@
 <?php
-	$form	= $this->form;
-	$arrQuestion	= $this->arrQuestion;
-	$arrChoice	= $this->arrChoice;
-	$arrAnswered	= $this->arrAnswered;
-	$arrAnswer	= $this->arrAnswer;
-	$num	= $this->numOfQuestion;
-	$type1	= (int)($num/2);
-	$type2	= (int)(($num - $type1)/2);
-	$type3	= $num - $type1 - $type2;
-	$form->prepare();
-	echo $this->form()->openTag($this->form); 
+	$student	= $this->student;
 ?>
-<div align="center"><h2>Kết quả bài thi: <?php echo $this->mark; ?></h2></div>
+
 <div class="exam_frame">
-	<?php
-		for ($i=1; $i<=$num; $i++) {
-			$name	= "question".$i;
-			$label	= $this->formLabel($form->get($name));
-			$form->get($name)->setAttribute('value', $arrAnswered[$i]);
-			$form->get($name)->setAttribute('disabled', 'disabled');
-			$answer	= $arrAnswer[$i-1];
-			if ($i<=$type1) {
-				$choice	= $this->formRadio($form->get($name));
-				if ($answer	== 0) $answer	= "Sai";
-				else $answer	= "Đúng";
-			}
-			else {
-				$arr	= array('1'	=> $arrChoice[$i-$type1-1]->choice_1,
-								'2'	=> $arrChoice[$i-$type1-1]->choice_2,
-								'3'	=> $arrChoice[$i-$type1-1]->choice_3,
-								'4'	=> $arrChoice[$i-$type1-1]->choice_4);
-				$form->get($name)->setOptions(array('value_options' => $arr));
-				if ($i<=$type1+$type2) {
-					$choice	= $this->formMultiCheckbox($form->get($name));
-				}
-				else {
-					$choice	= $this->formRadio($form->get($name));
-				}
-			}
-	?>
-		<label class="text-info"><?php echo $label; ?></label>
-		<strong><?php echo $arrQuestion[$i-1]; ?></strong>
-		<div class="input_answer"><?php echo $choice; ?></div>
-		<label class="display_answer">Đáp án:</label><?php echo $answer; ?>
-		<br><br>
-	<?php
-		}
-	?>
+	<p class="text-uppercase" style="font-size: 18px">Kết quả bài thi</p>
+	<dl class="dl-horizontal" style="font-size: 15px">
+		<dt>Học sinh</dt>
+		<dd class="text-info"><?php echo $student->name; ?></dd>
+		<dt>Ngày sinh</dt>
+		<dd class="text-info"><?php echo $student->birthday; ?></dd>
+		<dt>Môn thi</dt>
+		<dd class="text-info"><?php echo $this->subject; ?></dd>
+		<dt>Điểm</dt>
+		<dd class="text-info"><?php echo $this->mark; ?></dd>
+		<dt>Xếp loại</dt>
+		<dd class="text-info"><?php if ($this->mark < 5) echo "Không đạt"; else echo "Đạt"; ?></dd>
+	</dl>
+	<a href="<?php echo $this->basePath();?>/student/viewanswer">Xem đáp án</a>
 </div>
-<?php 
-	echo $this->form()->openTag($this->form);
-?>

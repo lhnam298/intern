@@ -41,14 +41,13 @@
 		private $_acl;
 	
 		public function _getAcl() {
-        	if(!$this->_acl) {
-            	$this->_acl = $this->getServiceLocator()->get("Acl");
-        	}
-        	return $this->_acl;
-    	}
-    	
+			if(!$this->_acl) {
+				$this->_acl = $this->getServiceLocator()->get("Acl");
+			}
+			return $this->_acl;
+		}
+
 		public function init() {
-			
 			$this->subjectTable	= $this->getServiceLocator()->get('Exam\Model\SubjectTable');
 			$this->studentTable	= $this->getServiceLocator()->get('Exam\Model\StudentTable');
 			$this->subject	= $this->subjectTable->fetchAll();
@@ -71,7 +70,8 @@
 			$this->init();
 			$this->err	= "";
 			$form	= new LoginForm();
-			$form->get('submit')->setAttribute('value', 'Đăng nhập');
+			$form->initial();
+			
 			if ($this->getRequest()->isPost()) {
 				$validateLogin	= new Login();
 				$form->setInputFilter($validateLogin->getInputFilter());
@@ -84,7 +84,7 @@
 						$sessionStudent->info	= $this->student;
 						$sessionStudent->right	= "Student";
 						$sessionStudent->finishTime	= null;
-						$this->redirect()->toUrl('../student/index');
+						$this->redirect()->toUrl('../index/index');
 					}
 					else 
 						$this->err	= "Sai tên đăng nhập hoặc mật khẩu!";
@@ -98,6 +98,7 @@
 			$this->err	= "";
 			$this->success	= "";
 			$form	= new RegisterForm();
+			$form->initial();
 			$form->get('submit')->setAttribute('value', 'Đăng ký');
 			if ($this->getRequest()->isPost()) {
 				$validateRegister	= new Register();
@@ -112,15 +113,14 @@
 						$this->student	= new Student();
 						$this->student->student_id	= (isset($data['student_id'])) ? $data['student_id'] : null;
 						$this->student->username	= $this->data['username'];
-						$this->student->setPassword($this->data['password']);
-//						$this->student->setPassword(md5($this->data['password']));
+						$this->student->setPassword(md5($this->data['password']));
 						$this->student->name	= $this->data['yourname'];
 						$this->student->birthday	= $this->data['birthday'];
 						$this->student->average_mark	= 0;
 						$this->student->del_flg	= 0;
 						$this->studentTable	= $this->getServiceLocator()->get('Exam\Model\StudentTable');
 						$this->studentTable->saveStudent($this->student);
-						$this->success	= "Đăng ký thành công. Hãy đăng nhập để sử dụng!";
+						$this->success	= "Đăng ký thành công. Hãy đăng nhập để làm bài thi!";
 					}
 				}
 			}
@@ -129,8 +129,7 @@
 		
 		public function checkStudent($data) {
 			$this->studentTable	= $this->getServiceLocator()->get('Exam\Model\StudentTable');
-			$result	= $this->studentTable->getStudent($data['username'], $data['password']);
-//			$result	= $this->studentTable->getStudent($data['username'], md5($data['password']));
+			$result	= $this->studentTable->getStudent($data['username'], md5($data['password']));
 			return $result;
 		}
 		

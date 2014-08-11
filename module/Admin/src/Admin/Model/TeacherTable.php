@@ -18,13 +18,13 @@
 				$select->where(array('del_flg'	=> '0'));
 				$resultSetPrototype = new ResultSet();
 				$resultSetPrototype->setArrayObjectPrototype(new Teacher());
-	            $paginatorAdapter = new DbSelect(
+				$paginatorAdapter = new DbSelect(
 					$select,
-	                $this->tableGateway->getAdapter(),
-	                $resultSetPrototype
-	            );
-	            $paginator = new Paginator($paginatorAdapter);
-	            return $paginator;
+					$this->tableGateway->getAdapter(),
+					$resultSetPrototype
+				);
+				$paginator = new Paginator($paginatorAdapter);
+				return $paginator;
 			}
 			$resultSet = $this->tableGateway->select(array('del_flg' => '0'));
 			return $resultSet;

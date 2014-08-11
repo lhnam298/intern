@@ -1,10 +1,7 @@
+<h2 class="sub-header" style="font-weight: bold;">Danh sách yêu cầu thi lại</h2>
 <?php if (count($this->paginator) == 0) {?>
-	<div class="require_announ"><p align="center" class="text-info">Hiện tại không có yêu cầu thi lại nào</p></div>
-<?php } else { ?>
-<article class="module width_full">
-	<header><h3>Yêu cầu thi lại</h3></header>
-	<div class="table_layout">
-<?php
+	<p align="center" style="font-size: 16px" class="text-info">Hiện tại không có yêu cầu thi lại nào</p>
+<?php } else {
 	if ($this->paginator != null) {
 		if (!isset($_GET['page']))
 			$count	= 0;
@@ -12,7 +9,6 @@
 			$count	= ($_GET['page'] - 1)*$this->perpage;
 	}
 ?>
-	<br>
 	<table class="table table-striped">
 		<tr>
 			<td style="width: 5%"><strong>STT</strong></td>
@@ -25,18 +21,14 @@
 		</tr>
 	<?php foreach ($this->paginator as $item) : $count++;?>
 		<tr>
-         	<td><?php echo $count?></td>
-            <td><?php echo $this->escapeHtml($this->arrStudentName[$item->student_id]);?></td>
-            <td><?php echo $this->escapeHtml($this->arrSubjectName[$item->subject_id]);?></td>
-            <td><?php echo $this->escapeHtml($item->mark);?></td>
-            <td><?php echo $this->escapeHtml($item->updated_at);?></td>
-            <td><a href="<?php echo $this->basePath()?>/admin/allowtestagain/<?php echo $item->test_info_id?>"><button class="btn btn-primary" type="button">Cho phép</button></a></td>
-			<td><a href="<?php echo $this->basePath()?>/admin/denytestagain/<?php echo $item->test_info_id?>"><button class="btn btn-danger" type="button">Từ chối</button></a></td>	
-         </tr>
+			<td><?php echo $count?></td>
+			<td><?php echo $this->arrStudentName[$item->student_id];?></td>
+			<td><?php echo $this->arrSubjectName[$item->subject_id];?></td>
+			<td><?php echo $item->mark;?></td>
+			<td><?php echo $item->updated_at;?></td>
+			<td><a href="<?php echo $this->basePath()?>/admin/allowtestagain/<?php echo $item->test_info_id?>"><button class="btn btn-primary" type="button"><i class="glyphicon glyphicon-ok"></i> Đồng ý</button></a></td>
+			<td><a href="<?php echo $this->basePath()?>/admin/denytestagain/<?php echo $item->test_info_id?>"><button class="btn btn-danger" type="button"><i class="glyphicon glyphicon-remove"></i> Hủy bỏ</button></a></td>	
+		</tr>
 	<?php endforeach; ?>
 	</table>
-	</div>
-</article>
-<?php		
-	}
-?>
+<?php } ?>

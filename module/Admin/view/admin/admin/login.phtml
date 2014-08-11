@@ -2,33 +2,23 @@
 	$form	= $this->form;
 	$form->prepare();
 	$form->setAttribute('action', $this->url('admin', array('action' => 'login')));
-//	$form->setAttribute('class', 'admin_login_form');
-	
-	$form->get('username')->setAttribute('class', 'form-control');
-	$form->get('username')->setAttribute('placeholder', 'Tên đăng nhập');
-	$form->get('password')->setAttribute('class', 'form-control');
-	$form->get('password')->setAttribute('placeholder', 'Mật khẩu');
-	$form->get('submit')->setAttribute('class', 'btn btn-primary');
-	
-	$labelUsername	= $this->formLabel($form->get('username'));
 	$username	= $this->formInput($form->get('username'));
 	$errorUsername	= $this->formElementErrors($form->get('username'));
-	
-	$labelPassword	= $this->formLabel($form->get('password'));
 	$password	= $this->formInput($form->get('password'));
 	$errorPassword	= $this->formElementErrors($form->get('password'));
-	
 	$submit 	= $this->formInput($form->get('submit'));
 	echo $this->form()->openTag($this->form);
 ?>
-	<label><?php echo $labelUsername ?></label>
-	<p><?php echo $username ?></p>
-	<div class="text-error"><?php echo $errorUsername ?></div>
-	<label><?php echo $labelPassword ?></label>
-	<p><?php echo $password ?></p>
-	<div class="text-error"><?php echo $errorPassword ?></div>
-	<p class="text-error"><?php if ($this->err != "") echo $this->err?></p>
-	<?php echo $submit ?>
-<?php
-	echo $this->form()->closeTag($form);
-?>
+	<div class="container form-signin">
+		<h2 class="form-signin-heading">Đăng nhập</h2>
+		<?php 	
+			echo $username;
+			echo $errorUsername; 
+			echo $password;
+			echo $errorPassword;
+			echo $this->formHidden($form->get('csrf'));
+			if ($this->err != "") echo "<ul class=\"text-danger\"><li>".$this->err."</li></ul>"; 
+			echo $submit; 
+		?>
+	</div> <!-- /container -->
+<?php echo $this->form()->closeTag($this->form); ?>

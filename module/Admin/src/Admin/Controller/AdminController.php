@@ -10,8 +10,8 @@
 		Zend\Permissions\Acl\Role\GenericRole as Role,
 		Zend\Permissions\Acl\Resource\GenericResource as Resource,
 		
-		Exam\Form\LoginForm,
-		Exam\Form\Validate\Login,
+		Admin\Form\LoginForm,
+		Admin\Form\Validate\Login,
 		
 		Admin\Model\Teacher,
 		Admin\Model\TeacherTable,
@@ -26,6 +26,7 @@
 		Admin\Form\Validate\CreateQuestion,
 		Admin\Form\CreateQuestionForm,
 		Admin\Form\EditQuestionForm,
+		Admin\Form\Validate\EditQuestion,
 		
 		Admin\Form\Validate\CreateSubject,
 		Admin\Form\CreateSubjectForm,
@@ -63,14 +64,14 @@
 		 * Lấy quyền truy cập action
 		 */
 		public function _getAcl() {
-        	if(!$this->_acl)
-            	$this->_acl = $this->getServiceLocator()->get("Acl");
-        	return $this->_acl;
-    	}
-		
-    	/**
-    	 * Khởi tạo session, layout
-    	 */
+			if(!$this->_acl)
+				$this->_acl = $this->getServiceLocator()->get("Acl");
+			return $this->_acl;
+		}
+
+		/**
+		 * Khởi tạo session, layout
+		 */
 		public function init() {
 			$this->layout('admin/layout');
 			$this->sessionAdmin	= new Container('admin');
@@ -98,9 +99,6 @@
 				$this->redirect()->toUrl('login');
 			}
 			
-			$form	= new CreateQuestionForm();
-			$form->get('submit')->setAttribute('value', 'Thêm câu hỏi');
-			
 			$this->questionTypeTable	= $this->getServiceLocator()->get('Exam\Model\QuestionTypeTable');
 			$type	= $this->questionTypeTable->fetchAll();
 			foreach ($type as $itemType){
@@ -113,22 +111,46 @@
 				$arrSubject[$itemSubject->subject_id]	= $itemSubject->subject_name;
 			}
 			
+			$form	= new CreateQuestionForm();
+			$form->initial('Thêm câu hỏi', $arrType, $arrSubject);
+			$error	= 0;
+			$err	= array(0, 0, 0, 0);
+			
 			if ($this->getRequest()->isPost()) {
 				$validateQuestion	= new CreateQuestion();
 				$form->setInputFilter($validateQuestion->getInputFilter());
 				$form->setData($this->getRequest()->getPost());
 				if ($form->isValid()) {
 					$this->data = $form->getData();
-					$this->saveData($this->data);
-					$url	= 'questionbysubject/'.$this->data['subject'];
-					$this->redirect()->toUrl($url);
+					if ($this->data['question_type'] != Config::TRUE_FALSE_QUESTION) {
+						if ($this->data['choice_1'] == "") {
+							$error	= 1;
+							$err[0]	= 1;
+						}
+						if ($this->data['choice_2'] == "") {
+							$error	= 1;
+							$err[1]	= 1;
+						}
+						if ($this->data['choice_3'] == "") {
+							$error	= 1;
+							$err[2]	= 1;
+						}
+						if ($this->data['choice_4'] == "") {
+							$error	= 1;
+							$err[3]	= 1;
+						}
+					} 
+					if ($error	== 0) {
+						$this->saveData($this->data);
+						$url	= 'questionbysubject/'.$this->data['subject'];
+						$this->redirect()->toUrl($url);
+					}
 				}
 			}
 			
 			return new ViewModel(array(
-									'form' => $form, 
-									'arrType' => $arrType, 
-									'arrSubject' => $arrSubject,
+									'form' => $form,
+									'err'	=> $err,
 			));
 		}
 		
@@ -191,32 +213,19 @@
 			if (!$this->_getAcl()->isAllowed($this->sessionAdmin->right, null, "admin_editquestion")) {
 				$this->redirect()->toUrl('login');
 			}
-			
+			if (!isset($this->sessionAdmin->beforeEditUrl))
+				$this->sessionAdmin->beforeEditUrl = $this->getRequest()->getHeader('Referer')->getUri();
 			$this->answer	= null;
 			$questionId	= $this->params('id');
 			$this->questionTable	= $this->getServiceLocator()->get('Exam\Model\QuestionTable');
+			$this->answerTable	= $this->getServiceLocator()->get('Exam\Model\AnswerTable');
 			$this->question	= $this->questionTable->getById($questionId);
-			$form	= new CreateQuestionForm();
-			$form->get('submit')->setAttribute('value', 'Sửa câu hỏi');
-			
-			switch ($this->question->question_type_id) {
-				case Config::TRUE_FALSE_QUESTION:
-					$form->setValidationGroup('content', 'answer1');
-					break;
-				case Config::CORRECT_QUESTION:
-					$form->setValidationGroup('content', 'choice_1', 'choice_2', 'choice_3', 'choice_4', 'answer2');
-					$this->answerTable	= $this->getServiceLocator()->get('Exam\Model\AnswerTable');
-					$this->answer	= $this->answerTable->getByQId($this->question->question_id);
-					break;
-				case Config::BEST_CORRECT_QUESTION:
-					$form->setValidationGroup('content', 'choice_1', 'choice_2', 'choice_3', 'choice_4', 'answer3');
-					$this->answerTable	= $this->getServiceLocator()->get('Exam\Model\AnswerTable');
-					$this->answer	= $this->answerTable->getByQId($this->question->question_id);
-					break;
-			}
+			$choice	= $this->answerTable->getByQId($questionId);
+			$form	= new EditQuestionForm();
+			$form->initial('Sửa câu hỏi', $this->question->question_type_id, $this->question, $choice);
 		
 			if ($this->getRequest()->isPost()) {
-				$validateQuestion	= new CreateQuestion();
+				$validateQuestion	= new EditQuestion($this->question->question_type_id);
 				$form->setInputFilter($validateQuestion->getInputFilter());
 				$form->setData($this->getRequest()->getPost());
 				if ($form->isValid()) {
@@ -224,18 +233,18 @@
 					$this->data['question_id']	= $questionId;
 					$this->data['question_type']	= $this->question->question_type_id;
 					$this->data['subject']	= $this->question->subject_id;
-
+					$this->data['answer_id']	= ($choice != null) ? $choice->answer_id : null;
 					$this->saveData($this->data);
-					$this->question	= $this->questionTable->getById($questionId);
-					$this->success	= "Đã lưu thay đổi!";
+					$url	= $this->sessionAdmin->beforeEditUrl;
+					$this->sessionAdmin->offsetUnset('beforeEditUrl');
+					$this->redirect()->toUrl($url);
 				}
 			}
 			
 			return new ViewModel(array(
 									'form' => $form,
-									'question' => $this->question,
-									'answer' => $this->answer,
-									'success' => $this->success,
+									'questionId' => $questionId,
+									'questionType' => $this->question->question_type_id,
 			));
 		}
 		
@@ -305,10 +314,8 @@
 			
 			if ($data['question_type']	!= Config::TRUE_FALSE_QUESTION) {
 				$this->answer	= new Answer();
-				if (!isset($data['question_id']))
-					$this->answer->question_id	= $lastQuestionId;
-				else
-					$this->answer->question_id	= $this->params('id');
+				$this->answer->answer_id	= $data['answer_id'];
+				$this->answer->question_id	= (isset($data['question_id'])) ? $data['question_id'] : $lastQuestionId;
 				$this->answer->choice_1	= $data['choice_1'];
 				$this->answer->choice_2	= $data['choice_2'];
 				$this->answer->choice_3	= $data['choice_3'];
@@ -367,7 +374,8 @@
 			}
 			
 			$form	= new CreateSubjectForm();
-			$form->get('submit')->setAttribute('value', 'Thêm môn học');
+			$form->initial('Thêm môn học');		
+
 			if ($this->getRequest()->isPost()) {
 				$validateSubject	= new CreateSubject();
 				$form->setInputFilter($validateSubject->getInputFilter());
@@ -425,7 +433,7 @@
 			$this->subjectTable	= $this->getServiceLocator()->get('Exam\Model\SubjectTable');
 			$subject	= $this->subjectTable->getById($subjectId);
 			$form	= new CreateSubjectForm();
-			$form->get('submit')->setAttribute('value', 'Sửa môn học');
+			$form->initial('Sửa môn học', $subject);
 			
 			if ($this->getRequest()->isPost()) {
 				$validateSubject	= new CreateSubject();
@@ -433,9 +441,8 @@
 				$form->setData($this->getRequest()->getPost());
 				if ($form->isValid()) {
 					$this->data = $form->getData();
-					if (!$this->checkEditSubjectName($subjectId, $this->data['name'])) {
+					if (!$this->checkEditSubjectName($subjectId, $this->data['name']))
 						$this->err	= "Tên môn học bị trùng!";
-					}
 					else {
 						$this->subject	= new Subject();
 						$this->subject->subject_id	= $subjectId;
@@ -452,8 +459,6 @@
 			
 			return new ViewModel(array(
 									'form' => $form,
-									'subject' => $subject,
-									'data' => $this->data,
 									'id' => $subjectId,
 									'err' => $this->err,	
 			));
@@ -495,7 +500,7 @@
 		public function loginAction() {
 			$this->layout('admin/layout_login');
 			$form	= new LoginForm();
-			$form->get('submit')->setAttribute('value', 'Đăng nhập');
+			$form->initial();
 			
 			if ($this->getRequest()->isPost()) {
 				$validateLogin	= new Login();
@@ -517,6 +522,7 @@
 						$this->err	= "Sai tên đăng nhập hoặc mật khẩu!";
 				}
 			}
+
 			return new ViewModel(array('form' => $form, 'err' => $this->err));
 		}
 		
@@ -551,6 +557,7 @@
 				$this->redirect()->toUrl('index');
 			}
 			$form	= new NewTeacherForm();
+			$form->initial();
 			$form->get('submit')->setAttribute('value', 'Tạo tài khoản');
 			if ($this->getRequest()->isPost()) {
 				$validateTeacher	= new NewTeacher();
@@ -564,17 +571,18 @@
 					else {
 						$this->teacher	= new Teacher();
 						$this->teacher->username	= $data['username'];
-						$this->teacher->setPassword($data['password']);
-//						$this->teacher->setPassword(md5($data['password']));
+						$this->teacher->setPassword(md5($data['password']));
 						$this->teacher->name	= $data['yourname'];
-						$this->teacher->birthday	= $data['birthday'];
+						$parts = explode('-', $data['birthday']);
+						$date  = $parts[2]."-".$parts[1]."-".$parts[0];
+						$this->teacher->birthday	= $date;
 						$this->teacher->level	= 0;
 						$this->teacher->del_flg	= 0;
 						$time	= new CurrentTime();
 						$this->teacher->created_at	= $time->getCurrentTime();
 						$this->teacherTable	= $this->getServiceLocator()->get('Admin\Model\TeacherTable');
 						$this->teacherTable->saveTeacher($this->teacher);
-						$this->success	= "Đăng ký thành công!";
+						$this->redirect()->toUrl('viewteacher');
 					}
 				}
 			}
@@ -582,7 +590,6 @@
 			return new ViewModel(array(
 									'form' => $form, 
 									'err' => $this->err,	
-									'success' => $this->success,
 			));
 		}
 		
@@ -609,8 +616,7 @@
 		
 		public function checkTeacher($data) {
 			$this->teacherTable	= $this->getServiceLocator()->get('Admin\Model\TeacherTable');
-			$result	= $this->teacherTable->getByUserPass($data['username'], $data['password']);
-//			$result	= $this->teacherTable->getByUserPass($data['username'], md5($data['password']));
+			$result	= $this->teacherTable->getByUserPass($data['username'], md5($data['password']));
 			return $result;
 		}
 		

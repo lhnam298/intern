@@ -1,36 +1,31 @@
-body
-{
+body {
 background-color:#6F605A;
 font-family:Arial, Helvetica, sans-serif;
-padding:0;
 font-size:12px;
 margin:0px auto auto auto;
 color:#000000;
 }
-a{
+a {
 color:#f8981d;
 }
-.clear{
+.clear {
 clear:both;
 }
-p{
-padding:5px 0 5px 0;
-margin:0px;
+p {
 text-align:justify;
-line-height:19px;
 }
-#wrap{
+#wrap {
 width:900px;
 height: auto;
 margin:auto;
 background-color:#FFFFFF;
 }
-.header{
+#header{
 width:900px;
 height:181px;
 background:url(../images/header.jpg) no-repeat center;
 }
-.logo{
+#logo{
 padding:50px 0 0 130px;
 }
 /*-----------------------------menu-------------------*/
@@ -53,10 +48,8 @@ height:20px;
 }
 #menu ul li a{
 height:27px;
-display:block;
 padding:0px 10px 0 10px;
-margin:0 4px 0 4px;
-_margin:0 2px 0 2px;
+margin:0 5px 0 5px;
 float:left;
 text-decoration:none;
 text-align:center;
@@ -64,9 +57,8 @@ color:#fff;
 font-size:13px;
 line-height:25px;
 }
-#menu ul li.selected a{
+#menu ul li a.selected{
 height:27px;
-display:block;
 padding:0px 10px 0 10px;
 margin:0 5px 0 5px;
 float:left;
@@ -86,18 +78,17 @@ padding:0px 0 0 0;
 background:url(../images/center_bg.png) repeat-y center;
 }
 .left_content{
-width:630px;
+width:650px;
 float:left;
-padding:20px 0 20px 20px;
+padding:20px 10px 20px 20px;
 }
 .right_content{
-width:230px;
+width:250px;
 float:left;
-padding:20px 0 20px 20px;
+padding:20px 10px 20px 10px;
 }
 .title{
 color:#734633;
-padding-left: 10px;
 float:left;
 font-size:19px;
 width: 230px;
@@ -108,7 +99,7 @@ float:left;
 padding:0 10px 0 0;
 }
 .about{
-width:230px;
+width:250px;
 min-height: 200px;
 clear:both;
 }
@@ -121,14 +112,13 @@ font-weight: bolder;
 margin-left: 65px;
 }
 .right_box{
-width:170px;
+width:230px;
 float:left;
-padding:10px 0 0 0;
 }
 /*--------right_box_list-----------*/
 ul.list{
 clear:both;
-padding:10px 0 0 20px;
+padding:0 0 0 10px;
 margin:0px;
 }
 ul.list li{
