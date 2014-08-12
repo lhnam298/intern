@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 11, 2014 at 11:58 AM
+-- Generation Time: Aug 12, 2014 at 03:44 AM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `ex_answer` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`answer_id`),
   KEY `fk` (`question_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=49 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=61 ;
 
 --
 -- Dumping data for table `ex_answer`
@@ -71,7 +71,19 @@ INSERT INTO `ex_answer` (`answer_id`, `question_id`, `choice_1`, `choice_2`, `ch
 (45, 85, 'もとめ', 'みとめ', 'つとめ', 'まとめ', 0, '2014-08-11 03:45:29', '0000-00-00 00:00:00'),
 (46, 86, '有賞', '優賞', '優勝', '有勝', 0, '2014-08-11 03:49:10', '0000-00-00 00:00:00'),
 (47, 87, '悲しい', '寂しい', '欲しい', '楽しい', 0, '2014-08-11 03:51:17', '0000-00-00 00:00:00'),
-(48, 88, '指して', '押して', '貸して', '通して', 0, '2014-08-11 03:54:02', '0000-00-00 00:00:00');
+(48, 88, '指して', '押して', '貸して', '通して', 0, '2014-08-11 03:54:02', '0000-00-00 00:00:00'),
+(49, 89, '欠ける', '化ける', '盛る', '掛ける', 0, '2014-08-11 15:45:00', '0000-00-00 00:00:00'),
+(50, 90, '下げる', '上げる', '挙げる', '投げる', 0, '2014-08-11 15:46:19', '0000-00-00 00:00:00'),
+(51, 91, '開ける', '明ける', '避ける', '泣ける', 0, '2014-08-11 15:50:15', '0000-00-00 00:00:00'),
+(52, 92, '優しい', '悲しい', '易しい', '厳しい', 0, '2014-08-11 15:55:42', '0000-00-00 00:00:00'),
+(53, 93, '友達', '同士', '上の人', '上司', 0, '2014-08-11 15:58:17', '0000-00-00 00:00:00'),
+(54, 94, '状況', '上級', '状態', '上京', 0, '2014-08-11 16:02:14', '0000-00-00 00:00:00'),
+(55, 95, '退院', '隊員', '台風', '態度', 0, '2014-08-11 16:04:07', '0000-00-00 00:00:00'),
+(56, 102, 'Đ&atilde; c&oacute; giấy ăn để lau rồi', 'Tốn thời gian kh&ocirc;ng cần thiết', 'N&oacute; chỉ c&oacute; t&aacute;c dụng lau kh&ocirc;, kh&ocirc;ng c&oacute; &yacute; nghĩa lau sạch', 'Kh&ocirc;ng những chỉ c&oacute; t&aacute;c dụng lau kh&ocirc; m&agrave; c&ograve;n c&oacute; khả năng l&agrave;m bẩn dụng cụ, b&aacute;t, đĩa&hellip;', 0, '2014-08-11 16:11:10', '0000-00-00 00:00:00'),
+(57, 103, '4 giờ', '6 giờ', '8 giờ', '12 giờ', 0, '2014-08-11 16:11:51', '0000-00-00 00:00:00'),
+(58, 104, 'Từ 0,5 - 1,0m', 'Từ 1,0 - 1,5 m', 'Từ 1,5 - 2,0 m', 'Từ 2,0 - 2,5m', 0, '2014-08-11 16:12:45', '0000-00-00 00:00:00'),
+(59, 105, 'Để x&eacute;t nghiệm h&agrave;ng ng&agrave;y xem c&oacute; tốt kh&ocirc;ng', 'Để x&eacute;t nghiệm khi cần như c&oacute; vụ ngộ độc&hellip;', 'Để tiện kiểm tra chất lượng một suất ăn thiếu hay đủ', 'Để kiểm tra nguồn gốc thực phẩm', 0, '2014-08-11 16:13:30', '0000-00-00 00:00:00'),
+(60, 106, '50 độ C', '55 độ C', '60 độ C', '65 độ C', 0, '2014-08-11 16:14:08', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -91,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `ex_question` (
   PRIMARY KEY (`question_id`),
   KEY `fk1` (`subject_id`),
   KEY `fk2` (`question_type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=89 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=107 ;
 
 --
 -- Dumping data for table `ex_question`
@@ -153,7 +165,25 @@ INSERT INTO `ex_question` (`question_id`, `subject_id`, `question_type_id`, `que
 (85, 10, 3, '正社員がアルバイトをすることは、会社の規則で<strong>認め</strong>られていない。', '2', 0, '2014-08-11 03:45:29', '0000-00-00 00:00:00'),
 (86, 10, 3, 'まだ新しいチームですが、なんとか<strong>優勝</strong>することができました。', '3', 0, '2014-08-11 03:49:10', '0000-00-00 00:00:00'),
 (87, 10, 3, '<strong>かなしい</strong>とき、大きいな声で歌うと元気になります。<br />\r\n&nbsp;', '1', 0, '2014-08-11 03:51:17', '0000-00-00 00:00:00'),
-(88, 10, 3, '注文が決まったら、このボタンを<strong>おして</strong>ください。', '2', 0, '2014-08-11 03:54:02', '0000-00-00 00:00:00');
+(88, 10, 3, '注文が決まったら、このボタンを<strong>おして</strong>ください。', '2', 0, '2014-08-11 03:54:02', '0000-00-00 00:00:00'),
+(89, 10, 2, 'かける', '1&4', 0, '2014-08-11 15:45:00', '0000-00-00 00:00:00'),
+(90, 10, 2, 'あげる', '2&3', 0, '2014-08-11 15:46:19', '0000-00-00 00:00:00'),
+(91, 10, 2, 'あける', '1&2', 0, '2014-08-11 15:50:15', '0000-00-00 00:00:00'),
+(92, 10, 2, 'やさしい', '1&3', 0, '2014-08-11 15:55:42', '0000-00-00 00:00:00'),
+(93, 10, 2, 'だれと「尊敬語」を使いますか。', '3&4', 0, '2014-08-11 15:58:17', '0000-00-00 00:00:00'),
+(94, 10, 2, 'じょうきょう', '1&4', 0, '2014-08-11 16:02:14', '0000-00-00 00:00:00'),
+(95, 10, 2, 'たいいん', '1&2', 0, '2014-08-11 16:04:07', '0000-00-00 00:00:00'),
+(96, 9, 1, 'C&aacute;c loại rau quả tươi dễ bị nhiễm thuốc bảo vệ thưc vật g&acirc;y ng&ocirc; độc thức ăn', '1', 0, '2014-08-11 16:06:39', '0000-00-00 00:00:00'),
+(97, 9, 1, 'Độc tố vi nấm Aflatoxin c&oacute; thể g&acirc;y ung thư', '1', 0, '2014-08-11 16:06:55', '0000-00-00 00:00:00'),
+(98, 9, 1, 'C&aacute;c thực phẩm dễ nhiễm VSV g&acirc;y ngộ độc phần lớn c&oacute; nguồn gốc động vật, c&oacute; gi&aacute; trị dinh dưỡng cao', '1', 0, '2014-08-11 16:07:06', '0000-00-00 00:00:00'),
+(99, 9, 1, 'Một trong những đường l&acirc;y nhiễm VSV v&agrave;o thực phẩm l&agrave; m&ocirc;i trường bị &ocirc; nhiễm', '1', 0, '2014-08-11 16:07:18', '0000-00-00 00:00:00'),
+(100, 9, 1, 'Ngộ độc thực phẩm do VSV thường bị v&agrave;o m&ugrave;a lạnh', '0', 0, '2014-08-11 16:07:32', '0000-00-00 00:00:00'),
+(101, 9, 1, 'Hội chứng ti&ecirc;u ho&aacute; ( đau bụng, ti&ecirc;u chảy, buồn n&ocirc;n) l&agrave; triệu chứng chủ yếu trong c&aacute;c trường hợp ngộ độc thực phẩm do ăn phải thức ăn c&oacute; độc tố tự nhi&ecirc;n&nbsp;', '0', 0, '2014-08-11 16:07:44', '0000-00-00 00:00:00'),
+(102, 9, 3, 'Kh&ocirc;ng n&ecirc;n d&ugrave;ng một khăn để lau mọi dụng cụ b&aacute;t đĩa, th&igrave;a v&igrave;', '4', 0, '2014-08-11 16:11:10', '0000-00-00 00:00:00'),
+(103, 9, 3, 'Thức ăn lưu nghiệm cần được giữ lại tối thiểu trong', '2', 0, '2014-08-11 16:11:51', '0000-00-00 00:00:00'),
+(104, 9, 3, 'Một trong những ti&ecirc;u chuẩn vệ sinh của cơ sở phục vụ ăn uống l&agrave; b&agrave;n chế biến thức ăn phải c&aacute;ch bếp', '3', 0, '2014-08-11 16:12:45', '0000-00-00 00:00:00'),
+(105, 9, 3, 'Mục đ&iacute;ch của thức ăn lưu nghiệm l&agrave;', '2', 0, '2014-08-11 16:13:30', '0000-00-00 00:00:00'),
+(106, 9, 3, 'Thức ăn phải chuẩn bị trước hoặc chờ đợi sau hơn 2 giờ th&igrave; cần giữ n&oacute;ng ở nhiệt độ', '3', 0, '2014-08-11 16:14:08', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
