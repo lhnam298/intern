@@ -7,10 +7,10 @@
 
 	class Acl extends ZendAcl {
 		public function __construct() {
-			
+
 			$this->addRole(new Role("Teacher"))->addRole(new Role("Manager"), "Teacher");
 			$this->addRole(new Role("Student"));
-			
+
 			$this->allow("Student", null, array("student_exam"));
 			$this->allow("Student", null, array("student_requiretestagain"));
 			$this->allow("Student", null, array("student_createexam"));

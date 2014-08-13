@@ -1,0 +1,15 @@
+<?php
+	$subject	= $this->selectedSubject;
+?>
+	<article class="module width_full">
+		<div class="title"><span class="title_icon">
+			<img src='<?php echo $this->basePath();?>/images/bullet1.png' alt='' title='' /></span><?php echo $subject->subject_name; ?></div>
+		<div style="font-size: 14px; padding: 0 40px;">
+			<p><?php echo $subject->description; ?></p>
+			<p style="font-weight: bold;">Thông tin bài thi:</p>
+				<div style="font-style: italic; padding-left: 40px;">
+					<p>Số câu hỏi: <?php echo $subject->question_num; ?></p>
+					<p>Thời gian làm bài: <?php echo $subject->test_time; ?> phút</p>
+				</div>
+		</div>
+	</article>

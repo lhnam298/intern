@@ -1,12 +1,12 @@
 	<article class="module width_full">
-		<div class="title"><span class="title_icon"><img src="<?php echo $this->basePath();?>/images/bullet1.png" alt="" title="" /></span>Danh sách học sinh</div>
+		<div class="title"><span class="title_icon"><img src='<?php echo $this->basePath();?>/images/bullet1.png' alt='' title='' /></span>Danh sách học sinh</div>
 		<br><br>
 		<div class="table_layout">
 	<?php
 		if ($this->paginator != null) {
 			if (!isset($_GET['page']))
 				$count	= 0;
-			else 
+			else
 				$count	= ($_GET['page'] - 1)*$this->perpage;
 	?>
 		<br>
@@ -23,7 +23,13 @@
 				<td><?php echo $count?></td>
 				<td><?php echo $item->username;?></td>
 				<td><?php echo $item->name;?></td>
-				<td><?php echo $item->birthday;?></td>
+				<td>
+					<?php
+						$parts = explode('-', $item->birthday);
+						$newFormat  = $parts[2]."-".$parts[1]."-".$parts[0];
+						echo $newFormat;
+					?>
+				</td>
 				<td align="center"><?php echo $item->average_mark;?></td>
 			</tr>
 		<?php endforeach; ?>
@@ -31,7 +37,6 @@
 		<?php }?>
 		</div>
 	</article>
-</body>
 <?php
 	$url	= "viewstudent";
 	echo $this->paginationControl(
@@ -42,4 +47,4 @@
 			'route'	=> 'index',
 			'url'	=> $url,
 		)
-	); 
+	);

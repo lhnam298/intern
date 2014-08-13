@@ -5,14 +5,14 @@
 		<title>Manage</title>
 		<link rel="stylesheet" href="<?php echo $this->basePath();?>/css/bootstrap.min.css" type="text/css">
 		<link rel="stylesheet" href="<?php echo $this->basePath();?>/css/bootstrap.css" type="text/css">
-		<link rel="stylesheet" href="<?php echo $this->basePath();?>/admin/css/layout.css" type="text/css">
+		<link rel="stylesheet" href="<?php echo $this->basePath();?>/manager/css/layout.css" type="text/css">
 		<link rel="stylesheet" href="<?php echo $this->basePath();?>/jqueryCalendar/jqueryCalendar.css" type="text/css">
-		
+
 		<script type="text/javascript" src="<?php echo $this->basePath();?>/ckeditor/ckeditor.js"></script>
 		<script type="text/javascript" src="<?php echo $this->basePath();?>/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="<?php echo $this->basePath();?>/admin/js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="<?php echo $this->basePath();?>/js/jquery-1.7.2.min.js"></script>
 		<script type="text/javascript" src="<?php echo $this->basePath();?>/js/new.js"></script>
-		
+
 		<script type="text/javascript">
 		$(document).ready(function() {
 			$("[href]").each(function() {
@@ -46,7 +46,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-sm-3 col-md-3 sidebar">
@@ -60,7 +60,7 @@
 						<li><a href="<?php echo $this->basePath();?>/admin/viewstudent"><i class="glyphicon glyphicon-user"></i> Danh sách học sinh</a></li>
 						<li><a href="<?php echo $this->basePath();?>/admin/viewteacher"><i class="glyphicon glyphicon-user"></i> Danh sách giáo viên</a></li>
 						<?php if (isset($this->admin) && ($this->level == 1)) {?>
-						<li><a href="<?php echo $this->basePath();?>/admin/newteacher"><i class="glyphicon glyphicon-plus"></i> Tạo tài khoản giáo viên</a></li>	
+						<li><a href="<?php echo $this->basePath();?>/admin/newteacher"><i class="glyphicon glyphicon-plus"></i> Tạo tài khoản giáo viên</a></li>
 						<?php } ?>
 					</ul>
 					<ul class="nav nav-sidebar">

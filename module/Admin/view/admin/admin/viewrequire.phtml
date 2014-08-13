@@ -5,7 +5,7 @@
 	if ($this->paginator != null) {
 		if (!isset($_GET['page']))
 			$count	= 0;
-		else 
+		else
 			$count	= ($_GET['page'] - 1)*$this->perpage;
 	}
 ?>
@@ -27,7 +27,7 @@
 			<td><?php echo $item->mark;?></td>
 			<td><?php echo $item->updated_at;?></td>
 			<td><a href="<?php echo $this->basePath()?>/admin/allowtestagain/<?php echo $item->test_info_id?>"><button class="btn btn-primary" type="button"><i class="glyphicon glyphicon-ok"></i> Đồng ý</button></a></td>
-			<td><a href="<?php echo $this->basePath()?>/admin/denytestagain/<?php echo $item->test_info_id?>"><button class="btn btn-danger" type="button"><i class="glyphicon glyphicon-remove"></i> Hủy bỏ</button></a></td>	
+			<td><a href="<?php echo $this->basePath()?>/admin/denytestagain/<?php echo $item->test_info_id?>"><button class="btn btn-danger" type="button"><i class="glyphicon glyphicon-remove"></i> Hủy bỏ</button></a></td>
 		</tr>
 	<?php endforeach; ?>
 	</table>

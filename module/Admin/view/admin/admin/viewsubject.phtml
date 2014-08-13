@@ -2,7 +2,7 @@
 	if ($this->paginator != null) {
 		if (!isset($_GET['page']))
 			$count	= 0;
-		else 
+		else
 			$count	= ($_GET['page'] - 1)*$this->perpage;
 ?>
 	<h2 class="sub-header" style="font-weight: bold;">Danh sách môn học</h2>
@@ -37,9 +37,9 @@
 		</tr>
 		<?php endforeach; ?>
 	</table>
-<?php 
+<?php
 	}
-	
+
 	$url	= "viewsubject";
 	echo $this->paginationControl(
 		$this->paginator,
@@ -49,4 +49,4 @@
 			'route' => 'admin',
 			'url'	=> $url,
 		)
- 	); 
+ 	);

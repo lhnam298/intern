@@ -9,10 +9,10 @@
 	$type2	= (int)(($num - $type1)/2);
 	$type3	= $num - $type1 - $type2;
 	$form->prepare();
-	echo $this->form()->openTag($this->form); 
+	echo $this->form()->openTag($this->form);
 ?>
 <div align="center"><h2>Kết quả bài thi: <?php echo $this->mark; ?></h2></div>
-<div class="exam_frame">
+<div class="exam_frame" style="font-size: 14px">
 	<?php
 		for ($i=1; $i<=$num; $i++) {
 			$name	= "question".$i;
@@ -48,7 +48,7 @@
 		}
 	?>
 </div>
-<?php 
+<?php
 	echo $this->formHidden($form->get('csrf'));
 	echo $this->form()->openTag($this->form);
 ?>

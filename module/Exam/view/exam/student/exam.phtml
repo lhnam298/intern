@@ -13,33 +13,28 @@
 	$labelSubject	= $this->formLabel($form->get('subject'));
 	$form->get('subject')->setOptions(array('value_options' => $arrSubject));
 	$subject	= $this->formSelect($form->get('subject'));
-	
+
 	$submit 	= $this->formInput($form->get('submit'));
-		
+
 	echo $this->form()->openTag($this->form);
 ?>
-<body>
 <div class="exam">
-	<form class="form-horizontal">
-		<div class="form-group form-group-lg">
-			<h4><?php echo $labelSubject;?></h4>
-			<div class="col-sm-9">
-				<?php echo $subject; ?>
-			</div>
-			<?php echo $submit;?>
-		</div> 
-		<p class="announcement text-info">
-			<?php 
-				echo $this->announcement;
-				if ($this->requireTestAgain == 1)
-					echo "<a href=\"".$this->basePath()."/student/requiretestagain/"
-									.$this->selectedItem."\" Onclick=\"return ConfirmRequireTestAgain()\">Yêu cầu thi lại</a>";
-			?>
-		</p>
-	</form>
-	
+	<div class="form-group form-group-lg">
+		<h4><?php echo $labelSubject;?></h4>
+		<div class="col-sm-9">
+			<?php echo $subject; ?>
+		</div>
+		<?php echo $submit;?>
+	</div>
+	<p class="announcement text-info">
+		<?php
+			echo $this->announcement;
+			if ($this->requireTestAgain == 1)
+				echo "<a href=\"".$this->basePath()."/student/requiretestagain/"
+							.$this->selectedItem."\" Onclick=\"return ConfirmRequireTestAgain()\">Yêu cầu thi lại</a>";
+		?>
+	</p>
 </div>
-<?php 
+<?php
 	echo $this->form()->openTag($this->form);
 ?>
-</body>

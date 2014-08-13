@@ -1,13 +1,13 @@
 <?php
 	namespace Exam\Controller;
-	
+
 	use Zend\Mvc\Controller\AbstractActionController,
 		Zend\View\Model\ViewModel,
 		Zend\Session\Container,
 		Zend\Permissions\Acl\Acl,
 		Zend\Permissions\Acl\Role\GenericRole as Role,
 		Zend\Permissions\Acl\Resource\GenericResource as Resource,
-		
+
 		Exam\Form\Validate\Register,
 		Exam\Form\RegisterForm,
 		Exam\Model\Student,
@@ -18,9 +18,9 @@
 		Exam\Model\QuestionTable,
 		Exam\Config\Config,
 		Exam\Config\CurrentTime;
-	
+
 	class IndexController extends AbstractActionController {
-		
+
 		protected $student;
 		protected $studentTable;
 		protected $teacher;
@@ -32,15 +32,15 @@
 		protected $answer;
 		protected $answerTable;
 		protected $topStudent;
-		
+
 		protected $sessionStudent;
 		protected $err;
 		protected $success;
 		protected $data;
 		protected $perpage	= Config::PAGINATOR_PER_PAGE;
 		private $_acl;
-	
-		public function _getAcl() {
+
+		public function getAcl() {
 			if(!$this->_acl) {
 				$this->_acl = $this->getServiceLocator()->get("Acl");
 			}
@@ -61,17 +61,17 @@
 				$this->layout()->setVariable('mark', $this->sessionStudent->info->average_mark);
 			}
 		}
-		
+
 		public function indexAction() {
 			$this->init();
 		}
-		
+
 		public function loginAction() {
 			$this->init();
 			$this->err	= "";
 			$form	= new LoginForm();
 			$form->initial();
-			
+
 			if ($this->getRequest()->isPost()) {
 				$validateLogin	= new Login();
 				$form->setInputFilter($validateLogin->getInputFilter());
@@ -86,13 +86,13 @@
 						$sessionStudent->finishTime	= null;
 						$this->redirect()->toUrl('../index/index');
 					}
-					else 
+					else
 						$this->err	= "Sai tên đăng nhập hoặc mật khẩu!";
 				}
 			}
 			return new ViewModel(array('form' => $form, 'err' => $this->err));
 		}
-		
+
 		public function registerAction() {
 			$this->init();
 			$this->err	= "";
@@ -115,7 +115,9 @@
 						$this->student->username	= $this->data['username'];
 						$this->student->setPassword(md5($this->data['password']));
 						$this->student->name	= $this->data['yourname'];
-						$this->student->birthday	= $this->data['birthday'];
+						$parts = explode('-', $this->data['birthday']);
+						$date  = $parts[2]."-".$parts[1]."-".$parts[0];
+						$this->student->birthday	= $date;
 						$this->student->average_mark	= 0;
 						$this->student->del_flg	= 0;
 						$this->studentTable	= $this->getServiceLocator()->get('Exam\Model\StudentTable');
@@ -126,13 +128,13 @@
 			}
 			return new ViewModel(array('form' => $form, 'err' => $this->err, 'success' => $this->success));
 		}
-		
+
 		public function checkStudent($data) {
 			$this->studentTable	= $this->getServiceLocator()->get('Exam\Model\StudentTable');
 			$result	= $this->studentTable->getStudent($data['username'], md5($data['password']));
 			return $result;
 		}
-		
+
 		public function checkUsername($data) {
 			$this->studentTable	= $this->getServiceLocator()->get('Exam\Model\StudentTable');
 			$result	= $this->studentTable->getUsername($data['username']);
@@ -140,39 +142,49 @@
 				return true;
 			return false;
 		}
-		
+
 		public function introduceAction() {
-			
+
 		}
-		
+
 		public function contactAction() {
-			
+
 		}
-		
+
 		public function viewStudentAction() {
 			$this->init();
 			$this->studentTable	= $this->getServiceLocator()->get('Exam\Model\StudentTable');
 			$paginator = $this->studentTable->fetchAll(true, 'ex_student');
 			$paginator->setCurrentPageNumber((int) $this->params()->fromQuery('page', 1));
 			$paginator->setItemCountPerPage($this->perpage);
-			
+
 			return new ViewModel(array(
 				'paginator' => $paginator,
 				'perpage'	=> $this->perpage,
 			));
 		}
-		
+
 		public function viewTeacherAction() {
 			$this->init();
 			$this->teacherTable	= $this->getServiceLocator()->get('Admin\Model\TeacherTable');
 			$paginator = $this->teacherTable->fetchAll(true, 'ex_teacher');
 			$paginator->setCurrentPageNumber((int) $this->params()->fromQuery('page', 1));
 			$paginator->setItemCountPerPage($this->perpage);
-			
+
 			return new ViewModel(array(
 				'paginator' => $paginator,
 				'perpage'	=> $this->perpage,
 			));
 		}
-		
+
+		public function viewSubjectInfoAction() {
+			$this->init();
+			$subjectId	= $this->params('id');
+			$this->subjectTable	= $this->getServiceLocator()->get('Exam\Model\SubjectTable');
+			$this->subject	= $this->subjectTable->getById($subjectId);
+			return new ViewModel(array(
+				'selectedSubject' => $this->subject,
+			));
+		}
+
 	}

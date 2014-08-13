@@ -5,7 +5,7 @@
 			'2' : $('#type2-3a, #type2-3b, #type2-3c, #type2-3d, #type2'),
 			'3' : $('#type2-3a, #type2-3b, #type2-3c, #type2-3d, #type3')
 		};
-	
+
 		$('#typeId').change(function() {
 			// hide all
 			$.each($.viewForm, function() { this.hide(); });
@@ -19,40 +19,40 @@
 	$form	= $this->form;
 	$form->prepare();
 	$form->setAttribute('action', $this->url('admin', array('action' => 'addquestion')));
-	
+
 	$labelSubject	= $this->formLabel($form->get('subject'));
 	$subject	= $this->formSelect($form->get('subject'));
-	
+
 	$labelType	= $this->formLabel($form->get('question_type'));
 	$type	= $this->formSelect($form->get('question_type'));
-	
+
 	$labelQuestion	= $this->formLabel($form->get('content'));
 	$question	= $this->formTextarea($form->get('content'));
 	$errorQuestion	= $this->formElementErrors($form->get('content'));
-	
+
 	$labelChoice1	= $this->formLabel($form->get('choice_1'));
 	$choice1	= $this->formTextarea($form->get('choice_1'));
-	
+
 	$labelChoice2	= $this->formLabel($form->get('choice_2'));
 	$choice2	= $this->formTextarea($form->get('choice_2'));
-	
+
 	$labelChoice3	= $this->formLabel($form->get('choice_3'));
 	$choice3	= $this->formTextarea($form->get('choice_3'));
-	
+
 	$labelChoice4	= $this->formLabel($form->get('choice_4'));
 	$choice4	= $this->formTextarea($form->get('choice_4'));
-	
+
 // 	$labelAnswer1	= $this->formLabel($form->get('answer1'));
 	$answer1	= $this->formRadio($form->get('answer1'));
-	
+
 // 	$labelAnswer2	= $this->formLabel($form->get('answer2'));
 	$answer2	= $this->formMultiCheckbox($form->get('answer2'));
-	
+
 // 	$labelAnswer3	= $this->formLabel($form->get('answer3'));
 	$answer3	= $this->formRadio($form->get('answer3'));
-	
+
 	$submit 	= $this->formInput($form->get('submit'));
-	
+
 	echo $this->form()->openTag($this->form);
 ?>
 	<h2 class="sub-header" style="font-weight: bold;">Tạo câu hỏi</h2>
@@ -105,5 +105,5 @@
 	<br>
 	<p align="center"><?php echo $submit?></p>
 <?php
-	echo $this->form()->openTag($this->form); 
+	echo $this->form()->openTag($this->form);
 ?>

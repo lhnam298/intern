@@ -1,6 +1,6 @@
 <?php
 	namespace Exam;
-	
+
 	use Exam\Model\Student,
 		Exam\Model\StudentTable,
 		Exam\Model\Answer,
@@ -12,9 +12,9 @@
 		Exam\Model\TestInfoTable,
 		Zend\Db\ResultSet\ResultSet,
 		Zend\Db\TableGateway\TableGateway;
-	
+
 	class Module {
-		
+
 		public function getServiceConfig() {
 			return array(
 				'factories' => array(
@@ -69,7 +69,7 @@
 				),
 			);
 		}
-	
+
 		public function getAutoloaderConfig() {
 			return array(
 				'Zend\Loader\ClassMapAutoloader' => array(
@@ -82,7 +82,7 @@
 				),
 			);
 		}
-	
+
 		public function getConfig() {
 			return include __DIR__ . '/config/module.config.php';
 		}

@@ -10,14 +10,14 @@
 		case 3:
 			echo "Câu hỏi lựa chọn đáp án đúng nhất";
 			break;
-	} 
+	}
 ?>
 </h2>
 <?php
 	if ($this->paginator != null) {
 		if (!isset($_GET['page']))
 			$count	= 0;
-		else 
+		else
 			$count	= ($_GET['page'] - 1)*$this->perpage;
 	}
 ?>
@@ -66,4 +66,4 @@
 			'route' => 'admin',
 			'url'	=> $url,
 		)
- 	); 
+ 	);

@@ -2,7 +2,7 @@
 	if ($this->paginator != null) {
 		if (!isset($_GET['page']))
 			$count	= 0;
-		else 
+		else
 			$count	= ($_GET['page'] - 1)*$this->perpage;
 ?>
 	<h2 class="sub-header" style="font-weight: bold;">Danh sách học sinh</h2>
@@ -21,7 +21,13 @@
 			<td><?php echo $count?></td>
 			<td><?php echo $item->username;?></td>
 			<td><?php echo $item->name;?></td>
-			<td><?php echo $item->birthday;?></td>
+			<td>
+				<?php
+					$parts = explode('-', $item->birthday);
+					$newFormat  = $parts[2]."-".$parts[1]."-".$parts[0];
+					echo $newFormat;
+				?>
+			</td>
 			<td align="center"><?php echo $item->average_mark;?></td>
 			<td><?php echo $item->created_at;?></td>
 			<td align="center">
@@ -32,9 +38,9 @@
 		</tr>
 		<?php endforeach; ?>
 		</table>
-<?php 
+<?php
 	}
-	
+
 	$url	= "viewstudent";
 	echo $this->paginationControl(
 		$this->paginator,
@@ -44,4 +50,4 @@
 			'route' => 'admin',
 			'url'	=> $url,
 		)
- 	); 
+ 	);

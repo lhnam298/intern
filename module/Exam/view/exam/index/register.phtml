@@ -1,40 +1,50 @@
-	<script src="<?php echo $this->basePath();?>/jqueryCalendar/jquery-1.6.2.min.js" type="text/javascript"></script>
-	<script src="<?php echo $this->basePath();?>/jqueryCalendar/jquery-ui-1.8.15.custom.min.js" type="text/javascript"></script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#datepicker').datepicker({ dateFormat: 'dd-mm-yy' }).val();
-		});
-	</script>
+<style>
+.ui-datepicker-title select{
+	color: black;
+}
+</style>
+<script src="<?php echo $this->basePath();?>/jqueryCalendar/jquery-1.6.2.min.js" type="text/javascript"></script>
+<script src="<?php echo $this->basePath();?>/jqueryCalendar/jquery-ui-1.8.15.custom.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#datepicker').datepicker({
+			changeMonth: true,
+			changeYear: true,
+			yearRange: '-100:+0',
+			dateFormat: 'dd-mm-yy',
+		}).val();
+	});
+</script>
 <?php
 	$form = $this->form;
 	$form->prepare();
 	$form->setAttribute('action', $this->url('index', array('action' => 'register')));
 	$form->get('submit')->setAttribute('class', 'register');
-	
+
 	$labelUsername	= $this->formLabel($form->get('username'));
 	$username	= $this->formInput($form->get('username'));
 	$errorUsername	= $this->formElementErrors($form->get('username'));
-	
+
 	$labelPassword	= $this->formLabel($form->get('password'));
 	$password	= $this->formInput($form->get('password'));
 	$errorPassword	= $this->formElementErrors($form->get('password'));
-	
+
 	$labelPassword_	= $this->formLabel($form->get('re_password'));
 	$password_	= $this->formInput($form->get('re_password'));
 	$errorPassword_	= $this->formElementErrors($form->get('re_password'));
-	
+
 	$labelYourname	= $this->formLabel($form->get('yourname'));
 	$yourname	= $this->formInput($form->get('yourname'));
 	$errorYourname	= $this->formElementErrors($form->get('yourname'));
-	
+
 	$labelBirthday	= $this->formLabel($form->get('birthday'));
 	$birthday	= $this->formInput($form->get('birthday'));
-	
+
 	$submit 	= $this->formInput($form->get('submit'));
 	echo $this->form()->openTag($this->form);
 ?>
 
-	<div class="title"><span class="title_icon"><img src="<?php echo $this->basePath();?>/images/bullet1.png" alt="" title="" /></span>Đăng ký</div>
+	<div class="title"><span class="title_icon"><img src='<?php echo $this->basePath();?>/images/bullet1.png' alt='' title='' /></span>Đăng ký</div>
 		<div class="contact_form">
 			<div class="form_subtitle">Tạo tài khoản</div>
 			<table style="width: 400px">
@@ -47,7 +57,7 @@
 					<td>
 						<div class="text-danger">
 							<?php echo $errorUsername;?>
-							<?php if ($this->err != "") echo "<ul><li>".$this->err."</li></ul>";?>
+							<?php if ($this->err != "") echo '<ul><li>'.$this->err.'</li></ul>';?>
 						</div>
 					</td>
 				</tr>

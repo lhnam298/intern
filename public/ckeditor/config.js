@@ -36,6 +36,8 @@ CKEDITOR.editorConfig = function( config ) {
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 	
+	config.entities = false;
+	config.basicEntities = false;
 	config.enterMode = CKEDITOR.ENTER_BR;
 	config.filebrowserBrowseUrl = '/public/ckfinder/ckfinder.html';
 	config.filebrowserImageBrowseUrl = '/public/ckfinder/ckfinder.html?type=Images';

@@ -1,6 +1,6 @@
 <?php
 	namespace Admin;
-	
+
 	use Admin\Model\TeacherTable,
 		Admin\Model\Teacher,
 		Admin\Model\Acl,
@@ -10,9 +10,9 @@
 		Exam\Model\SubjectTable,
 		Zend\Db\ResultSet\ResultSet,
 		Zend\Db\TableGateway\TableGateway;
-	
+
 	class Module {
-		
+
 		public function getServiceConfig() {
 	    	return array(
 				'factories' => array(
@@ -56,7 +56,7 @@
 				),
 			);
 		}
-		
+
 		public function getAutoloaderConfig() {
 			return array(
 				'Zend\Loader\ClassMapAutoloader' => array(
@@ -69,8 +69,8 @@
 				),
 			);
 		}
-	
+
 		public function getConfig() {
 			return include __DIR__ . '/config/module.config.php';
 		}
-	} 
+	}

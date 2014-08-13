@@ -17,7 +17,7 @@
 		<span id="minute"><?php echo (int)($this->remainTime/60) ?></span>:
 		<span id="second"><?php echo $this->remainTime%60 ?></span>
 	</h1>
-<div class="exam_frame">
+<div class="exam_frame" style="font-size: 14px">
 	<form action="<?php echo $this->basePath();?>/student/finishexam/<?php echo $this->subjectID?>" method="post" name="exam">
 	<?php
 		for ($i=1; $i<=$numOfQuestion; $i++) {
@@ -46,7 +46,7 @@
 				<label class="choice"><input type="checkbox" name="<?php echo $name?>[]" value="3"><?php echo $arr['3']?></label><br>
 				<label class="choice"><input type="checkbox" name="<?php echo $name?>[]" value="4"><?php echo $arr['4']?></label><br>
 				<br>
-	<?php 
+	<?php
 				}
 				else {
 	?>

@@ -40,11 +40,6 @@
 .table_layout {
 	margin: 10px 20px;
 }
-.admin_login_form {
-	width: 230px;
-	height: 200px;
-	margin: 200px 40%;
-}
 .input_answer label {
 	display: block;
 	font-weight: normal;

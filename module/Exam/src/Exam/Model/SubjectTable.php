@@ -1,13 +1,13 @@
 <?php
 	namespace Exam\Model;
-	
+
 	use Zend\Db\TableGateway\TableGateway,
 		Zend\Db\Sql\Select,
 	 	Zend\Paginator\Adapter\DbSelect,
 	 	Zend\Paginator\Paginator,
 	 	Zend\Db\ResultSet\ResultSet,
 	 	Exam\Config\CurrentTime;
-	
+
 	class SubjectTable extends ObjectTable {
 
 		public function fetchAll($paginated=false, $tableName=null) {
@@ -27,13 +27,13 @@
 			$resultSet = $this->tableGateway->select(array('del_flg' => '0'));
 			return $resultSet;
 		}
-		
+
 		public function getByName($name) {
 			$rowset	= $this->tableGateway->select(array('subject_name' => $name, 'del_flg' => '0'));
 			$row	= $rowset->current();
 			return $row;
 		}
-		
+
 		public function getById($id) {
 			$rowset	= $this->tableGateway->select(array('subject_id' => $id, 'del_flg' => '0'));
 			$row	= $rowset->current();
@@ -48,7 +48,7 @@
 				'test_time'		=> $subject->test_time,
 				'question_num'	=> $subject->question_num,
 				'del_flg'		=> $subject->del_flg);
-			
+
 				$id	= (int)$subject->subject_id;
 				$time	= new CurrentTime();
 				if ($id == 0) {
