@@ -12,28 +12,24 @@
 
 		Admin\Form\LoginForm,
 		Admin\Form\Validate\Login,
-
 		Admin\Model\Teacher,
 		Admin\Model\TeacherTable,
 		Admin\Form\NewTeacherForm,
 		Admin\Form\Validate\NewTeacher,
-
-		Exam\Model\QuestionType,
-		Exam\Model\QuestionTypeTable,
-
-		Exam\Model\Question,
-		Exam\Model\QuestionTable,
 		Admin\Form\Validate\CreateQuestion,
 		Admin\Form\CreateQuestionForm,
 		Admin\Form\EditQuestionForm,
 		Admin\Form\Validate\EditQuestion,
-
 		Admin\Form\Validate\CreateSubject,
 		Admin\Form\CreateSubjectForm,
-		Exam\Model\Subject,
 
+		Exam\Model\QuestionType,
+		Exam\Model\Question,
+		Exam\Model\QuestionTable,
+		Exam\Model\Subject,
 		Exam\Model\Answer,
-		Exam\Model\AnswerTable,
+		Exam\Model\ContactInfo,
+
 		Exam\Config\Config,
 		Exam\Config\CurrentTime;
 
@@ -51,6 +47,7 @@
 		protected $answer;
 		protected $answerTable;
 		protected $examInfoTable;
+		protected $contactTable;
 
 		protected $success	= "";
 		protected $err	= "";
@@ -79,6 +76,8 @@
 			$this->layout()->setVariable('level', $this->sessionAdmin->info->level);
 			$this->examInfoTable	= $this->getServiceLocator()->get('Exam\Model\TestInfoTable');
 			$this->layout()->setVariable('require', count($this->examInfoTable->getByRequireTestAgain()));
+			$this->contactTable	= $this->getServiceLocator()->get('Exam\Model\ContactInfoTable');
+			$this->layout()->setVariable('newContact', $this->contactTable->newContact());
 		}
 
 		public function indexAction() {
@@ -682,5 +681,50 @@
 			$info->test_again	= Config::DENY_TEST_AGAIN;
 			$this->examInfoTable->saveTestInfo($info);
 			$this->redirect()->toUrl('../viewrequire');
+		}
+
+		/*--- Contact ---*/
+
+		public function viewContactAction() {
+			$this->init();
+			if(!$this->getAcl()->isAllowed($this->sessionAdmin->right, null, "admin_viewcontact")) {
+				$this->redirect()->toUrl('index');
+			}
+
+			$this->contactTable	= $this->getServiceLocator()->get('Exam\Model\ContactInfoTable');
+			$paginator	= $this->contactTable->fetchAll(true, 'ex_contact');
+			$paginator->setCurrentPageNumber((int) $this->params()->fromQuery('page', 1));
+			$paginator->setItemCountPerPage($this->perpage);
+
+			return new ViewModel(array(	'paginator' => $paginator,
+										'perpage'	=> $this->perpage,
+			));
+		}
+
+		public function detailContactAction() {
+			$this->init();
+			if(!$this->getAcl()->isAllowed($this->sessionAdmin->right, null, "admin_detailcontact")) {
+				$this->redirect()->toUrl('index');
+			}
+			$id	= $this->params('id');
+			$this->contactTable	= $this->getServiceLocator()->get('Exam\Model\ContactInfoTable');
+			$mail	= $this->contactTable->getById($id);
+			$mail->visited	= 1;
+			$this->contactTable->saveContact($mail);
+
+			return new ViewModel(array('mail' => $mail));
+		}
+
+		public function deleteContactAction() {
+			$this->init();
+			if(!$this->getAcl()->isAllowed($this->sessionAdmin->right, null, "admin_deletecontact")) {
+				$this->redirect()->toUrl('index');
+			}
+			$id	= $this->params('id');
+			$this->contactTable	= $this->getServiceLocator()->get('Exam\Model\ContactInfoTable');
+			$mail	= $this->contactTable->getById($id);
+			$mail->del_flg	= 1;
+			$this->contactTable->saveContact($mail);
+			$this->redirect()->toUrl('../viewcontact');
 		}
 	}

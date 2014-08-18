@@ -107,6 +107,8 @@ clear:both;
 text-align: center;
 font-size: 15px;
 font-weight: bolder;
+margin: 0 0;
+font-style: italic;
 }
 .info-student img {
 margin-left: 65px;
@@ -199,6 +201,25 @@ padding: 2px 5px 2px 5px;
 margin-right: 2px;
 border: 1px solid #f3f3f3;
 color: #ccc;
+}
+/*-------------------book------------------------*/
+.new_prod_box{
+float:left;
+text-align:center;
+padding:10px 20px;
+}
+.new_prod_box a{
+padding:5px 0 5px 0;
+color:#b5b5b6;
+text-decoration:none;
+display:block;
+}
+.new_prod_bg{
+width:150px;
+min-height:200px;
+text-align:center;
+background:url(../images/new_prod_box.png) no-repeat center;
+position:relative;
 }
 /*---------------footer------------------------*/
 .footer{

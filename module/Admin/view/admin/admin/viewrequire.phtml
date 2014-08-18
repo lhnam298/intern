@@ -1,4 +1,4 @@
-<h2 class="sub-header" style="font-weight: bold;">Danh sách yêu cầu thi lại</h2>
+<h2 style="font-weight: bold; padding-bottom: 10px;">Danh sách yêu cầu thi lại</h2>
 <?php if (count($this->paginator) == 0) {?>
 	<p align="center" style="font-size: 16px" class="text-info">Hiện tại không có yêu cầu thi lại nào</p>
 <?php } else {
@@ -31,4 +31,16 @@
 		</tr>
 	<?php endforeach; ?>
 	</table>
-<?php } ?>
+<?php
+	}
+
+	$url	= "viewrequire";
+	echo $this->paginationControl(
+			$this->paginator,
+			'sliding',
+			array('partial/admin/paginator.phtml', 'Require'),
+			array(
+					'route' => 'admin',
+					'url'	=> $url,
+			)
+	);

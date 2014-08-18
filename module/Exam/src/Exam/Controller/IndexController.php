@@ -10,13 +10,18 @@
 
 		Exam\Form\Validate\Register,
 		Exam\Form\RegisterForm,
+		Exam\Form\ContactForm,
+		Exam\Form\Validate\Contact,
 		Exam\Model\Student,
 		Exam\Model\StudentTable,
+		Exam\Model\ContactInfo,
+		Exam\Model\ContactInfoTable,
 		Exam\Form\Validate\Login,
 		Exam\Form\LoginForm,
 		Exam\Model\Question,
 		Exam\Model\QuestionTable,
 		Exam\Config\Config,
+		Exam\Config\PassWord,
 		Exam\Config\CurrentTime;
 
 	class IndexController extends AbstractActionController {
@@ -32,6 +37,8 @@
 		protected $answer;
 		protected $answerTable;
 		protected $topStudent;
+		protected $contact;
+		protected $contactTable;
 
 		protected $sessionStudent;
 		protected $err;
@@ -111,8 +118,12 @@
 					}
 					else {
 						$this->student	= new Student();
-						$this->student->student_id	= (isset($data['student_id'])) ? $data['student_id'] : null;
+						$this->student->student_id	= (isset($this->data['student_id'])) ? $this->data['student_id'] : null;
 						$this->student->username	= $this->data['username'];
+						/*
+						$pass	= new PassWord();
+						$this->student->setPassword($pass->generatePassWord($this->data['password'], $this->data['username']));
+						*/
 						$this->student->setPassword(md5($this->data['password']));
 						$this->student->name	= $this->data['yourname'];
 						$parts = explode('-', $this->data['birthday']);
@@ -132,6 +143,10 @@
 		public function checkStudent($data) {
 			$this->studentTable	= $this->getServiceLocator()->get('Exam\Model\StudentTable');
 			$result	= $this->studentTable->getStudent($data['username'], md5($data['password']));
+			/*
+			$pass	= new PassWord();
+			$result	= $this->studentTable->getStudent($data['username'], $pass->generatePassWord($data['password'], $data['username']));
+			*/
 			return $result;
 		}
 
@@ -144,11 +159,36 @@
 		}
 
 		public function introduceAction() {
-
+			$this->init();
 		}
 
 		public function contactAction() {
-
+			$this->init();
+			$flag	= 0;
+			$form	= new ContactForm();
+			$form->initial();
+			if ($this->getRequest()->isPost()) {
+				$validateContact	= new Contact();
+				$form->setInputFilter($validateContact->getInputFilter());
+				$form->setData($this->getRequest()->getPost());
+				if ($form->isValid()) {
+					$this->data = $form->getData();
+					$this->contact	= new ContactInfo();
+					$this->contact->contact_id	= (isset($this->data['contact_id'])) ? $this->data['contact_id'] : null;
+					$this->contact->name	= $this->data['name'];
+					$this->contact->email	= $this->data['email'];
+					$this->contact->phone	= (isset($this->data['phone'])) ? $this->data['phone'] : null;
+					$this->contact->title	= $this->data['title'];
+					$this->contact->content	= $this->data['content'];
+					$this->contact->del_flg	= 0;
+					$this->contact->visited	= 0;
+					$this->contact->created_at	= null;
+					$this->contactTable	= $this->getServiceLocator()->get('Exam\Model\ContactInfoTable');
+					$this->contactTable->saveContact($this->contact);
+					$flag	= 1;
+				}
+			}
+			return new ViewModel(array('form' => $form, 'flag' => $flag));
 		}
 
 		public function viewStudentAction() {

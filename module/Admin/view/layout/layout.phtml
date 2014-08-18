@@ -74,6 +74,12 @@
 						<li><p>Thi lại</p></li>
 						<li><a href="<?php echo $this->basePath();?>/admin/viewrequire"><i class="glyphicon glyphicon-list-alt"></i> Xem yêu cầu thi lại <?php if ($this->require != 0) echo "(".$this->require.")"; ?></a></li>
 					</ul>
+					<?php if (isset($this->admin) && ($this->level == 1)) {?>
+					<ul class="nav nav-sidebar">
+						<li><p>Câu hỏi - Góp ý</p></li>
+						<li><a href="<?php echo $this->basePath();?>/admin/viewcontact"><i class="glyphicon glyphicon-envelope"></i> Hộp thư <?php if ($this->newContact != 0) echo "(".$this->newContact.")"; ?></a></li>
+					</ul>
+					<?php } ?>
 				</div>
 
 				<div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-3 main">

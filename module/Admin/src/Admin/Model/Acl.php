@@ -38,6 +38,9 @@
 			$this->allow("Teacher", null, array("admin_questionbysubject"));
 			$this->allow("Teacher", null, array("admin_denytestagain"));
 			$this->allow("Manager", null, array("admin_newteacher"));
+			$this->allow("Manager", null, array("admin_viewcontact"));
+			$this->allow("Manager", null, array("admin_detailcontact"));
+			$this->allow("Manager", null, array("admin_deletecontact"));
 			$this->allow("Manager", null, array("admin_deleteteacher"));
 
 		}

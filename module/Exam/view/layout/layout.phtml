@@ -8,16 +8,20 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo $this->basePath();?>/css/new.css" />
 		<link rel="stylesheet" type="text/css" href="<?php echo $this->basePath();?>/jqueryCalendar/jqueryCalendar.css" />
 
+		<script type="text/javascript" src="<?php echo $this->basePath();?>/ckeditor/ckeditor.js"></script>
 		<script type="text/javascript" src="<?php echo $this->basePath();?>/js/jquery-1.7.2.min.js"></script>
 		<script type="text/javascript" src="<?php echo $this->basePath();?>/js/new.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
+				$('#menu ul li:first a').addClass("selected");
 				$("[href]").each(function() {
 					var path = window.location.href;
 					var url1 = path.substring(path.lastIndexOf('/')+1);
 					var url2 = (this.href).substring(path.lastIndexOf('/')+1);
-					if (url1 == url2)
+					if (url1 == url2) {
+						$('#menu ul li:first a').removeClass("selected");
 						$(this).addClass("selected");
+					}
 				});
 			});
 		</script>
@@ -29,17 +33,17 @@
 		<div id="menu">
 			<ul>
 				<li><a href="<?php echo $this->basePath();?>/index/index">Trang chủ</a></li>
-				<li><a href="#">Giới thiệu</a></li>
+				<li><a href="<?php echo $this->basePath();?>/index/introduce">Tài liệu</a></li>
 				<li><a href="<?php echo $this->basePath();?>/index/viewteacher">Giáo viên</a></li>
 				<li><a href="<?php echo $this->basePath();?>/index/viewstudent">Học sinh</a></li>
-		<?php 	if (isset($this->student)) { ?>
+		<?php	if (isset($this->student)) { ?>
 				<li><a href="<?php echo $this->basePath();?>/student/exam">Bài thi</a></li>
-		<?php 	}
+		<?php	}
 				else { ?>
 				<li><a href="<?php echo $this->basePath();?>/index/login">Đăng nhập</a></li>
 				<li><a href="<?php echo $this->basePath();?>/index/register">Đăng ký</a></li>
 		<?php 	} ?>
-				<li><a href="#">Liên hệ</a></li>
+				<li><a href="<?php echo $this->basePath();?>/index/contact">Liên hệ</a></li>
 			</ul>
 		</div>
 	</div>
@@ -56,7 +60,7 @@
 					<div class="title"><span class="title_icon"><img src="<?php echo $this->basePath();?>/images/bullet6.png" alt="" title="" /></span>Học sinh</div>
 					<div class="info-student">
 						<img src="<?php echo $this->basePath();?>/images/no-user.png" class="img-polaroid"/>
-						<p><?php echo $this->name ?></p>
+						<p style="font-size: 20px"><?php echo $this->name ?></p>
 						<p>Điểm TB: <?php echo $this->mark ?></p>
 						<p><a href="<?php echo $this->basePath();?>/student/logout">Đăng xuất</a></p>
 					</div>

@@ -44,9 +44,13 @@
 	display: block;
 	font-weight: normal;
 }
+.input_answer input {
+	margin-right: 5px;
+}
 .display_answer {
 	text-decoration: underline;
 	font-weight: bold;
+	font-style:italic;
 	color: red;
 	margin-right: 5px;	
 }

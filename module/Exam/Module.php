@@ -4,12 +4,14 @@
 	use Exam\Model\Student,
 		Exam\Model\StudentTable,
 		Exam\Model\Answer,
-		Admin\Model\Acl,
 		Exam\Model\AnswerTable,
 		Exam\Model\Question,
 		Exam\Model\QuestionTable,
 		Exam\Model\TestInfo,
 		Exam\Model\TestInfoTable,
+		Exam\Model\ContactInfo,
+		Exam\Model\ContactInfoTable,
+		Admin\Model\Acl,
 		Zend\Db\ResultSet\ResultSet,
 		Zend\Db\TableGateway\TableGateway;
 
@@ -61,6 +63,17 @@
 					$resultSetPrototype = new ResultSet();
 						$resultSetPrototype->setArrayObjectPrototype(new TestInfo());
 						return new TableGateway('ex_test_info', $dbAdapter, null, $resultSetPrototype);
+					},
+					'Exam\Model\ContactInfoTable' => function ($sm) {
+						$tableGateway = $sm->get('ContactInfoTableGateway');
+						$table	= new ContactInfoTable($tableGateway);
+						return $table;
+					},
+					'ContactInfoTableGateway' =>  function($sm) {
+						$dbAdapter	= $sm->get('Zend\Db\Adapter\Adapter');
+						$resultSetPrototype = new ResultSet();
+						$resultSetPrototype->setArrayObjectPrototype(new ContactInfo());
+						return new TableGateway('ex_contact', $dbAdapter, null, $resultSetPrototype);
 					},
 					'Acl' => function($sm) {
 						$acl = new Acl();

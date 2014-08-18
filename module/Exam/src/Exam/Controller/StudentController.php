@@ -158,9 +158,11 @@
 				$arrChoice[]	= $choices;
 			}
 
-			$this->sessionStudent->arrExamAnswer	= $arrExamAnswer;
+			$rd	= new Exam($type1 + $type2 + $type3);
+			$new	= $rd->randomPosition($arrChoice, $arrExamAnswer);
+			$this->sessionStudent->arrExamAnswer	= $new[1];
+			$this->sessionStudent->arrChoice	= $new[0];
 			$this->sessionStudent->arrExamQuestion	= $arrExamQuestion;
-			$this->sessionStudent->arrChoice	= $arrChoice;
 		}
 
 		public function saveResult($subjectId) {

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 12, 2014 at 03:44 AM
+-- Generation Time: Aug 18, 2014 at 03:15 PM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -45,13 +45,13 @@ CREATE TABLE IF NOT EXISTS `ex_answer` (
 --
 
 INSERT INTO `ex_answer` (`answer_id`, `question_id`, `choice_1`, `choice_2`, `choice_3`, `choice_4`, `del_flg`, `created_at`, `updated_at`) VALUES
-(1, 3, 'Vitamin B1', 'Vitamin B2', 'Vitamin A', 'Viatmin D', 0, '2014-06-18 10:16:17', '2014-08-03 17:04:11'),
+(1, 3, 'Vitamin B1', 'Vitamin B2', 'Vitamin A', 'Viatmin D', 0, '2014-06-18 10:16:17', '2014-08-18 13:02:09'),
 (2, 19, 'Cần thiết cho chuyển hoá\r\n', 'Tổ chức bảo vệ cơ thể', 'Cấu trúc và tạo hình', 'Giúp acid mật tham gia vào quá trình nhũ tương hoá thức ăn ở ruột', 0, '2014-06-22 11:38:02', '0000-00-00 00:00:00'),
-(5, 23, '&nbsp;&nbsp;&nbsp;', 'Ti&ecirc;u hao năng lượng cho đứng n&oacute;i chuyện cao hơn cho nấu ăn', 'Ti&ecirc;u hao năng lượng cho rửa b&aacute;t cao hơn nấu ăn', 'Ti&ecirc;u hao năng lượng cho giặt tay thấp hơn đi bộ 4km/h', 0, '2014-06-30 10:50:53', '2014-08-02 19:19:34'),
+(5, 23, '   ', 'Tiêu hao năng lượng cho đứng nói chuyện cao hơn cho nấu ăn', 'Tiêu hao năng lượng cho rửa bát cao hơn nấu ăn', 'Tiêu hao năng lượng cho giặt tay thấp hơn đi bộ 4km/h', 0, '2014-06-30 10:50:53', '2014-08-18 13:02:38'),
 (6, 24, 'ăn thức ăn giàu đạm với tỉ lệ cân đối giữa nguồn động vật và thực vật, nên tăng cường ăn cá\r\n', 'Lựa chọn và sử dụng thức ăn, đồ uống đảm bảo vệ sinh an toàn. Dùng nguồn nước sạch để chế biến thức ăn\r\n', 'Không nên dùng các chất kích thích như rượu, bia, cà phê, thuốc lá\r\n', 'Cho trẻ ăn các thức ăn bổ sung giàu chất dinh dưỡng. Thực hiện tô màu bát bột\r\n', 0, '2014-06-30 10:52:43', '0000-00-00 00:00:00'),
 (7, 25, 'Sữa và các sản phẩm của sữa\r\n', 'Thịt, cá\r\n', 'Ngũ cốc và các loại bột\r\n', 'Trứng\r\n', 0, '2014-06-30 10:54:00', '0000-00-00 00:00:00'),
 (9, 40, 'Phòng chống suy dinh dưỡng protein - năng lượng ở trẻ em và bà mẹ\r\n', 'Phòng chống béo phì và thừa cân\r\n', 'Theo dõi, đánh giá, giám sát các mục tiêu dinh dưỡng\r\n', 'Phổ biến 10 lời khuyên dinh dưỡng\r\n', 0, '2014-07-01 09:43:18', '0000-00-00 00:00:00'),
-(10, 41, 'Thịt có thể là nguồn lây của bệnh lao\r\n', 'Cá có thể là nguồn lây các loại sán\r\n', 'Lớp vỏ trong của sắn có chứa chất Solamin\r\n', 'Nguy cơ nấm mốc trong quá trình làm tương có khả năng sinh độc tố Mycotoxin\r\n', 0, '2014-07-01 09:43:47', '0000-00-00 00:00:00'),
+(10, 41, 'Thịt có thể là nguồn lây của bệnh lao', 'Cá có thể là nguồn lây các loại sán', 'Lớp vỏ trong của sắn có chứa chất Solamin', 'Nguy cơ nấm mốc trong quá trình làm tương có khả năng sinh độc tố Mycotoxin', 0, '2014-07-01 09:43:47', '2014-08-18 13:03:34'),
 (11, 42, 'ăn thức ăn giàu đạm với tỉ lệ cân đối giữa nguồn động vật và thực vật, nên tăng cường ăn cá\r\n', 'Lựa chọn và sử dụng thức ăn, đồ uống đảm bảo vệ sinh an toàn. Dùng nguồn nước sạch để chế biến thức ăn\r\n', 'Không nên dùng các chất kích thích như rượu, bia, cà phê, thuốc lá\r\n', 'Cho trẻ ăn các thức ăn bổ sung giàu chất dinh dưỡng. Thực hiện tô màu bát bột\r\n', 0, '2014-07-01 09:44:16', '0000-00-00 00:00:00'),
 (12, 43, 'Cho trẻ ăn thức ăn không có mỡ\r\n', 'Cho trẻ uống nước ngọt càng nhiều càng tốt\r\n', 'Cho trẻ ăn đủ chất và uống nhiều nước hơn bình thưòng\r\n', 'Cho trẻ uống ít hơn bình thường\r\n', 0, '2014-07-01 09:45:00', '0000-00-00 00:00:00'),
 (13, 44, 'Thịt nhiều mỡ\r\n', 'Các loại phủ tạng\r\n', 'Hạt sen, lá vông\r\n', 'Đường, bánh, kẹo\r\n', 0, '2014-07-01 09:45:27', '0000-00-00 00:00:00'),
@@ -61,29 +61,64 @@ INSERT INTO `ex_answer` (`answer_id`, `question_id`, `choice_1`, `choice_2`, `ch
 (27, 60, '中心', '中間', '年中', '集中', 0, '2014-07-31 14:48:43', '0000-00-00 00:00:00'),
 (28, 61, '都合', '合同', '会合', '合計', 0, '2014-07-31 14:52:08', '0000-00-00 00:00:00'),
 (29, 62, '発見', '発生', '発明', '発行', 0, '2014-07-31 15:00:53', '0000-00-00 00:00:00'),
-(30, 56, '<p>C&aacute;c nghề lao động tr&iacute; &oacute;c được xếp v&agrave;o nh&oacute;m lao động vừa</p>\r\n', '<p>Nghề c&aacute; được xếp v&agrave;o nh&oacute;m lao động nặng</p>\r\n', '<p>Gi&aacute;o vi&ecirc;n được xếp v&agrave;o nh&oacute;m lao động nhẹ</p>\r\n', '<p>Qu&acirc;n nh&acirc;n thời kỳ luyện tập được xếp v&agrave;o nh&oacute;m lao động nặng.</p>\r\n', 0, '2014-07-31 15:34:19', '0000-00-00 00:00:00'),
+(30, 56, 'Các nghề lao động trí óc được xếp vào nhóm lao động vừa', 'Nghề cá được xếp vào nhóm lao động nặng', 'Giáo viên được xếp vào nhóm lao động nhẹ', 'Quân nhân thời kỳ luyện tập được xếp vào nhóm lao động nặng.', 0, '2014-07-31 15:34:19', '2014-08-18 13:13:58'),
 (39, 71, 'はがす', 'ねじる', 'ふさぐ', '閉じる', 0, '2014-08-11 03:00:27', '0000-00-00 00:00:00'),
 (40, 72, 'つかむ', 'かつぐ', 'またぐ', 'しゃがむ', 0, '2014-08-11 03:05:52', '0000-00-00 00:00:00'),
-(41, 81, '幸復', '広復', '幸福', '広福', 0, '2014-08-11 03:34:28', '0000-00-00 00:00:00'),
-(42, 82, 'いそがしい', 'はずかしい', 'おかしい', 'たのしい', 0, '2014-08-11 03:38:00', '0000-00-00 00:00:00'),
-(43, 83, 'ぞうしゃけん', 'じょしゃげん', 'じょうしゃけん', 'じょしゃげん', 0, '2014-08-11 03:40:49', '0000-00-00 00:00:00'),
-(44, 84, 'にぎやかな', 'こうかな', 'たしかな', 'しずかな', 0, '2014-08-11 03:43:12', '0000-00-00 00:00:00'),
-(45, 85, 'もとめ', 'みとめ', 'つとめ', 'まとめ', 0, '2014-08-11 03:45:29', '0000-00-00 00:00:00'),
-(46, 86, '有賞', '優賞', '優勝', '有勝', 0, '2014-08-11 03:49:10', '0000-00-00 00:00:00'),
-(47, 87, '悲しい', '寂しい', '欲しい', '楽しい', 0, '2014-08-11 03:51:17', '0000-00-00 00:00:00'),
-(48, 88, '指して', '押して', '貸して', '通して', 0, '2014-08-11 03:54:02', '0000-00-00 00:00:00'),
+(41, 81, '幸復', '広復', '幸福', '広福', 0, '2014-08-11 03:34:28', '2014-08-12 13:36:16'),
+(42, 82, 'いそがしい', 'はずかしい', 'おかしい', 'たのしい', 0, '2014-08-11 03:38:00', '2014-08-12 13:34:09'),
+(43, 83, 'ぞうしゃけん', 'じょしゃげん', 'じょうしゃけん', 'じょしゃげん', 0, '2014-08-11 03:40:49', '2014-08-12 13:34:27'),
+(44, 84, 'にぎやかな', 'こうかな', 'たしかな', 'しずかな', 0, '2014-08-11 03:43:12', '2014-08-12 13:34:47'),
+(45, 85, 'もとめ', 'みとめ', 'つとめ', 'まとめ', 0, '2014-08-11 03:45:29', '2014-08-12 13:35:04'),
+(46, 86, '有賞', '優賞', '優勝', '有勝', 0, '2014-08-11 03:49:10', '2014-08-12 13:35:27'),
+(47, 87, '悲しい', '寂しい', '欲しい', '楽しい', 0, '2014-08-11 03:51:17', '2014-08-12 13:35:41'),
+(48, 88, '指して', '押して', '貸して', '通して', 0, '2014-08-11 03:54:02', '2014-08-12 13:35:57'),
 (49, 89, '欠ける', '化ける', '盛る', '掛ける', 0, '2014-08-11 15:45:00', '0000-00-00 00:00:00'),
 (50, 90, '下げる', '上げる', '挙げる', '投げる', 0, '2014-08-11 15:46:19', '0000-00-00 00:00:00'),
 (51, 91, '開ける', '明ける', '避ける', '泣ける', 0, '2014-08-11 15:50:15', '0000-00-00 00:00:00'),
 (52, 92, '優しい', '悲しい', '易しい', '厳しい', 0, '2014-08-11 15:55:42', '0000-00-00 00:00:00'),
-(53, 93, '友達', '同士', '上の人', '上司', 0, '2014-08-11 15:58:17', '0000-00-00 00:00:00'),
+(53, 93, '友達', '同士', '上の人', '上司', 0, '2014-08-11 15:58:17', '2014-08-12 01:52:10'),
 (54, 94, '状況', '上級', '状態', '上京', 0, '2014-08-11 16:02:14', '0000-00-00 00:00:00'),
 (55, 95, '退院', '隊員', '台風', '態度', 0, '2014-08-11 16:04:07', '0000-00-00 00:00:00'),
-(56, 102, 'Đ&atilde; c&oacute; giấy ăn để lau rồi', 'Tốn thời gian kh&ocirc;ng cần thiết', 'N&oacute; chỉ c&oacute; t&aacute;c dụng lau kh&ocirc;, kh&ocirc;ng c&oacute; &yacute; nghĩa lau sạch', 'Kh&ocirc;ng những chỉ c&oacute; t&aacute;c dụng lau kh&ocirc; m&agrave; c&ograve;n c&oacute; khả năng l&agrave;m bẩn dụng cụ, b&aacute;t, đĩa&hellip;', 0, '2014-08-11 16:11:10', '0000-00-00 00:00:00'),
+(56, 102, 'Đã có giấy ăn để lau rồi', 'Tốn thời gian không cần thiết', 'Nó chỉ có tác dụng lau khô, không có ý nghĩa lau sạch', 'Không những chỉ có tác dụng lau khô mà còn có khả năng làm bẩn dụng cụ, bát, đĩa…', 0, '2014-08-11 16:11:10', '2014-08-18 12:57:44'),
 (57, 103, '4 giờ', '6 giờ', '8 giờ', '12 giờ', 0, '2014-08-11 16:11:51', '0000-00-00 00:00:00'),
-(58, 104, 'Từ 0,5 - 1,0m', 'Từ 1,0 - 1,5 m', 'Từ 1,5 - 2,0 m', 'Từ 2,0 - 2,5m', 0, '2014-08-11 16:12:45', '0000-00-00 00:00:00'),
-(59, 105, 'Để x&eacute;t nghiệm h&agrave;ng ng&agrave;y xem c&oacute; tốt kh&ocirc;ng', 'Để x&eacute;t nghiệm khi cần như c&oacute; vụ ngộ độc&hellip;', 'Để tiện kiểm tra chất lượng một suất ăn thiếu hay đủ', 'Để kiểm tra nguồn gốc thực phẩm', 0, '2014-08-11 16:13:30', '0000-00-00 00:00:00'),
+(58, 104, 'Từ 0,5 - 1,0m', 'Từ 1,0 - 1,5 m', 'Từ 1,5 - 2,0 m', 'Từ 2,0 - 2,5m', 0, '2014-08-11 16:12:45', '2014-08-18 12:57:18'),
+(59, 105, 'Để xét nghiệm hàng ngày xem có tốt không', 'Để xét nghiệm khi cần như có vụ ngộ độc…', 'Để tiện kiểm tra chất lượng một suất ăn thiếu hay đủ', 'Để kiểm tra nguồn gốc thực phẩm', 0, '2014-08-11 16:13:30', '2014-08-18 12:55:49'),
 (60, 106, '50 độ C', '55 độ C', '60 độ C', '65 độ C', 0, '2014-08-11 16:14:08', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ex_contact`
+--
+
+CREATE TABLE IF NOT EXISTS `ex_contact` (
+  `contact_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(100) CHARACTER SET ascii DEFAULT NULL,
+  `phone` varchar(100) CHARACTER SET ascii NOT NULL,
+  `content` text COLLATE utf8_unicode_ci,
+  `del_flg` tinyint(4) DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `visited` tinyint(4) DEFAULT '0',
+  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`contact_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
+
+--
+-- Dumping data for table `ex_contact`
+--
+
+INSERT INTO `ex_contact` (`contact_id`, `name`, `email`, `phone`, `content`, `del_flg`, `created_at`, `visited`, `title`) VALUES
+(1, 'namlh', 'lhnam298@yahoo.com.vn', '', 'test mục liên hệ, thanks to see!', 0, '2014-08-15 16:23:42', 0, 'demo'),
+(2, 'namlh', 'lhnam298@yahoo.com.vn', '', 'test mục liên hệ, thanks to see!', 0, '2014-08-15 16:34:41', 0, 'demo'),
+(3, 'namlh', 'lhnam298@yahoo.com.vn', '', 'test mục liên hệ, thanks to see!', 0, '2014-08-15 16:35:31', 0, 'demo'),
+(4, 'namlh', 'lhnam298@yahoo.com.vn', '', 'test mục liên hệ, thanks to see!', 0, '2014-08-15 16:35:46', 0, 'demo'),
+(5, 'namlh', 'lhnam298@yahoo.com.vn', '', 'test mục liên hệ, thanks to see!', 0, '2014-08-16 03:39:47', 1, 'demo'),
+(6, 'namlh', 'lhnam298@yahoo.com.vn', '', 'cộng hòa xã hội chủ nghĩa việt nam - độc lập tự do hạnh phúc', 0, '2014-08-15 18:24:04', 0, 'demo mail'),
+(7, 'namlh', 'lhnam298@yahoo.com.vn', '', 'cộng hòa xã hội chủ nghĩa việt nam - độc lập tự do hạnh phúc', 0, '2014-08-15 18:24:37', 1, 'demo mail'),
+(8, 'namlh', 'lhnam298@yahoo.com.vn', '', 'ハノイ工科大学ICT学部HedspiK55で勉強しています。', 0, '2014-08-15 18:29:16', 1, 'demo 2'),
+(9, 'admin', 'a@gmail.vn', '', '1243535454 jdfdkfhdkhfd dkfdkhskfd dfsdf', 0, '2014-08-16 03:44:00', 1, 'test'),
+(10, 'namlh', 'lhnam298@yahoo.com.vn', '', '<p>SỰ KIỆN BÊN LỀ HỘI THẢO: NGÀNH HỌC THỜI THƯỢNG - EVENT MANAGEMENT QUIZ</p>\r\n\r\n<p>Bạn muốn là người tổ chức những sự kiện như DJ Harewell Show, Heineken Countdown Party, Apple Event ....</p>\r\n\r\n<p>Hãy tham trả lời câu hỏi cùng chúng tôi về nghề tổ chức sự kiện và chương trình "I Am Hardwell" để học hỏi và nhận những phần quà thú vị.</p>\r\n\r\n<p>->Giải thưởng:<br />\r\nNhững bạn nhanh tay trả lời các câu hỏi sớm nhất và đúng nhất sẽ nhận ngay những phần quà có giá trị là:<br />\r\n- Giải nhất: 1 vé xem chương trình "I Am Hardwell" lần đầu được tổ chức ở Việt Nam +1 vé xem phim tại cụm rạp CGV<br />\r\n- 9 giải nhì là 9 vé xem phim tại cụm rạp CGV.</p>\r\n\r\n<p>Hạn cuối cùng nhận bài là 15h ngày 20/08/2014.</p>\r\n', 0, '2014-08-16 04:34:41', 1, 'demo');
 
 -- --------------------------------------------------------
 
@@ -110,15 +145,15 @@ CREATE TABLE IF NOT EXISTS `ex_question` (
 --
 
 INSERT INTO `ex_question` (`question_id`, `subject_id`, `question_type_id`, `question`, `answer`, `del_flg`, `created_at`, `updated_at`) VALUES
-(2, 9, 1, 'Treonin l&agrave; 1 trong 8 acid amin cần thiết m&agrave; cơ thể kh&ocirc;ng tự tổng hợp được', '1', 0, '2014-06-18 10:14:47', '2014-08-10 18:13:56'),
-(3, 9, 3, 'Vitamin c&oacute; vai tr&ograve; ảnh hưởng tới sự cảm thụ &aacute;nh s&aacute;ng của mắt, nhất l&agrave; đối với sự nh&igrave;n m&agrave;u l&agrave; vai tr&ograve; của', '2', 0, '2014-06-18 10:15:24', '2014-08-03 17:04:10'),
-(6, 9, 1, 'BMI = 25 là thừa cân và béo phì', '1', 1, '2014-06-22 09:40:18', '2014-07-25 02:46:55'),
-(8, 9, 1, 'Tỉ lệ năng lượng do protein - lipid - glucid cân đối trong khẩu phần ăn cần phấn đấu đạt được trong thời gian tới là 12% - 18% - 70%', '0', 1, '2014-06-22 10:00:12', '2014-07-01 09:11:20'),
-(10, 9, 1, 'Tỉ lệ năng lượng do protein - lipid - glucid cân đối trong khẩu phần ăn cần phấn đấu đạt được trong thời gian tới là 14% - 20% - 66%', '1', 1, '2014-06-22 10:23:29', '2014-07-01 09:11:20'),
-(19, 9, 2, 'Trong các vai trò sau, vai trò nào là vai trò dinh dưỡng của protein đối với cơ thể', '1&3', 1, '2014-06-22 11:38:02', '2014-07-01 09:11:20'),
-(21, 9, 1, 'Chế độ ăn cho người cao tuổi cần tăng đường và giảm muối', '0', 1, '2014-06-30 10:48:01', '2014-07-01 09:11:20'),
-(22, 9, 1, 'Chế độ ăn cho người lao động trí óc cần hạn chế glucid và lipid trong khẩu phần', '1', 1, '2014-06-30 10:49:55', '2014-07-01 09:11:20'),
-(23, 9, 2, 'Trong c&aacute;c ph&aacute;t biểu sau, ph&aacute;t biểu n&agrave;o chưa đ&uacute;ng', '1&3', 0, '2014-06-30 10:50:53', '2014-08-02 19:19:34'),
+(2, 9, 1, 'Treonin là 1 trong 8 acid amin cần thiết mà cơ thể không tự tổng hợp được', '1', 0, '2014-06-18 10:14:47', '2014-08-12 03:59:50'),
+(3, 9, 3, 'Vitamin có vai trò ảnh hưởng tới sự cảm thụ ánh sáng của mắt, nhất là đối với sự nhìn màu là vai trò của', '2', 0, '2014-06-18 10:15:24', '2014-08-18 13:02:09'),
+(6, 9, 1, 'BMI = 25 là thừa cân và béo phì', '1', 0, '2014-06-22 09:40:18', '2014-07-25 02:46:55'),
+(8, 9, 1, 'Tỉ lệ năng lượng do protein - lipid - glucid cân đối trong khẩu phần ăn cần phấn đấu đạt được trong thời gian tới là 12% - 18% - 70%', '0', 0, '2014-06-22 10:00:12', '2014-07-01 09:11:20'),
+(10, 9, 1, 'Tỉ lệ năng lượng do protein - lipid - glucid cân đối trong khẩu phần ăn cần phấn đấu đạt được trong thời gian tới là 14% - 20% - 66%', '1', 0, '2014-06-22 10:23:29', '2014-07-01 09:11:20'),
+(19, 9, 2, 'Trong các vai trò sau, vai trò nào là vai trò dinh dưỡng của protein đối với cơ thể', '1&3', 0, '2014-06-22 11:38:02', '2014-07-01 09:11:20'),
+(21, 9, 1, 'Chế độ ăn cho người cao tuổi cần tăng đường và giảm muối', '0', 0, '2014-06-30 10:48:01', '2014-07-01 09:11:20'),
+(22, 9, 1, 'Chế độ ăn cho người lao động trí óc cần hạn chế glucid và lipid trong khẩu phần', '1', 0, '2014-06-30 10:49:55', '2014-07-01 09:11:20'),
+(23, 9, 2, 'Trong các phát biểu sau, phát biểu nào chưa đúng', '1&3', 0, '2014-06-30 10:50:53', '2014-08-18 13:02:38'),
 (24, 9, 2, 'Trong các lời khuyên sau, lời khuyên nào không thuộc 10 lời khuyên dinh dưỡng hợp lý', '1&2', 0, '2014-06-30 10:52:43', '2014-06-30 12:03:18'),
 (25, 9, 3, 'Nguồn các yếu tố kiềm của thực phẩm có nhiều trong', '1', 0, '2014-06-30 10:54:00', '2014-07-25 02:45:13'),
 (27, 9, 1, 'Trong CLQG về dinh dưỡng giai đoạn 2001 - 2010, mục ti&ecirc;u phấn đấu giảm tỉ lệ trẻ em dưới 5 tuổi thừa c&acirc;n xuống dưới 3%&nbsp;&nbsp;', '0', 0, '2014-07-01 09:40:54', '2014-08-02 18:25:35'),
@@ -135,14 +170,14 @@ INSERT INTO `ex_question` (`question_id`, `subject_id`, `question_type_id`, `que
 (38, 9, 1, 'Không đưa số trẻ bị khuyết tật vào số liệu để tính tỉ lệ SDD cho trẻ dưới 5 tuổi', '1', 0, '2014-07-01 09:42:19', '0000-00-00 00:00:00'),
 (39, 9, 1, 'Hướng dẫn ăn bổ sung hợp lý từ tháng thứ 5 cho trẻ là một trong 8 hoạt động thiết yếu phòng chống SDD trẻ em ở xã phường', '0', 0, '2014-07-01 09:42:25', '0000-00-00 00:00:00'),
 (40, 9, 2, 'Trong các nội dung sau, nội dung nào là một trong các giải pháp và chính sách chủ yếu của CLQG về dinh dưỡng giai đoạn 2001 - 2010', '1&3', 0, '2014-07-01 09:43:18', '0000-00-00 00:00:00'),
-(41, 9, 2, 'Tronmg các phát biểu sau, phát biểu nào chưa chính xác', '3&4', 0, '2014-07-01 09:43:47', '0000-00-00 00:00:00'),
+(41, 9, 2, 'Tronmg các phát biểu sau, phát biểu nào chưa chính xác', '3&4', 0, '2014-07-01 09:43:47', '2014-08-18 13:03:34'),
 (42, 9, 2, 'Trong các lời khuyên sau, lời khuyên nào không thuộc 10 lời khuyên dinh dưỡng hợp lý', '1&2', 0, '2014-07-01 09:44:16', '0000-00-00 00:00:00'),
 (43, 9, 3, 'Khi trẻ mắc tiêu chảy, người mẹ cần', '3', 0, '2014-07-01 09:45:00', '0000-00-00 00:00:00'),
 (44, 9, 3, 'Người bệnh cao huyết áp không nên ăn, uống những loại thức ăn sau, trừ:', '3', 0, '2014-07-01 09:45:27', '0000-00-00 00:00:00'),
 (45, 9, 3, 'Chế độ ăn bồi dưỡng dùng cho', '2', 0, '2014-07-01 09:45:56', '0000-00-00 00:00:00'),
 (50, 10, 1, 'はじまして。', '1', 1, '2014-07-28 02:18:53', '2014-07-31 13:54:15'),
-(55, 9, 1, 'Nếu s&aacute;t muối v&agrave;o c&aacute; trước khi ướp lạnh c&oacute; thể l&agrave;m mất độc tố vi khuẩn tiết ra', '1', 0, '2014-07-30 03:56:52', '2014-08-10 17:39:58'),
-(56, 9, 2, 'Trong c&aacute;c ph&aacute;t biểu sau, ph&aacute;t biểu n&agrave;o l&agrave; đ&uacute;ng', '3&4', 0, '2014-07-30 03:59:41', '2014-07-31 15:34:19'),
+(55, 9, 1, 'Nếu sát muối vào cá trước khi ướp lạnh có thể làm mất độc tố vi khuẩn tiết ra', '1', 0, '2014-07-30 03:56:52', '2014-08-18 13:00:31'),
+(56, 9, 2, 'Trong các phát biểu sau, phát biểu nào là đúng', '3&4', 0, '2014-07-30 03:59:41', '2014-08-18 13:13:58'),
 (58, 10, 3, '耳の聞こえない人のための会話方法。', '4', 0, '2014-07-31 13:59:10', '0000-00-00 00:00:00'),
 (59, 10, 3, '小説などを書く人。', '4', 0, '2014-07-31 14:06:52', '0000-00-00 00:00:00'),
 (60, 10, 3, '真ん中', '1', 0, '2014-07-31 14:48:43', '0000-00-00 00:00:00'),
@@ -151,38 +186,38 @@ INSERT INTO `ex_question` (`question_id`, `subject_id`, `question_type_id`, `que
 (71, 10, 3, 'いらないポスターを　（　　　　）', '1', 0, '2014-08-11 03:00:27', '0000-00-00 00:00:00'),
 (72, 10, 3, '大きいな荷物を肩に　（　　　　）', '2', 0, '2014-08-11 03:05:52', '0000-00-00 00:00:00'),
 (73, 10, 1, '「並んでいる」の読み方は「ならんでいる」です。', '1', 0, '2014-08-11 03:11:17', '2014-08-11 03:13:13'),
-(74, 10, 1, '「無事」の読む方は「むじ」です。', '0', 0, '2014-08-11 03:12:59', '0000-00-00 00:00:00'),
-(75, 10, 1, '「同時」の読む方は「どうき」です。', '0', 0, '2014-08-11 03:14:19', '0000-00-00 00:00:00'),
+(74, 10, 1, '「無事」の読み方は「むじ」です。', '0', 0, '2014-08-11 03:12:59', '2014-08-12 01:50:41'),
+(75, 10, 1, '「同時」の読み方は「どうき」です。', '0', 0, '2014-08-11 03:14:19', '2014-08-12 01:51:06'),
 (76, 10, 1, '「机」の読み方は「つくえ」です。', '1', 0, '2014-08-11 03:15:35', '0000-00-00 00:00:00'),
 (77, 10, 1, '「営業」の読み方は「そうぎょう」です。', '0', 0, '2014-08-11 03:17:32', '0000-00-00 00:00:00'),
 (78, 10, 1, '「素直」の読み方は「しょうじき」です。', '0', 0, '2014-08-11 03:18:43', '0000-00-00 00:00:00'),
 (79, 10, 1, '「似ている」の読み方は「にている」です。', '1', 0, '2014-08-11 03:20:28', '0000-00-00 00:00:00'),
 (80, 10, 1, '「券」の読み方は「げん」です。', '0', 0, '2014-08-11 03:21:25', '0000-00-00 00:00:00'),
-(81, 10, 3, '彼女は、<strong>こうふく</strong>に生活していた。', '3', 0, '2014-08-11 03:34:28', '0000-00-00 00:00:00'),
-(82, 10, 3, '毎日<strong>忙しい</strong>ので、デートもできません。', '1', 0, '2014-08-11 03:38:00', '0000-00-00 00:00:00'),
-(83, 10, 3, '1か月前から、<strong>乗車券</strong>を買うことができます。', '3', 0, '2014-08-11 03:40:49', '0000-00-00 00:00:00'),
-(84, 10, 3, 'どこか、人があまりいなくて<strong>静かな</strong>所へ行きたいです。', '4', 0, '2014-08-11 03:43:12', '0000-00-00 00:00:00'),
-(85, 10, 3, '正社員がアルバイトをすることは、会社の規則で<strong>認め</strong>られていない。', '2', 0, '2014-08-11 03:45:29', '0000-00-00 00:00:00'),
-(86, 10, 3, 'まだ新しいチームですが、なんとか<strong>優勝</strong>することができました。', '3', 0, '2014-08-11 03:49:10', '0000-00-00 00:00:00'),
-(87, 10, 3, '<strong>かなしい</strong>とき、大きいな声で歌うと元気になります。<br />\r\n&nbsp;', '1', 0, '2014-08-11 03:51:17', '0000-00-00 00:00:00'),
-(88, 10, 3, '注文が決まったら、このボタンを<strong>おして</strong>ください。', '2', 0, '2014-08-11 03:54:02', '0000-00-00 00:00:00'),
+(81, 10, 3, '彼女は、<ins><big>こうふく</big></ins>に生活していた。', '3', 0, '2014-08-11 03:34:28', '2014-08-12 13:36:16'),
+(82, 10, 3, '毎日<ins>忙しい</ins>ので、デートもできません。', '1', 0, '2014-08-11 03:38:00', '2014-08-12 13:34:09'),
+(83, 10, 3, '1か月前から、<ins>乗車券</ins>を買うことができます。', '3', 0, '2014-08-11 03:40:49', '2014-08-12 13:34:27'),
+(84, 10, 3, 'どこか、人があまりいなくて<ins>静かな</ins>所へ行きたいです。', '4', 0, '2014-08-11 03:43:12', '2014-08-12 13:34:47'),
+(85, 10, 3, '正社員がアルバイトをすることは、会社の規則で<ins>認め</ins>られていない。', '2', 0, '2014-08-11 03:45:29', '2014-08-12 13:35:04'),
+(86, 10, 3, 'まだ新しいチームですが、なんとか<ins>優勝</ins>することができました。', '3', 0, '2014-08-11 03:49:10', '2014-08-12 13:35:27'),
+(87, 10, 3, '<ins>かなしい</ins>とき、大きいな声で歌うと元気になります。<br />\r\n ', '1', 0, '2014-08-11 03:51:17', '2014-08-12 13:35:41'),
+(88, 10, 3, '注文が決まったら、このボタンを<ins>おして</ins>ください。', '2', 0, '2014-08-11 03:54:02', '2014-08-12 13:35:57'),
 (89, 10, 2, 'かける', '1&4', 0, '2014-08-11 15:45:00', '0000-00-00 00:00:00'),
 (90, 10, 2, 'あげる', '2&3', 0, '2014-08-11 15:46:19', '0000-00-00 00:00:00'),
 (91, 10, 2, 'あける', '1&2', 0, '2014-08-11 15:50:15', '0000-00-00 00:00:00'),
 (92, 10, 2, 'やさしい', '1&3', 0, '2014-08-11 15:55:42', '0000-00-00 00:00:00'),
-(93, 10, 2, 'だれと「尊敬語」を使いますか。', '3&4', 0, '2014-08-11 15:58:17', '0000-00-00 00:00:00'),
+(93, 10, 2, 'だれに「尊敬語」を使いますか。', '3&4', 0, '2014-08-11 15:58:17', '2014-08-12 01:52:10'),
 (94, 10, 2, 'じょうきょう', '1&4', 0, '2014-08-11 16:02:14', '0000-00-00 00:00:00'),
 (95, 10, 2, 'たいいん', '1&2', 0, '2014-08-11 16:04:07', '0000-00-00 00:00:00'),
-(96, 9, 1, 'C&aacute;c loại rau quả tươi dễ bị nhiễm thuốc bảo vệ thưc vật g&acirc;y ng&ocirc; độc thức ăn', '1', 0, '2014-08-11 16:06:39', '0000-00-00 00:00:00'),
-(97, 9, 1, 'Độc tố vi nấm Aflatoxin c&oacute; thể g&acirc;y ung thư', '1', 0, '2014-08-11 16:06:55', '0000-00-00 00:00:00'),
-(98, 9, 1, 'C&aacute;c thực phẩm dễ nhiễm VSV g&acirc;y ngộ độc phần lớn c&oacute; nguồn gốc động vật, c&oacute; gi&aacute; trị dinh dưỡng cao', '1', 0, '2014-08-11 16:07:06', '0000-00-00 00:00:00'),
-(99, 9, 1, 'Một trong những đường l&acirc;y nhiễm VSV v&agrave;o thực phẩm l&agrave; m&ocirc;i trường bị &ocirc; nhiễm', '1', 0, '2014-08-11 16:07:18', '0000-00-00 00:00:00'),
-(100, 9, 1, 'Ngộ độc thực phẩm do VSV thường bị v&agrave;o m&ugrave;a lạnh', '0', 0, '2014-08-11 16:07:32', '0000-00-00 00:00:00'),
-(101, 9, 1, 'Hội chứng ti&ecirc;u ho&aacute; ( đau bụng, ti&ecirc;u chảy, buồn n&ocirc;n) l&agrave; triệu chứng chủ yếu trong c&aacute;c trường hợp ngộ độc thực phẩm do ăn phải thức ăn c&oacute; độc tố tự nhi&ecirc;n&nbsp;', '0', 0, '2014-08-11 16:07:44', '0000-00-00 00:00:00'),
-(102, 9, 3, 'Kh&ocirc;ng n&ecirc;n d&ugrave;ng một khăn để lau mọi dụng cụ b&aacute;t đĩa, th&igrave;a v&igrave;', '4', 0, '2014-08-11 16:11:10', '0000-00-00 00:00:00'),
+(96, 9, 1, 'Các loại rau quả tươi dễ bị nhiễm thuốc bảo vệ thưc vật gây ngô độc thức ăn', '1', 0, '2014-08-11 16:06:39', '2014-08-18 12:59:13'),
+(97, 9, 1, 'Độc tố vi nấm Aflatoxin có thể gây ung thư', '1', 0, '2014-08-11 16:06:55', '2014-08-18 12:59:05'),
+(98, 9, 1, 'Các thực phẩm dễ nhiễm VSV gây ngộ độc phần lớn có nguồn gốc động vật, có giá trị dinh dưỡng cao', '1', 0, '2014-08-11 16:07:06', '2014-08-18 12:58:58'),
+(99, 9, 1, 'Một trong những đường lây nhiễm VSV vào thực phẩm là môi trường bị ô nhiễm', '1', 0, '2014-08-11 16:07:18', '2014-08-18 12:58:48'),
+(100, 9, 1, 'Ngộ độc thực phẩm do VSV thường bị vào mùa lạnh', '0', 0, '2014-08-11 16:07:32', '2014-08-18 12:58:37'),
+(101, 9, 1, 'Hội chứng tiêu hoá ( đau bụng, tiêu chảy, buồn nôn) là triệu chứng chủ yếu trong các trường hợp ngộ độc thực phẩm do ăn phải thức ăn có độc tố tự nhiên ', '0', 0, '2014-08-11 16:07:44', '2014-08-18 12:58:20'),
+(102, 9, 3, 'Không nên dùng một khăn để lau mọi dụng cụ bát đĩa, thìa vì', '4', 0, '2014-08-11 16:11:10', '2014-08-18 12:57:44'),
 (103, 9, 3, 'Thức ăn lưu nghiệm cần được giữ lại tối thiểu trong', '2', 0, '2014-08-11 16:11:51', '0000-00-00 00:00:00'),
-(104, 9, 3, 'Một trong những ti&ecirc;u chuẩn vệ sinh của cơ sở phục vụ ăn uống l&agrave; b&agrave;n chế biến thức ăn phải c&aacute;ch bếp', '3', 0, '2014-08-11 16:12:45', '0000-00-00 00:00:00'),
-(105, 9, 3, 'Mục đ&iacute;ch của thức ăn lưu nghiệm l&agrave;', '2', 0, '2014-08-11 16:13:30', '0000-00-00 00:00:00'),
+(104, 9, 3, 'Một trong những tiêu chuẩn vệ sinh của cơ sở phục vụ ăn uống là bàn chế biến thức ăn phải cách bếp', '3', 0, '2014-08-11 16:12:45', '2014-08-18 12:57:18'),
+(105, 9, 3, 'Mục đích của thức ăn lưu nghiệm là', '2', 0, '2014-08-11 16:13:30', '2014-08-18 12:55:49'),
 (106, 9, 3, 'Thức ăn phải chuẩn bị trước hoặc chờ đợi sau hơn 2 giờ th&igrave; cần giữ n&oacute;ng ở nhiệt độ', '3', 0, '2014-08-11 16:14:08', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
@@ -228,16 +263,21 @@ CREATE TABLE IF NOT EXISTS `ex_student` (
   `del_flg` tinyint(4) DEFAULT '0',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`student_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `ex_student`
 --
 
 INSERT INTO `ex_student` (`student_id`, `username`, `password`, `name`, `birthday`, `average_mark`, `del_flg`, `created_at`) VALUES
-(11, 'hedspi01', '25f9e794323b453885f5181f1b624d0b', 'student01', '0000-00-00', 0, 0, '2014-08-10 15:53:13'),
-(12, 'hedspi02', '25f9e794323b453885f5181f1b624d0b', 'student02', '0000-00-00', 0, 0, '2014-08-10 16:07:18'),
-(13, 'hedspi03', '25f9e794323b453885f5181f1b624d0b', 'student03', '0000-00-00', 0, 0, '2014-08-10 16:16:06');
+(11, 'hedspi01', '25f9e794323b453885f5181f1b624d0b', 'student01', '0000-00-00', 3.67, 0, '2014-08-10 15:53:13'),
+(12, 'hedspi02', '25f9e794323b453885f5181f1b624d0b', 'student02', '0000-00-00', 6, 0, '2014-08-10 16:07:18'),
+(13, 'hedspi03', '25f9e794323b453885f5181f1b624d0b', 'student03', '0000-00-00', 8.67, 0, '2014-08-10 16:16:06'),
+(14, 'hedspi04', '25f9e794323b453885f5181f1b624d0b', 'student04', '2014-08-01', 0, 0, '2014-08-12 03:11:35'),
+(15, 'hedspi05', '25f9e794323b453885f5181f1b624d0b', 'student05', '0000-00-00', 5.67, 0, '2014-08-12 03:19:14'),
+(16, 'hedspi06', '25f9e794323b453885f5181f1b624d0b', 'student06', '2005-02-08', 0, 0, '2014-08-12 13:12:04'),
+(17, 'hedspi07', '25f9e794323b453885f5181f1b624d0b', 'student07', '1994-08-17', 10, 0, '2014-08-14 03:31:12'),
+(18, 'hedspi08', '25f9e794323b453885f5181f1b624d0b', 'student08', '1992-08-29', 0, 0, '2014-08-14 03:58:55');
 
 -- --------------------------------------------------------
 
@@ -263,7 +303,7 @@ CREATE TABLE IF NOT EXISTS `ex_subject` (
 
 INSERT INTO `ex_subject` (`subject_id`, `subject_name`, `description`, `test_time`, `question_num`, `del_flg`, `created_at`, `updated_at`) VALUES
 (9, 'Test dinh dưỡng', '...', 10, 10, 0, '2014-07-01 09:38:39', '2014-08-11 02:24:52'),
-(10, '日本語', '日本語を勉強しましょう。', 10, 20, 0, '2014-07-28 02:16:47', '0000-00-00 00:00:00'),
+(10, '日本語', '日本語を勉強しましょう。', 10, 10, 0, '2014-07-28 02:16:47', '2014-08-12 12:22:54'),
 (15, 'Toán rời rạc', 'M&ocirc;n học bao gồm nhiều chủ đề kh&aacute;c nhau nhằm mục đ&iacute;ch cung cấp cho sinh vi&ecirc;n một nền tảng vững chắc để ph&aacute;t triển c&aacute;c kỹ năng chứng minh to&aacute;n học v&agrave; để hiểu r&otilde; được nhiều vấn đề / b&agrave;i to&aacute;n nảy sinh trong khoa học m&aacute;y t&iacute;nh. M&ocirc;n học sẽ bao gồm c&aacute;c yếu tố cơ bản của logic với c&aacute;c phương ph&aacute;p lập luận cơ bản v&agrave; c&aacute;c &aacute;p dụng để từ đ&oacute;, sinh vi&ecirc;n c&oacute; thể sử dụng trong nhiều kiểu chứng minh kh&aacute;c nhau. Sinh vi&ecirc;n cung sẽ được học c&aacute;c nguy&ecirc;n l&yacute; đếm, c&aacute;c loại quan hệ hai ng&ocirc;i kh&aacute;c nhau: quan hệ thứ tự bộ phận, quan hệ tương đương; l&yacute; thuyết đồ thị v&agrave; việc t&iacute;nh to&aacute;n với c&aacute;c m&ocirc; h&igrave;nh.', 20, 20, 0, '2014-08-10 17:21:50', '0000-00-00 00:00:00'),
 (16, 'Kỹ thuật điện tử số', 'M&ocirc;n học n&agrave;y được thiết kế nhằm gi&uacute;p c&aacute;c sinh vi&ecirc;n ng&agrave;nh kỹ thuật m&aacute;y t&iacute;nh c&oacute; một số kiến thức cơ bản về kỹ thuật điện tử số t&iacute;nh to&aacute;n tr&ecirc;n hệ thống số, c&aacute;c cổng logic cơ bản, r&uacute;t gọn biểu thức logic bằng giản đồ Karnaught, ứng dụng c&aacute;c mạch logic tổ hợp, mạch chốt v&agrave; flipflop, c&aacute;c loại mạch đếm l&ecirc;n xuống, đồng bộ, bất đồng bộ, ph&acirc;n t&iacute;ch v&agrave; thiết kế mạch đếm, mạch thanh ghi dịch v&agrave; c&aacute;c ứng dụng, cấu tạo của RAM, ROM v&agrave; c&aacute;c thiết bị lưu trữ, ứng dụng của c&aacute;c loại IC số th&ocirc;ng dụng&hellip;.Sau mỗi b&agrave;i học, sinh vi&ecirc;n sẽ được ph&acirc;n t&iacute;ch những mạch điện thực tế c&oacute; li&ecirc;n quan đến những kiến thức vừa học. Phần thực h&agrave;nh sẽ gi&uacute;p sinh vi&ecirc;n c&oacute; cơ hội l&agrave;m quen với việc thiết kế v&agrave; m&ocirc; phỏng mạch điện bằng phần mềm m&ocirc; phỏng, sử dụng c&aacute;c dụng cụ đo đạc về điện, nhận dạng c&aacute;c linh kiện điện tử v&agrave; sử dụng ch&uacute;ng để thiết kế c&aacute;c mạch điện ứng dụng.', 20, 20, 0, '2014-08-10 17:22:46', '0000-00-00 00:00:00'),
 (17, 'Nhập môn lập trình', 'M&ocirc;n học nhằm trang bị cho sinh vi&ecirc;n c&aacute;c kỹ năng lập tr&igrave;nh được minh hoạ cụ thể bằng ng&ocirc;n ngữ lập tr&igrave;nh C/C++. M&ocirc;n học n&agrave;y bao gồm c&aacute;c kỹ thuật lập tr&igrave;nh tr&ecirc;n c&aacute;c kiểu dữ liệu cơ bản, c&aacute;c ph&aacute;t biểu lựa chọn, lặp, mảng, con trỏ, kiểu cấu tr&uacute;c. B&ecirc;n cạnh đ&oacute; m&ocirc;n học cũng trang bị cho sinh vi&ecirc;n kiến thức xử l&yacute; tập tin, c&aacute;ch viết chương tr&igrave;nh theo kiểu lập tr&igrave;nh h&agrave;m.', 20, 20, 0, '2014-08-10 17:23:35', '0000-00-00 00:00:00'),
@@ -295,7 +335,7 @@ CREATE TABLE IF NOT EXISTS `ex_teacher` (
   `del_flg` tinyint(4) DEFAULT '0',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`teacher_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `ex_teacher`
@@ -307,7 +347,8 @@ INSERT INTO `ex_teacher` (`teacher_id`, `username`, `password`, `name`, `birthda
 (5, 'ashita', '25f9e794323b453885f5181f1b624d0b', 'asakura', '1992-05-15', 0, 0, '2014-08-01 02:14:03'),
 (10, 'admin01', '25f9e794323b453885f5181f1b624d0b', 'manager01', '0000-00-00', 1, 0, '2014-08-10 16:45:54'),
 (11, 'admin02', '25f9e794323b453885f5181f1b624d0b', 'manager02', '0000-00-00', 1, 0, '2014-08-10 16:47:04'),
-(12, 'admin03', '25f9e794323b453885f5181f1b624d0b', 'manager03', '0000-00-00', 1, 0, '2014-08-10 16:47:22');
+(12, 'admin03', '25f9e794323b453885f5181f1b624d0b', 'manager03', '0000-00-00', 1, 0, '2014-08-10 16:47:22'),
+(13, 'admin04', '25f9e794323b453885f5181f1b624d0b', 'manager04', '2014-08-01', 0, 0, '2014-08-12 13:07:45');
 
 -- --------------------------------------------------------
 
@@ -327,7 +368,22 @@ CREATE TABLE IF NOT EXISTS `ex_test_info` (
   PRIMARY KEY (`test_info_id`),
   KEY `fk3` (`student_id`),
   KEY `fk4` (`subject_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=46 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=61 ;
+
+--
+-- Dumping data for table `ex_test_info`
+--
+
+INSERT INTO `ex_test_info` (`test_info_id`, `student_id`, `subject_id`, `test_again`, `mark`, `del_flg`, `created_at`, `updated_at`) VALUES
+(46, 11, 9, 3, 0, 0, '2014-08-12 04:47:31', '2014-08-15 15:07:35'),
+(47, 11, 10, 3, 7.33, 0, '2014-08-12 12:22:59', '2014-08-15 15:07:43'),
+(48, 12, 9, 0, 2, 0, '2014-08-12 13:26:32', '2014-08-12 13:36:27'),
+(49, 12, 10, 0, 10, 0, '2014-08-12 13:36:39', '2014-08-12 13:41:21'),
+(50, 17, 10, 0, 10, 0, '2014-08-14 04:19:05', '2014-08-14 04:27:33'),
+(53, 13, 10, 0, 8.67, 0, '2014-08-15 18:01:22', '2014-08-15 18:07:03'),
+(58, 15, 10, 0, 10, 0, '2014-08-18 12:28:52', '2014-08-18 12:29:41'),
+(59, 15, 9, 0, 1.33, 0, '2014-08-18 12:31:43', '2014-08-18 12:32:08'),
+(60, 13, 9, 0, 0, 0, '2014-08-18 13:14:38', '0000-00-00 00:00:00');
 
 --
 -- Constraints for dumped tables

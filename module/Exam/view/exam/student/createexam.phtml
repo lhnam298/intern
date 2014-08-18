@@ -13,11 +13,12 @@
 	$type3	= $numOfQuestion - $type1 - $type2;
 ?>
 <body onload="start(minute, second)">
-	<h1>
+	<h2 style="color: red; font-style: italic;">
+		<label style="font-weight: normal; font-size: 17px; color: black;">Thời gian còn lại:</label>
 		<span id="minute"><?php echo (int)($this->remainTime/60) ?></span>:
 		<span id="second"><?php echo $this->remainTime%60 ?></span>
-	</h1>
-<div class="exam_frame" style="font-size: 14px">
+	</h2>
+<div class="exam_frame" style="font-size: 13px; font-weight: bold;">
 	<form action="<?php echo $this->basePath();?>/student/finishexam/<?php echo $this->subjectID?>" method="post" name="exam">
 	<?php
 		for ($i=1; $i<=$numOfQuestion; $i++) {
@@ -26,7 +27,7 @@
 			if ($i<=$type1) {
 	?>
 				<label class="text-info"><?php echo $label?></label>
-				<strong><?php echo $arrQuestion[$i-1]?></strong><br>
+				<?php echo $arrQuestion[$i-1]?><br>
 				<label class="choice"><input type="radio" name="<?php echo $name?>" value="1"> Đúng</label><br>
 				<label class="choice"><input type="radio" name="<?php echo $name?>" value="0"> Sai</label><br>
 				<br>
@@ -40,22 +41,22 @@
 				if ($i<=$type1+$type2) {
 	?>
 				<label class="text-info"><?php echo $label?></label>
-				<strong><?php echo $arrQuestion[$i-1]?></strong><br>
-				<label class="choice"><input type="checkbox" name="<?php echo $name?>[]" value="1"><?php echo $arr['1']?></label><br>
-				<label class="choice"><input type="checkbox" name="<?php echo $name?>[]" value="2"><?php echo $arr['2']?></label><br>
-				<label class="choice"><input type="checkbox" name="<?php echo $name?>[]" value="3"><?php echo $arr['3']?></label><br>
-				<label class="choice"><input type="checkbox" name="<?php echo $name?>[]" value="4"><?php echo $arr['4']?></label><br>
+				<?php echo $arrQuestion[$i-1]?><span style="font-weight: normal; font-style: italic;"> (chọn hai đáp án)</span><br>
+				<label class="choice"><input type="checkbox" name="<?php echo $name?>[]" value="1"> <?php echo $arr['1']?></label><br>
+				<label class="choice"><input type="checkbox" name="<?php echo $name?>[]" value="2"> <?php echo $arr['2']?></label><br>
+				<label class="choice"><input type="checkbox" name="<?php echo $name?>[]" value="3"> <?php echo $arr['3']?></label><br>
+				<label class="choice"><input type="checkbox" name="<?php echo $name?>[]" value="4"> <?php echo $arr['4']?></label><br>
 				<br>
 	<?php
 				}
 				else {
 	?>
 					<label class="text-info"><?php echo $label?></label>
-					<strong><?php echo $arrQuestion[$i-1]?></strong><br>
-					<label class="choice"><input type="radio" name="<?php echo $name?>" value="1"><?php echo $arr['1']?></label><br>
-					<label class="choice"><input type="radio" name="<?php echo $name?>" value="2"><?php echo $arr['2']?></label><br>
-					<label class="choice"><input type="radio" name="<?php echo $name?>" value="3"><?php echo $arr['3']?></label><br>
-					<label class="choice"><input type="radio" name="<?php echo $name?>" value="4"><?php echo $arr['4']?></label><br>
+					<?php echo $arrQuestion[$i-1]?><br>
+					<label class="choice"><input type="radio" name="<?php echo $name?>" value="1"> <?php echo $arr['1']?></label><br>
+					<label class="choice"><input type="radio" name="<?php echo $name?>" value="2"> <?php echo $arr['2']?></label><br>
+					<label class="choice"><input type="radio" name="<?php echo $name?>" value="3"> <?php echo $arr['3']?></label><br>
+					<label class="choice"><input type="radio" name="<?php echo $name?>" value="4"> <?php echo $arr['4']?></label><br>
 					<br>
 	<?php
 				}
