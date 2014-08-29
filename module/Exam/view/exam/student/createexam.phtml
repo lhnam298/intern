@@ -1,9 +1,3 @@
-<script type="text/javascript">
-	window.history.forward();
-	var minute	= '<?php echo (int)($this->remainTime/60) ?>';
-	var second	= '<?php echo $this->remainTime%60 ?>';
-</script>
-
 <?php
 	$arrQuestion	= $this->arrQuestion;
 	$arrChoice	= $this->arrChoice;
@@ -12,12 +6,11 @@
 	$type2	= (int)(($numOfQuestion - $type1)/2);
 	$type3	= $numOfQuestion - $type1 - $type2;
 ?>
-<body onload="start(minute, second)">
-	<h2 style="color: red; font-style: italic;">
-		<label style="font-weight: normal; font-size: 17px; color: black;">Thời gian còn lại:</label>
-		<span id="minute"><?php echo (int)($this->remainTime/60) ?></span>:
-		<span id="second"><?php echo $this->remainTime%60 ?></span>
-	</h2>
+<h2 style="color: red; font-style: italic;">
+	<label style="font-weight: normal; font-size: 17px; color: black;">Thời gian còn lại:</label>
+	<span id="minute"><?php echo (int)($this->remainTime/60) ?></span>:
+	<span id="second"><?php echo $this->remainTime%60 ?></span>
+</h2>
 <div class="exam_frame" style="font-size: 13px; font-weight: bold;">
 	<form action="<?php echo $this->basePath();?>/student/finishexam/<?php echo $this->subjectID?>" method="post" name="exam">
 	<?php
@@ -66,4 +59,12 @@
 		<p><input class="btn btn-success" onclick="return ConfirmSend()" type="submit" name="btn_submit" id="btn_submit" value="Nộp bài"></p>
 	</form>
 </div>
-</body>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		start(minute, second);
+	});
+	window.history.forward();
+	var minute	= '<?php echo (int)($this->remainTime/60) ?>';
+	var second	= '<?php echo $this->remainTime%60 ?>';
+</script>

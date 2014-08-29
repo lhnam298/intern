@@ -11,7 +11,6 @@
 		Exam\Model\AnswerTable,
 		Exam\Model\TestInfo,
 		Exam\Form\ExamContentForm,
-		Exam\Config\Config,
 		Exam\Form\ExamForm;
 
 	class StudentController extends IndexController {
@@ -93,9 +92,9 @@
 			$type3	= $examNum - $type1 - $type2;
 
 			$this->questionTable	= $this->getServiceLocator()->get('Exam\Model\QuestionTable');
-			if ($type1 > count($this->questionTable->getByTypeSubject(Config::TRUE_FALSE_QUESTION, $subjectId))) return 0;
-			if ($type2 > count($this->questionTable->getByTypeSubject(Config::CORRECT_QUESTION, $subjectId))) return 0;
-			if ($type3 > count($this->questionTable->getByTypeSubject(Config::BEST_CORRECT_QUESTION, $subjectId))) return 0;
+			if ($type1 > count($this->questionTable->getByTypeSubject(TRUE_FALSE_QUESTION, $subjectId))) return 0;
+			if ($type2 > count($this->questionTable->getByTypeSubject(CORRECT_QUESTION, $subjectId))) return 0;
+			if ($type3 > count($this->questionTable->getByTypeSubject(BEST_CORRECT_QUESTION, $subjectId))) return 0;
 			return 1;
 		}
 
@@ -133,14 +132,14 @@
 			$this->questionTable	= $this->getServiceLocator()->get('Exam\Model\QuestionTable');
 			$this->answerTable	= $this->getServiceLocator()->get('Exam\Model\AnswerTable');
 
-			$arrAllQuestion	= $this->moveToArray($this->questionTable->getByTypeSubject(Config::TRUE_FALSE_QUESTION, $subjectId));
+			$arrAllQuestion	= $this->moveToArray($this->questionTable->getByTypeSubject(TRUE_FALSE_QUESTION, $subjectId));
 			$arrIndex	= $this->generateQuestion(0, count($arrAllQuestion)-1, $type1);
 			for ($i=0; $i<$type1; $i++) {
 				$arrExamQuestion[]	= $arrAllQuestion[$arrIndex[$i]]->question;
 				$arrExamAnswer[]	= $arrAllQuestion[$arrIndex[$i]]->answer;
 			}
 
-			$arrAllQuestion	= $this->moveToArray($this->questionTable->getByTypeSubject(Config::CORRECT_QUESTION, $subjectId));
+			$arrAllQuestion	= $this->moveToArray($this->questionTable->getByTypeSubject(CORRECT_QUESTION, $subjectId));
 			$arrIndex	= $this->generateQuestion(0, count($arrAllQuestion)-1, $type2);
 			for ($i=0; $i<$type2; $i++) {
 				$arrExamQuestion[]	= $arrAllQuestion[$arrIndex[$i]]->question;
@@ -149,7 +148,7 @@
 				$arrChoice[]	= $choices;
 			}
 
-			$arrAllQuestion	= $this->moveToArray($this->questionTable->getByTypeSubject(Config::BEST_CORRECT_QUESTION, $subjectId));
+			$arrAllQuestion	= $this->moveToArray($this->questionTable->getByTypeSubject(BEST_CORRECT_QUESTION, $subjectId));
 			$arrIndex	= $this->generateQuestion(0, count($arrAllQuestion)-1, $type3);
 			for ($i=0; $i<$type3; $i++) {
 				$arrExamQuestion[]	= $arrAllQuestion[$arrIndex[$i]]->question;
@@ -196,10 +195,6 @@
 				$this->redirect()->toUrl('../index/login');
 			}
 			$subjectId	= $this->params('id');
-			$this->testInfoTable	= $this->getServiceLocator()->get('Exam\Model\TestInfoTable');
-			$exam	= $this->testInfoTable->getTestInfo($this->sessionStudent->info->student_id, $subjectId);
-			if ($exam->test_again == 0 && $exam->test_again == 2) $this->redirect()->toUrl('../showresult');
-
 			$this->subjectTable	= $this->getServiceLocator()->get('Exam\Model\SubjectTable');
 			$info	= $this->subjectTable->getById($subjectId);
 			$num	= $info->question_num;

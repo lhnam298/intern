@@ -14,7 +14,7 @@
 	class Module {
 
 		public function getServiceConfig() {
-	    	return array(
+			return array(
 				'factories' => array(
 					'Admin\Model\TeacherTable' => function ($sm) {
 						$tableGateway = $sm->get('TeacherTableGateway');

@@ -13,7 +13,6 @@
 		Admin\Form\LoginForm,
 		Admin\Form\Validate\Login,
 		Admin\Model\Teacher,
-		Admin\Model\TeacherTable,
 		Admin\Form\NewTeacherForm,
 		Admin\Form\Validate\NewTeacher,
 		Admin\Form\Validate\CreateQuestion,
@@ -22,16 +21,11 @@
 		Admin\Form\Validate\EditQuestion,
 		Admin\Form\Validate\CreateSubject,
 		Admin\Form\CreateSubjectForm,
-
 		Exam\Model\QuestionType,
 		Exam\Model\Question,
-		Exam\Model\QuestionTable,
 		Exam\Model\Subject,
 		Exam\Model\Answer,
-		Exam\Model\ContactInfo,
-
-		Exam\Config\Config,
-		Exam\Config\CurrentTime;
+		Exam\Model\ContactInfo;
 
 	class AdminController extends AbstractActionController {
 
@@ -52,7 +46,7 @@
 		protected $success	= "";
 		protected $err	= "";
 		protected $data	= null;
-		protected $perpage	= Config::PAGINATOR_PER_PAGE;
+		protected $perpage	= PAGINATOR_PER_PAGE;
 
 		protected $sessionAdmin;
 		private $_acl;
@@ -121,7 +115,7 @@
 				$form->setData($this->getRequest()->getPost());
 				if ($form->isValid()) {
 					$this->data = $form->getData();
-					if ($this->data['question_type'] != Config::TRUE_FALSE_QUESTION) {
+					if ($this->data['question_type'] != TRUE_FALSE_QUESTION) {
 						if ($this->data['choice_1'] == "") {
 							$error	= 1;
 							$err[0]	= 1;
@@ -291,10 +285,10 @@
 			$this->question->del_flg	= 0;
 
 			switch ($data['question_type']) {
-				case Config::TRUE_FALSE_QUESTION:
+				case TRUE_FALSE_QUESTION:
 					$this->question->answer	= $data['answer1'];
 					break;
-				case Config::CORRECT_QUESTION:
+				case CORRECT_QUESTION:
 					$answer	= "";
 					foreach ($data['answer2'] as $item)
 						if ($answer == "")
@@ -303,7 +297,7 @@
 							$answer	= $answer."&".$item;
 					$this->question->answer	= $answer;
 					break;
-				case Config::BEST_CORRECT_QUESTION:
+				case BEST_CORRECT_QUESTION:
 					$this->question->answer	= $data['answer3'];
 					break;
 			}
@@ -311,7 +305,7 @@
 			$this->questionTable	= $this->getServiceLocator()->get('Exam\Model\QuestionTable');
 			$lastQuestionId	= $this->questionTable->saveQuestion($this->question);
 
-			if ($data['question_type']	!= Config::TRUE_FALSE_QUESTION) {
+			if ($data['question_type']	!= TRUE_FALSE_QUESTION) {
 				$this->answer	= new Answer();
 				$this->answer->answer_id	= $data['answer_id'];
 				$this->answer->question_id	= (isset($data['question_id'])) ? $data['question_id'] : $lastQuestionId;
@@ -577,8 +571,7 @@
 						$this->teacher->birthday	= $date;
 						$this->teacher->level	= 0;
 						$this->teacher->del_flg	= 0;
-						$time	= new CurrentTime();
-						$this->teacher->created_at	= $time->getCurrentTime();
+						$this->teacher->created_at	= date('Y-m-d H:i:s');
 						$this->teacherTable	= $this->getServiceLocator()->get('Admin\Model\TeacherTable');
 						$this->teacherTable->saveTeacher($this->teacher);
 						$this->redirect()->toUrl('viewteacher');
@@ -664,7 +657,7 @@
 			$examId	= $this->params('id');
 			$this->examInfoTable	= $this->getServiceLocator()->get('Exam\Model\TestInfoTable');
 			$info	= $this->examInfoTable->getById($examId);
-			$info->test_again	= Config::ALLOW_TEST_AGAIN;
+			$info->test_again	= ALLOW_TEST_AGAIN;
 			$this->examInfoTable->saveTestInfo($info);
 			$this->redirect()->toUrl('../viewrequire');
 		}
@@ -678,7 +671,7 @@
 			$examId	= $this->params('id');
 			$this->examInfoTable	= $this->getServiceLocator()->get('Exam\Model\TestInfoTable');
 			$info	= $this->examInfoTable->getById($examId);
-			$info->test_again	= Config::DENY_TEST_AGAIN;
+			$info->test_again	= DENY_TEST_AGAIN;
 			$this->examInfoTable->saveTestInfo($info);
 			$this->redirect()->toUrl('../viewrequire');
 		}

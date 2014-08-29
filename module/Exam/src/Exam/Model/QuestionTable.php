@@ -1,15 +1,14 @@
 <?php
 	namespace Exam\Model;
-	
+
 	use Zend\Db\TableGateway\TableGateway,
 		Zend\Db\Sql\Select,
 	 	Zend\Paginator\Adapter\DbSelect,
 	 	Zend\Paginator\Paginator,
-	 	Zend\Db\ResultSet\ResultSet,
-	 	Exam\Config\CurrentTime;
-	 	
+	 	Zend\Db\ResultSet\ResultSet;
+
 	class QuestionTable extends ObjectTable {
-		
+
 		public function fetchAll($paginated=false, $tableName=null) {
 			if ($paginated) {
 				$select = new Select($tableName);
@@ -27,18 +26,18 @@
 			$resultSet = $this->tableGateway->select(array('del_flg' => '0'));
 			return $resultSet;
 		}
-		
+
 		public function getById($id) {
 			$id	= (int)$id;
 			$rowset	= $this->tableGateway->select(array('question_id' => $id, 'del_flg' => '0'));
 			$row	= $rowset->current();
 			return $row;
 		}
-		
+
 		public function getByName($name) {
-			
+
 		}
-		
+
 		public function getBySubject($subjectId) {
 			$select = new Select('ex_question');
 			$select->where(array(	'subject_id'	=> $subjectId,
@@ -51,9 +50,9 @@
 				$resultSetPrototype
 			);
 			$paginator = new Paginator($paginatorAdapter);
-			return $paginator;	
+			return $paginator;
 		}
-		
+
 		public function getByType($typeQuestion) {
 			$select = new Select('ex_question');
 			$select->where(array(	'question_type_id'	=> $typeQuestion,
@@ -66,9 +65,9 @@
 				$resultSetPrototype
 			);
 			$paginator = new Paginator($paginatorAdapter);
-			return $paginator;				
+			return $paginator;
 		}
-		
+
 		public function getByTypeSubject($type, $subject) {
 			$type	= (int)$type;
 			$subject	= (int)$subject;
@@ -77,7 +76,7 @@
 															'del_flg' 			=> '0'));
 			return $resultSet;
 		}
-		
+
 		public function saveQuestion(Question $question) {
 			$data	= array(
 				'subject_id'		=> $question->subject_id,
@@ -85,20 +84,19 @@
 				'question'			=> $question->question,
 				'answer'			=> $question->answer,
 				'del_flg'			=> $question->del_flg);
-			
+
 				$id	= (int)$question->question_id;
-				$time	= new CurrentTime();
 				if ($id == 0) {
-					$data['created_at']	= $time->getCurrentTime();
+					$data['created_at']	= date('Y-m-d H:i:s');
 					$this->tableGateway->insert($data);
 					return $this->tableGateway->lastInsertValue;
 				}
 				else {
 					if ($this->getById($id)) {
-						$data['updated_at']	= $time->getCurrentTime();
+						$data['updated_at']	= date('Y-m-d H:i:s');
 						$this->tableGateway->update($data, array('question_id' => $id));
 					}
-					else 
+					else
 					throw new \Exception("Form id does not exist");
 				}
 		}

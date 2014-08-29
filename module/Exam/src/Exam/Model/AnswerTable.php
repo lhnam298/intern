@@ -1,15 +1,14 @@
 <?php
 	namespace Exam\Model;
-	
+
 	use Zend\Db\TableGateway\TableGateway,
 		Zend\Db\Sql\Select,
 		Zend\Paginator\Adapter\DbSelect,
 		Zend\Paginator\Paginator,
-		Zend\Db\ResultSet\ResultSet,
-		Exam\Config\CurrentTime;
-	
+		Zend\Db\ResultSet\ResultSet;
+
 	class AnswerTable extends ObjectTable {
-		
+
 		public function fetchAll($paginated=false, $tableName=null) {
 			if ($paginated) {
 				$select = new Select($tableName);
@@ -27,22 +26,22 @@
 			$resultSet = $this->tableGateway->select(array('del_flg' => '0'));
 			return $resultSet;
 		}
-		
+
 		public function getById($id) {
-			
+
 		}
-		
+
 		public function getByName($name) {
-			
+
 		}
-		
+
 		public function getByQId($id) {
 			$id	= (int)$id;
 			$rowset	= $this->tableGateway->select(array('question_id' => $id, 'del_flg' => '0'));
 			$row	= $rowset->current();
 			return $row;
 		}
-		
+
 		public function saveAnswer(Answer $answer) {
 			$data	= array(
 				'answer_id'			=> $answer->answer_id,
@@ -52,15 +51,14 @@
 				'choice_3'			=> $answer->choice_3,
 				'choice_4'			=> $answer->choice_4,
 				'del_flg'			=> $answer->del_flg);
-			
+
 				$id	= (int)$answer->answer_id;
-				$time	= new CurrentTime();
 				if ($id == 0) {
-					$data['created_at']	= $time->getCurrentTime();
+					$data['created_at']	= date('Y-m-d H:i:s');
 					$this->tableGateway->insert($data);
 				}
 				else {
-					$data['updated_at']	= $time->getCurrentTime();
+					$data['updated_at']	= date('Y-m-d H:i:s');
 					$this->tableGateway->update($data, array('answer_id' => $id));
 				}
 		}

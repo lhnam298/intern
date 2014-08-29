@@ -3,12 +3,10 @@
 
 	use Zend\Db\TableGateway\TableGateway,
 		Zend\Db\Sql\Select,
-	 	Zend\Paginator\Adapter\DbSelect,
-	 	Zend\Paginator\Paginator,
-	 	Zend\Db\ResultSet\ResultSet,
-	 	Exam\Config\CurrentTime;
-
-	use Exam\Model\ObjectTable;
+		Zend\Paginator\Adapter\DbSelect,
+		Zend\Paginator\Paginator,
+		Zend\Db\ResultSet\ResultSet,
+		Exam\Model\ObjectTable;
 
 	class TeacherTable extends ObjectTable {
 
@@ -66,8 +64,7 @@
 
 				$id	= (int)$teacher->teacher_id;
 				if ($id == 0) {
-					$time	= new CurrentTime();
-					$data['created_at']	= $time->getCurrentTime();
+					$data['created_at']	= date('Y-m-d H:i:s');
 					$this->tableGateway->insert($data);
 				}
 				else

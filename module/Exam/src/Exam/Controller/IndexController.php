@@ -19,10 +19,7 @@
 		Exam\Form\Validate\Login,
 		Exam\Form\LoginForm,
 		Exam\Model\Question,
-		Exam\Model\QuestionTable,
-		Exam\Config\Config,
-		Exam\Config\PassWord,
-		Exam\Config\CurrentTime;
+		Exam\Model\QuestionTable;
 
 	class IndexController extends AbstractActionController {
 
@@ -39,12 +36,11 @@
 		protected $topStudent;
 		protected $contact;
 		protected $contactTable;
-
 		protected $sessionStudent;
 		protected $err;
 		protected $success;
 		protected $data;
-		protected $perpage	= Config::PAGINATOR_PER_PAGE;
+		protected $perpage	= PAGINATOR_PER_PAGE;
 		private $_acl;
 
 		public function getAcl() {
@@ -120,10 +116,6 @@
 						$this->student	= new Student();
 						$this->student->student_id	= (isset($this->data['student_id'])) ? $this->data['student_id'] : null;
 						$this->student->username	= $this->data['username'];
-						/*
-						$pass	= new PassWord();
-						$this->student->setPassword($pass->generatePassWord($this->data['password'], $this->data['username']));
-						*/
 						$this->student->setPassword(md5($this->data['password']));
 						$this->student->name	= $this->data['yourname'];
 						$parts = explode('-', $this->data['birthday']);
@@ -143,10 +135,6 @@
 		public function checkStudent($data) {
 			$this->studentTable	= $this->getServiceLocator()->get('Exam\Model\StudentTable');
 			$result	= $this->studentTable->getStudent($data['username'], md5($data['password']));
-			/*
-			$pass	= new PassWord();
-			$result	= $this->studentTable->getStudent($data['username'], $pass->generatePassWord($data['password'], $data['username']));
-			*/
 			return $result;
 		}
 

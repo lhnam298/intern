@@ -4,10 +4,10 @@
 	use Zend\InputFilter\InputFilter,
 		Zend\InputFilter\Factory as InputFactory,
 		Zend\InputFilter\InputFilterAwareInterface,
-		Zend\InputFilter\InputFilterInterface,
-		Exam\Config\Config;
+		Zend\InputFilter\InputFilterInterface;
 
 	class EditQuestion implements InputFilterAwareInterface {
+
 		protected $inputFilter;
 		protected $questionType;
 
@@ -25,75 +25,76 @@
 
 				$factory = new InputFactory ();
 
-				$inputFilter->add ( $factory->createInput ( array (
-						'name' => 'content',
-						'validators' => array (
-								array (
-										'name' => 'NotEmpty',
-										'required' => true,
-										'options' => array (
-												'message' => 'Bạn phải điền câu hỏi!',
-												'break_chain_on_failure' => true,
-										),
-								),
-						),
-				) ) );
-
-				if ($this->questionType != Config::TRUE_FALSE_QUESTION) {
-					$inputFilter->add ( $factory->createInput ( array (
-							'name' => 'choice_1',
-							'validators' => array (
-									array (
-											'name' => 'NotEmpty',
-											'required' => true,
-											'options' => array (
-													'message' => 'Bạn phải điền phương án lựa chọn!',
-													'break_chain_on_failure' => true,
-											),
-									),
+				$inputFilter->add ( $factory->createInput (array (
+					'name' => 'content',
+					'validators' => array (
+						array (
+							'name' => 'NotEmpty',
+							'required' => true,
+							'options' => array (
+								'message' => 'Bạn phải điền câu hỏi!',
+								'break_chain_on_failure' => true,
 							),
-					) ) );
+						),
+					),
+				)));
 
-					$inputFilter->add ( $factory->createInput ( array (
+				if ($this->questionType != TRUE_FALSE_QUESTION) {
+					$inputFilter->add ( $factory->createInput (array (
+						'name' => 'choice_1',
+						'validators' => array (
+							array (
+								'name' => 'NotEmpty',
+								'required' => true,
+								'options' => array (
+									'message' => 'Bạn phải điền phương án lựa chọn!',
+									'break_chain_on_failure' => true,
+								),
+							),
+						),
+					)));
+
+					$inputFilter->add ( $factory->createInput (array (
 						'name' => 'choice_2',
 						'validators' => array (
-								array (
-										'name' => 'NotEmpty',
-										'required' => true,
-										'options' => array (
-												'message' => 'Bạn phải điền phương án lựa chọn!',
-												'break_chain_on_failure' => true,
-										),
+							array (
+								'name' => 'NotEmpty',
+								'required' => true,
+								'options' => array (
+									'message' => 'Bạn phải điền phương án lựa chọn!',
+									'break_chain_on_failure' => true,
 								),
+							),
 						),
-					) ) );
+					)));
 
-					$inputFilter->add ( $factory->createInput ( array (
+					$inputFilter->add ( $factory->createInput (array (
 						'name' => 'choice_3',
 						'validators' => array (
-								array (
-										'name' => 'NotEmpty',
-										'required' => true,
-										'options' => array (
-												'message' => 'Bạn phải điền phương án lựa chọn!',
-												'break_chain_on_failure' => true,
-										),
+							array (
+								'name' => 'NotEmpty',
+								'required' => true,
+								'options' => array (
+									'message' => 'Bạn phải điền phương án lựa chọn!',
+									'break_chain_on_failure' => true,
 								),
-						),
-					) ) );
-					$inputFilter->add ( $factory->createInput ( array (
-							'name' => 'choice_4',
-							'validators' => array (
-									array (
-											'name' => 'NotEmpty',
-											'required' => true,
-											'options' => array (
-													'message' => 'Bạn phải điền phương án lựa chọn!',
-													'break_chain_on_failure' => true,
-											),
-									),
 							),
-					) ) );
+						),
+					)));
+
+					$inputFilter->add ( $factory->createInput ( array (
+						'name' => 'choice_4',
+						'validators' => array (
+							array (
+								'name' => 'NotEmpty',
+								'required' => true,
+								'options' => array (
+									'message' => 'Bạn phải điền phương án lựa chọn!',
+									'break_chain_on_failure' => true,
+								),
+							),
+						),
+					)));
 				}
 
 				$this->inputFilter = $inputFilter;

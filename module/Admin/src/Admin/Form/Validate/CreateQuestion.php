@@ -7,6 +7,7 @@
 		Zend\InputFilter\InputFilterInterface;
 
 	class CreateQuestion implements InputFilterAwareInterface {
+
 		protected $inputFilter;
 
 		public function setInputFilter(InputFilterInterface $inputFilter) {
@@ -20,18 +21,18 @@
 				$factory = new InputFactory ();
 
 				$inputFilter->add ( $factory->createInput ( array (
-						'name' => 'content',
-						'validators' => array (
-								array (
-										'name' => 'NotEmpty',
-										'required' => true,
-										'options' => array (
-												'message' => 'Bạn phải điền câu hỏi!',
-												'break_chain_on_failure' => true,
-										),
-								),
+					'name' => 'content',
+					'validators' => array (
+						array (
+							'name' => 'NotEmpty',
+							'required' => true,
+							'options' => array (
+							'message' => 'Bạn phải điền câu hỏi!',
+							'break_chain_on_failure' => true,
+							),
 						),
-				) ) );
+					),
+				)));
 
 				$this->inputFilter = $inputFilter;
 			}

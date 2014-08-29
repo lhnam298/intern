@@ -11,14 +11,14 @@
 				doMiddle();
 			});
 			function doMiddle(){
-				$('#middle').css({'left':($(window).width()*75/100 - $('#middle').width())/2});
+				$('#middle').css({'left':$(window).width()*25/100 + ($(window).width()*75/100 - $('#middle').width())/2});
 			}
 		});
 	</script>
 </head>
 <?php if ($this->pageCount): ?>
-	<div class="pagination" id="middle">
-<!--        <ul> -->
+	<div id="middle">
+		<ul class="pagination">
 			<!-- Previous page link -->
 			<?php if (isset($this->previous)): ?>
 				<li>
@@ -62,6 +62,6 @@
 					</a>
 				</li>
 			<?php endif; ?>
-<!--        </ul> -->
+		</ul>
 	</div>
 <?php endif; ?>

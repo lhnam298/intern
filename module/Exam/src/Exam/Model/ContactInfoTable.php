@@ -5,8 +5,7 @@
 		Zend\Db\Sql\Select,
 		Zend\Paginator\Adapter\DbSelect,
 		Zend\Paginator\Paginator,
-		Zend\Db\ResultSet\ResultSet,
-		Exam\Config\CurrentTime;
+		Zend\Db\ResultSet\ResultSet;
 
 	class ContactInfoTable extends ObjectTable {
 
@@ -36,7 +35,6 @@
 		}
 
 		public function saveContact(ContactInfo $contact) {
-			$time	= new CurrentTime();
 			$data	= array(
 				'contact_id'	=> $contact->contact_id,
 				'name'			=> $contact->name,
@@ -51,7 +49,7 @@
 
 			$id	= (int)$contact->contact_id;
 			if ($id == 0) {
-				$data['created_at']	= $time->getCurrentTime();
+				$data['created_at']	= date('Y-m-d H:i:s');
 				$this->tableGateway->insert($data);
 			}
 			else

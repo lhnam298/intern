@@ -8,7 +8,13 @@
 		<dt>Học sinh</dt>
 		<dd class="text-info"><?php echo $student->name; ?></dd>
 		<dt>Ngày sinh</dt>
-		<dd class="text-info"><?php echo $student->birthday; ?></dd>
+		<dd class="text-info">
+		<?php
+			$parts = explode('-', $student->birthday);
+			$newFormat  = $parts[2]."-".$parts[1]."-".$parts[0];
+			echo $newFormat;
+		?>
+		</dd>
 		<dt>Môn thi</dt>
 		<dd class="text-info"><?php echo $this->subject; ?></dd>
 		<dt>Điểm</dt>

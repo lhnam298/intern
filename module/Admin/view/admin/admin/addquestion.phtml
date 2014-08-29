@@ -1,20 +1,3 @@
-<script type="text/javascript">
-	$(document).ready(function() {
-		$.viewForm = {
-			'1' : $('#type1'),
-			'2' : $('#type2-3a, #type2-3b, #type2-3c, #type2-3d, #type2'),
-			'3' : $('#type2-3a, #type2-3b, #type2-3c, #type2-3d, #type3')
-		};
-
-		$('#typeId').change(function() {
-			// hide all
-			$.each($.viewForm, function() { this.hide(); });
-			// show current
-			$.viewForm[$(this).val()].show();
-		}).change();
-	});
-</script>
-
 <?php
 	$form	= $this->form;
 	$form->prepare();
@@ -107,3 +90,20 @@
 <?php
 	echo $this->form()->openTag($this->form);
 ?>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$.viewForm = {
+			'1' : $('#type1'),
+			'2' : $('#type2-3a, #type2-3b, #type2-3c, #type2-3d, #type2'),
+			'3' : $('#type2-3a, #type2-3b, #type2-3c, #type2-3d, #type3')
+		};
+
+		$('#typeId').change(function() {
+			// hide all
+			$.each($.viewForm, function() { this.hide(); });
+			// show current
+			$.viewForm[$(this).val()].show();
+		}).change();
+	});
+</script>

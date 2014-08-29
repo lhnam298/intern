@@ -170,33 +170,46 @@ font-size:11px;
 line-height:20px;
 }
 /*--------------*/
-div.pagination {
+.pagination {
 width: 630px;
 margin:5px;
 font-size:10px;
 padding-left:40%;
 }
-div.pagination a {
+.pagination > li > a{
 padding: 2px 5px 2px 5px;
 margin-right: 2px;
 border: 1px solid #795636;
 text-decoration: none; 
 color: #795636;
 }
-div.pagination a:hover, div.pagination a:active {
-border:1px solid #795636;
-color: #fff;
-background-color: #795636;
-}
-div.pagination span.current {
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
 padding: 2px 5px 2px 5px;
 margin-right: 2px;
 border: 1px solid #795636;
-font-weight: bold;
-background-color: #795636;
-color: #FFF;
+text-decoration: none; 
+color: #795636;
 }
-div.pagination span.disabled {
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+padding: 2px 5px 2px 5px;
+margin-right: 2px;
+color: #fff;
+background-color: #795636;
+}
+.pagination > .disabled > span,
+.pagination > .disabled > span:hover,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus {
 padding: 2px 5px 2px 5px;
 margin-right: 2px;
 border: 1px solid #f3f3f3;
